@@ -186,6 +186,120 @@
       align-items: center;
     }
 
+    .quick-actions-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 12px;
+        padding: 15px;
+        width: 300px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        transform-origin: top right;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        overflow: hidden;
+    }
+    
+    .quick-actions-dropdown.active {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+    
+    .quick-actions-dropdown.animate-in {
+        animation: quickActionsFadeIn 0.3s ease-out;
+    }
+    
+    @keyframes quickActionsFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+    
+    .quick-app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        text-align: center;
+    }
+    
+    .quick-app:hover {
+        background: rgba(0, 0, 0, 0.05);
+        transform: translateY(-2px);
+    }
+    
+    .quick-app-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        color: white;
+        font-size: 18px;
+    }
+    
+    .quick-app-name {
+        font-size: 12px;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+    
+    /* Mobile-specific styles */
+    @media (max-width: 768px) {
+        .quick-actions-dropdown {
+            position: fixed;
+            top: auto;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        
+        .quick-actions-dropdown.active {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        .quick-app {
+            padding: 8px;
+        }
+        
+        .quick-app-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+    }
+    
+    /* Navigation transparency */
+    .navbar {
+        transition: all 0.3s ease;
+        background: rgba(44, 82, 130, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
     .quick-actions-btn {
       display: flex;
       align-items: center;
@@ -1382,30 +1496,47 @@
       document.body.style.overflow = 'auto';
     });
 
-    // Quick Actions Dropdown
+    // Quick Actions Dropdown - Enhanced with OS-style applications
     const quickActionsBtn = document.querySelector('.quick-actions-btn');
     const quickActionsDropdown = document.querySelector('.quick-actions-dropdown');
 
+    // Improved click handler for quick actions
     quickActionsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       quickActionsDropdown.classList.toggle('active');
+      
+      // Add animation class
+      if (quickActionsDropdown.classList.contains('active')) {
+        quickActionsDropdown.classList.add('animate-in');
+        setTimeout(() => {
+          quickActionsDropdown.classList.remove('animate-in');
+        }, 300);
+      }
     });
 
+    // Better document click handler
     document.addEventListener('click', (e) => {
       if (!quickActionsBtn.contains(e.target) && !quickActionsDropdown.contains(e.target)) {
         quickActionsDropdown.classList.remove('active');
       }
     });
 
-    // Navbar Scroll Effect
+    // Close quick actions when clicking on mobile menu
+    mobileMenuBtn.addEventListener('click', () => {
+      quickActionsDropdown.classList.remove('active');
+    });
+
+    // Navbar Scroll Effect with transparency
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(44, 82, 130, 0.95)';
+        navbar.style.background = 'rgba(44, 82, 130, 0.85)'; // More transparent
+        navbar.style.backdropFilter = 'blur(10px)'; // Frosted glass effect
         navbar.style.padding = '0.8rem 5%';
         navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
       } else {
-        navbar.style.background = 'var(--primary)';
+        navbar.style.background = 'rgba(44, 82, 130, 0.7)'; // Slightly transparent even at top
+        navbar.style.backdropFilter = 'blur(5px)';
         navbar.style.padding = '1rem 5%';
         navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
       }
@@ -1495,11 +1626,17 @@
     document.addEventListener('DOMContentLoaded', () => {
       preloadImages();
       
+      // Remove bullets from unordered lists
+      document.querySelectorAll('ul').forEach(ul => {
+        ul.style.listStyleType = 'none';
+        ul.style.paddingLeft = '0';
+      });
+      
       // Add loaded class to body when everything is ready
       setTimeout(() => {
         document.body.classList.add('loaded');
       }, 500);
     });
-  </script>
+</script>
 </body>
 </html>
