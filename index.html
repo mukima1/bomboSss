@@ -296,39 +296,33 @@
       top: 18px;
     }
 
-    /* Simplified Mobile Menu - Flutter-like */
+    /* Mobile Menu - Right Side */
     .mobile-menu {
       position: fixed;
       top: 0;
-      left: -100%;
+      right: -280px;
       width: 280px;
       height: 100vh;
       background: var(--primary);
-      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
       z-index: 1000;
       overflow-y: auto;
     }
 
     .mobile-menu.active {
-      left: 0;
+      right: 0;
     }
 
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
       list-style: none;
-      padding: 1.5rem;
+      padding: 5rem 1.5rem 1.5rem;
     }
 
-    .mobile-nav-links:before {
-      content: "Menu";
-      display: block;
-      color: var(--white);
-      font-size: 1.5rem;
-      font-weight: 600;
-      padding: 1rem 1.5rem;
-      margin-bottom: 1rem;
+    .mobile-nav-links li {
+      margin-bottom: 0.5rem;
     }
 
     .mobile-nav-links a {
@@ -348,7 +342,7 @@
       color: var(--secondary);
     }
 
-    .mobile-nav-links a i {
+    .mobile-nav-links i {
       margin-right: 1rem;
       font-size: 1.1rem;
       width: 25px;
@@ -810,6 +804,67 @@
       transform: translateY(-5px);
     }
 
+    /* Footer Quick Buttons - Enhanced Design */
+    .quick-buttons-section {
+      margin-top: 0;
+    }
+
+    .quick-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .quick-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 1rem 0.5rem;
+      text-decoration: none;
+      color: #ddd;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      min-height: 90px;
+    }
+
+    .quick-button:hover {
+      background: rgba(240, 165, 0, 0.15);
+      transform: translateY(-3px);
+      color: var(--white);
+      border-color: var(--secondary);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .quick-button i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+      background: rgba(240, 165, 0, 0.1);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .quick-button:hover i {
+      background: var(--secondary);
+      color: var(--dark);
+      transform: scale(1.1);
+    }
+
+    .quick-button span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
     .copyright {
       text-align: center;
       margin-top: 4rem;
@@ -1204,6 +1259,21 @@
         max-width: 250px;
         text-align: center;
       }
+      
+      /* Adjust footer quick buttons for tablet */
+      .quick-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .quick-buttons-section {
+        grid-column: span 2;
+      }
     }
 
     @media (max-width: 576px) {
@@ -1227,6 +1297,18 @@
       
       .quick-actions-grid {
         grid-template-columns: repeat(4, 1fr);
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-buttons-section {
+        grid-column: span 1;
+      }
+      
+      .quick-buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -1318,7 +1400,7 @@
     </button>
   </nav>
 
-  <!-- Simplified Mobile Menu - Flutter-like -->
+  <!-- Mobile Menu - Right Side -->
   <div class="mobile-menu">
     <ul class="mobile-nav-links">
       <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
@@ -1568,9 +1650,9 @@
         </div>
       </div>
 
-      <!-- Quick Buttons Section -->
-      <div class="quick-buttons-section">
-        <h3>Quick Buttons</h3>
+      <!-- Quick Buttons Section - Enhanced -->
+      <div class="footer-col quick-buttons-section">
+        <h3>Quick Access</h3>
         <div class="quick-buttons-grid">
           <a href="#" class="quick-button">
             <i class="fas fa-map-marker-alt"></i>
