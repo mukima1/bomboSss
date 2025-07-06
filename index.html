@@ -136,13 +136,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 5%;
-      background: var(--primary);
+      background: rgba(44, 82, 130, 0.7);
       color: var(--white);
       position: fixed;
       width: 100%;
       z-index: 1000;
       transition: var(--transition);
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
     }
 
     .logo {
@@ -184,120 +185,6 @@
     .nav-container {
       display: flex;
       align-items: center;
-    }
-
-    .quick-actions-dropdown {
-        display: none;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 12px;
-        padding: 15px;
-        width: 300px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        transform-origin: top right;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        overflow: hidden;
-    }
-    
-    .quick-actions-dropdown.active {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-    }
-    
-    .quick-actions-dropdown.animate-in {
-        animation: quickActionsFadeIn 0.3s ease-out;
-    }
-    
-    @keyframes quickActionsFadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.9) translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
-    }
-    
-    .quick-app {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        border-radius: 8px;
-        transition: all 0.2s ease;
-        cursor: pointer;
-        text-align: center;
-    }
-    
-    .quick-app:hover {
-        background: rgba(0, 0, 0, 0.05);
-        transform: translateY(-2px);
-    }
-    
-    .quick-app-icon {
-        width: 40px;
-        height: 40px;
-        background: var(--primary);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 8px;
-        color: white;
-        font-size: 18px;
-    }
-    
-    .quick-app-name {
-        font-size: 12px;
-        color: #333;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
-    }
-    
-    /* Mobile-specific styles */
-    @media (max-width: 768px) {
-        .quick-actions-dropdown {
-            position: fixed;
-            top: auto;
-            bottom: 70px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 400px;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-        
-        .quick-actions-dropdown.active {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-        }
-        
-        .quick-app {
-            padding: 8px;
-        }
-        
-        .quick-app-icon {
-            width: 36px;
-            height: 36px;
-            font-size: 16px;
-        }
-    }
-    
-    /* Navigation transparency */
-    .navbar {
-        transition: all 0.3s ease;
-        background: rgba(44, 82, 130, 0.7);
-        backdrop-filter: blur(5px);
     }
 
     .quick-actions-btn {
@@ -1083,6 +970,171 @@
       text-align: center;
     }
 
+    /* Mobile Quick Actions Panel */
+    .mobile-quick-actions-panel {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-radius: 20px 20px 0 0;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1100;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .mobile-quick-actions-panel.active {
+      bottom: 0;
+    }
+    
+    .mobile-quick-actions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .mobile-quick-actions-header h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin: 0;
+    }
+    
+    .close-quick-actions {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+    }
+    
+    .mobile-quick-apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    
+    .mobile-quick-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 0.5rem;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-align: center;
+      background: rgba(44, 82, 130, 0.05);
+    }
+    
+    .mobile-quick-app:hover {
+      background: rgba(44, 82, 130, 0.1);
+      transform: translateY(-3px);
+    }
+    
+    .mobile-quick-app-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.8rem;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 15px rgba(44, 82, 130, 0.2);
+    }
+    
+    .mobile-quick-app-name {
+      font-size: 0.75rem;
+      color: var(--black);
+      font-weight: 500;
+    }
+    
+    /* Floating Quick Actions Button for Mobile */
+    .floating-quick-actions-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      box-shadow: 0 5px 20px rgba(44, 82, 130, 0.3);
+      z-index: 1001;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .floating-quick-actions-btn:hover {
+      transform: scale(1.1);
+      background: var(--dark);
+    }
+    
+    /* Animation for app icons when panel opens */
+    @keyframes appFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Show floating button only on mobile */
+    @media (max-width: 992px) {
+      .floating-quick-actions-btn {
+        display: flex;
+      }
+      
+      .quick-actions-btn {
+        display: none;
+      }
+      
+      /* Animate each app icon with delay */
+      .mobile-quick-app {
+        opacity: 0;
+        animation: appFadeIn 0.3s ease forwards;
+      }
+      
+      .mobile-quick-app:nth-child(1) { animation-delay: 0.1s; }
+      .mobile-quick-app:nth-child(2) { animation-delay: 0.15s; }
+      .mobile-quick-app:nth-child(3) { animation-delay: 0.2s; }
+      .mobile-quick-app:nth-child(4) { animation-delay: 0.25s; }
+      .mobile-quick-app:nth-child(5) { animation-delay: 0.3s; }
+      .mobile-quick-app:nth-child(6) { animation-delay: 0.35s; }
+      .mobile-quick-app:nth-child(7) { animation-delay: 0.4s; }
+      .mobile-quick-app:nth-child(8) { animation-delay: 0.45s; }
+    }
+    
+    /* Adjust for smaller screens */
+    @media (max-width: 576px) {
+      .mobile-quick-apps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .mobile-quick-app-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+    }
+
     /* Animations */
     @keyframes fadeInUp {
       from {
@@ -1112,12 +1164,6 @@
     }
 
     @media (max-width: 992px) {
-      .quick-actions-btn {
-        display: none;
-      }
-    }
-
-    @media (max-width: 768px) {
       .mobile-menu-btn {
         display: block;
       }
@@ -1290,6 +1336,71 @@
   </div>
 
   <div class="overlay"></div>
+
+  <!-- New Mobile Quick Actions Panel -->
+  <div class="mobile-quick-actions-panel">
+    <div class="mobile-quick-actions-header">
+      <h3>Quick Actions</h3>
+      <button class="close-quick-actions">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="mobile-quick-apps-grid">
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <span class="mobile-quick-app-name">Directions</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <span class="mobile-quick-app-name">Call Us</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+        <span class="mobile-quick-app-name">Events</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-download"></i>
+        </div>
+        <span class="mobile-quick-app-name">Downloads</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <span class="mobile-quick-app-name">Staff</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-images"></i>
+        </div>
+        <span class="mobile-quick-app-name">Gallery</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-book"></i>
+        </div>
+        <span class="mobile-quick-app-name">Academics</span>
+      </div>
+      <div class="mobile-quick-app">
+        <div class="mobile-quick-app-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <span class="mobile-quick-app-name">Admissions</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Quick Actions Button for Mobile -->
+  <button class="floating-quick-actions-btn">
+    <i class="fas fa-th"></i>
+  </button>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -1622,6 +1733,38 @@
       });
     }
 
+    // Mobile Quick Actions Panel Functionality
+    const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
+    const quickActionsPanel = document.querySelector('.mobile-quick-actions-panel');
+    const closeQuickActions = document.querySelector('.close-quick-actions');
+
+    floatingQuickBtn.addEventListener('click', () => {
+      quickActionsPanel.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeQuickActions.addEventListener('click', () => {
+      quickActionsPanel.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    overlay.addEventListener('click', () => {
+      quickActionsPanel.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close quick actions panel when clicking on a quick app
+    document.querySelectorAll('.mobile-quick-app').forEach(app => {
+      app.addEventListener('click', () => {
+        quickActionsPanel.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       preloadImages();
@@ -1637,6 +1780,6 @@
         document.body.classList.add('loaded');
       }, 500);
     });
-</script>
+  </script>
 </body>
 </html>
