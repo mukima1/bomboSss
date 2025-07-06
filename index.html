@@ -320,7 +320,7 @@
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
       margin-bottom: 2rem;
       list-style: none;
       padding-left: 0;
@@ -332,13 +332,14 @@
       font-size: 1.1rem;
       display: flex;
       align-items: center;
-      padding: 0.8rem 1rem;
+      padding: 1rem;
       border-radius: 8px;
       transition: var(--transition);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     .mobile-nav-links a:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       color: var(--secondary);
       transform: translateX(5px);
     }
@@ -348,6 +349,56 @@
       font-size: 1.2rem;
       width: 25px;
       text-align: center;
+    }
+
+    .mobile-quick-actions {
+      margin-top: auto;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+    }
+
+    .mobile-quick-actions h3 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-quick-actions h3 i {
+      margin-right: 0.5rem;
+    }
+
+    .mobile-quick-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+
+    .mobile-quick-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 1rem 0.5rem;
+      text-decoration: none;
+      color: var(--white);
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .mobile-quick-action:hover {
+      background: var(--secondary);
+      color: var(--black);
+      transform: translateY(-3px);
+    }
+
+    .mobile-quick-action i {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
     }
 
     .overlay {
@@ -949,6 +1000,90 @@
       text-align: center;
     }
 
+    /* Mobile Quick Actions Modal */
+    .mobile-quick-actions-modal {
+      position: fixed;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      padding: 2rem 1.5rem;
+      transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .mobile-quick-actions-modal.active {
+      bottom: 0;
+    }
+
+    .mobile-quick-actions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mobile-quick-actions-header h3 {
+      color: var(--primary);
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-quick-actions-header h3 i {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+
+    .mobile-quick-actions-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+    }
+
+    .mobile-quick-actions-grid-modal {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .mobile-quick-action-modal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      border-radius: 12px;
+      padding: 1rem 0.5rem;
+      text-decoration: none;
+      color: var(--black);
+      transition: var(--transition);
+    }
+
+    .mobile-quick-action-modal:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+    }
+
+    .mobile-quick-action-modal i {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .mobile-quick-action-modal:hover i {
+      color: var(--black);
+    }
+
+    .mobile-quick-action-modal span {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
     /* Quick Buttons Section */
     .quick-buttons-section {
       grid-column: 1 / -1;
@@ -1013,11 +1148,6 @@
         height: 45px;
         font-size: 1.2rem;
       }
-    }
-
-    /* Remove quick actions from mobile menu */
-    .mobile-quick-actions {
-      display: none;
     }
 
     /* Animations */
@@ -1114,6 +1244,10 @@
       .quick-actions-grid {
         grid-template-columns: 1fr;
       }
+
+      .mobile-quick-actions-grid-modal {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -1189,6 +1323,76 @@
       <li><a href="#admissions"><i class="fas fa-user-graduate"></i> Admissions</a></li>
       <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
+
+    <div class="mobile-quick-actions">
+      <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+      <div class="mobile-quick-actions-grid">
+        <a href="#" class="mobile-quick-action">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Directions</span>
+        </a>
+        <a href="#" class="mobile-quick-action">
+          <i class="fas fa-phone"></i>
+          <span>Call Us</span>
+        </a>
+        <a href="#" class="mobile-quick-action">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Events</span>
+        </a>
+        <a href="#" class="mobile-quick-action">
+          <i class="fas fa-download"></i>
+          <span>Downloads</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Quick Actions Modal -->
+  <div class="mobile-quick-actions-modal">
+    <div class="mobile-quick-actions-header">
+      <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+      <button class="mobile-quick-actions-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="mobile-quick-actions-grid-modal">
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Directions</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-phone"></i>
+        <span>Call Us</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-calendar-alt"></i>
+        <span>Events</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-download"></i>
+        <span>Downloads</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-user-tie"></i>
+        <span>Staff</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-images"></i>
+        <span>Gallery</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-file-alt"></i>
+        <span>Applications</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Results</span>
+      </a>
+      <a href="#" class="mobile-quick-action-modal">
+        <i class="fas fa-newspaper"></i>
+        <span>News</span>
+      </a>
+    </div>
   </div>
 
   <div class="overlay"></div>
@@ -1435,19 +1639,22 @@
       mobileMenu.classList.remove('active');
       overlay.classList.remove('active');
       document.body.style.overflow = 'auto';
+      document.querySelector('.mobile-quick-actions-modal').classList.remove('active');
     });
 
     // Quick Actions Dropdown
     const quickActionsBtn = document.querySelector('.quick-actions-btn');
     const quickActionsDropdown = document.querySelector('.quick-actions-dropdown');
 
-    quickActionsBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      quickActionsDropdown.classList.toggle('active');
-    });
+    if (quickActionsBtn) {
+      quickActionsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        quickActionsDropdown.classList.toggle('active');
+      });
+    }
 
     document.addEventListener('click', (e) => {
-      if (!quickActionsBtn.contains(e.target) && !quickActionsDropdown.contains(e.target)) {
+      if (quickActionsBtn && !quickActionsBtn.contains(e.target) && !quickActionsDropdown.contains(e.target)) {
         quickActionsDropdown.classList.remove('active');
       }
     });
@@ -1486,16 +1693,24 @@
 
     // Floating quick actions button functionality
     const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
+    const mobileQuickActionsModal = document.querySelector('.mobile-quick-actions-modal');
+    const mobileQuickActionsClose = document.querySelector('.mobile-quick-actions-close');
     
     floatingQuickBtn.addEventListener('click', () => {
-      // Scroll to the quick buttons section in footer
-      const quickButtonsSection = document.querySelector('.quick-buttons-section');
-      if (quickButtonsSection) {
-        window.scrollTo({
-          top: quickButtonsSection.offsetTop - 80,
-          behavior: 'smooth'
-        });
-      }
+      mobileQuickActionsModal.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    mobileQuickActionsClose.addEventListener('click', () => {
+      mobileQuickActionsModal.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close modal when clicking outside
+    overlay.addEventListener('click', () => {
+      mobileQuickActionsModal.classList.remove('active');
     });
 
     // Smooth scrolling for anchor links
@@ -1512,7 +1727,9 @@
         }
 
         // Close quick actions dropdown if open
-        quickActionsDropdown.classList.remove('active');
+        if (quickActionsDropdown) {
+          quickActionsDropdown.classList.remove('active');
+        }
 
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
