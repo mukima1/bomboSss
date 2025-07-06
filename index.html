@@ -187,7 +187,6 @@
       align-items: center;
     }
 
-    /* Redesigned Quick Actions Button */
     .quick-actions-btn {
       display: flex;
       align-items: center;
@@ -297,75 +296,39 @@
       top: 18px;
     }
 
-    /* Improved Mobile Menu */
+    /* Simplified Mobile Menu - Flutter-like */
     .mobile-menu {
       position: fixed;
       top: 0;
-      right: -100%;
-      width: 85%;
-      max-width: 350px;
+      left: -100%;
+      width: 280px;
       height: 100vh;
       background: var(--primary);
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
       z-index: 1000;
-      display: flex;
-      flex-direction: column;
       overflow-y: auto;
-      overscroll-behavior: contain;
-      -webkit-overflow-scrolling: touch;
     }
 
     .mobile-menu.active {
-      right: 0;
-    }
-
-    .mobile-menu-header {
-      padding: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .mobile-menu-header .logo {
-      flex-direction: row;
-    }
-
-    .mobile-menu-header .logo img {
-      height: 40px;
-    }
-
-    .mobile-menu-header .logo-text .main {
-      font-size: 1.1rem;
-    }
-
-    .mobile-menu-header .logo-text .sub {
-      font-size: 0.6rem;
-    }
-
-    .mobile-menu-header .logo-text .motto {
-      display: none;
-    }
-
-    .mobile-menu-close {
-      background: none;
-      border: none;
-      color: var(--white);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      margin: -0.5rem;
+      left: 0;
     }
 
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
       list-style: none;
       padding: 1.5rem;
-      flex-grow: 1;
+    }
+
+    .mobile-nav-links:before {
+      content: "Menu";
+      display: block;
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
     }
 
     .mobile-nav-links a {
@@ -390,18 +353,6 @@
       font-size: 1.1rem;
       width: 25px;
       text-align: center;
-    }
-
-    .mobile-quick-actions {
-      padding: 1.5rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .mobile-quick-actions h4 {
-      color: var(--white);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      opacity: 0.8;
     }
 
     .overlay {
@@ -928,7 +879,7 @@
       background: var(--dark);
     }
 
-    /* Redesigned Quick Actions Dropdown - Compact Grid Layout */
+    /* Redesigned Quick Actions Dropdown - Compact 4-column layout */
     .quick-actions-dropdown {
       position: absolute;
       top: calc(100% + 10px);
@@ -937,7 +888,7 @@
       border-radius: 16px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
       padding: 1.5rem;
-      width: 400px;
+      width: 320px;
       z-index: 1000;
       opacity: 0;
       visibility: hidden;
@@ -982,15 +933,12 @@
       align-items: center;
       justify-content: center;
       background: transparent;
-      border-radius: 10px;
-      padding: 0.8rem 0.5rem;
+      border-radius: 8px;
+      padding: 0.6rem 0.3rem;
       text-decoration: none;
       color: var(--black);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      min-height: 80px;
+      min-height: 70px;
     }
 
     .quick-action:hover {
@@ -1000,13 +948,13 @@
     }
 
     .quick-action i {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
       color: var(--primary);
       transition: all 0.3s ease;
       background: rgba(44, 82, 130, 0.1);
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1020,14 +968,14 @@
     }
 
     .quick-action span {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-align: center;
       font-weight: 500;
       color: var(--dark);
       line-height: 1.2;
     }
 
-    /* Improved Mobile Quick Actions Modal */
+    /* Mobile Quick Actions Modal - 4 columns */
     .mobile-quick-actions-modal {
       position: fixed;
       bottom: -100%;
@@ -1111,15 +1059,9 @@
       padding: 0.5rem;
     }
 
-    @media (max-width: 768px) {
-      .mobile-quick-actions-grid-modal {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
     @media (max-width: 480px) {
       .mobile-quick-actions-grid-modal {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -1128,14 +1070,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 0.8rem 0.5rem;
+      padding: 0.6rem 0.3rem;
       text-decoration: none;
       color: var(--black);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      border-radius: 10px;
+      border-radius: 8px;
       background: transparent;
       border: 1px solid rgba(0, 0, 0, 0.05);
-      min-height: 80px;
+      min-height: 70px;
     }
 
     .mobile-quick-action-modal:hover {
@@ -1145,11 +1087,11 @@
     }
 
     .mobile-quick-action-modal i {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
       color: var(--primary);
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1165,62 +1107,11 @@
     }
 
     .mobile-quick-action-modal span {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-align: center;
       line-height: 1.2;
       font-weight: 500;
       color: var(--dark);
-    }
-
-    /* Quick Buttons Section */
-    .quick-buttons-section {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .quick-buttons-section h3 {
-      color: var(--secondary);
-      margin-bottom: 1.5rem;
-    }
-
-    .quick-buttons-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .quick-button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 1rem;
-      min-width: 100px;
-      text-decoration: none;
-      color: var(--white);
-      transition: var(--transition);
-    }
-
-    .quick-button:hover {
-      background: var(--secondary);
-      color: var(--black);
-      transform: translateY(-3px);
-    }
-
-    .quick-button i {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .quick-button span {
-      font-size: 0.8rem;
     }
 
     /* Adjust floating buttons for mobile */
@@ -1325,7 +1216,7 @@
       }
 
       .mobile-menu {
-        width: 90%;
+        width: 280px;
       }
 
       .quick-actions-dropdown {
@@ -1335,7 +1226,7 @@
       }
       
       .quick-actions-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
   </style>
@@ -1357,7 +1248,6 @@
         <i class="fas fa-th"></i> Quick Actions
       </button>
 
-      <!-- Redesigned Quick Actions Dropdown -->
       <div class="quick-actions-dropdown">
         <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
         <div class="quick-actions-grid">
@@ -1428,21 +1318,8 @@
     </button>
   </nav>
 
-  <!-- Improved Mobile Menu -->
+  <!-- Simplified Mobile Menu - Flutter-like -->
   <div class="mobile-menu">
-    <div class="mobile-menu-header">
-      <div class="logo">
-        <img src="bombo.png" alt="Bombo SS Logo">
-        <div class="logo-text">
-          <span class="main">BOMBO</span>
-          <span class="sub">SENIOR SECONDARY</span>
-        </div>
-      </div>
-      <button class="mobile-menu-close">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    
     <ul class="mobile-nav-links">
       <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
@@ -1453,28 +1330,6 @@
       <li><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
       <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
     </ul>
-    
-    <div class="mobile-quick-actions">
-      <h4>Quick Actions</h4>
-      <div class="quick-buttons-grid">
-        <a href="#" class="quick-button">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Directions</span>
-        </a>
-        <a href="#" class="quick-button">
-          <i class="fas fa-phone"></i>
-          <span>Call Us</span>
-        </a>
-        <a href="#" class="quick-button">
-          <i class="fas fa-download"></i>
-          <span>Downloads</span>
-        </a>
-        <a href="#" class="quick-button">
-          <i class="fas fa-calendar-alt"></i>
-          <span>Events</span>
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Mobile Quick Actions Modal -->
@@ -1767,7 +1622,6 @@
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
     const overlay = document.querySelector('.overlay');
     const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
     const mobileQuickActionsModal = document.querySelector('.mobile-quick-actions-modal');
@@ -1777,14 +1631,6 @@
     let quickActionsOpen = false;
 
     mobileMenuBtn.addEventListener('click', () => {
-      toggleMobileMenu();
-    });
-
-    mobileMenuClose.addEventListener('click', () => {
-      toggleMobileMenu();
-    });
-
-    function toggleMobileMenu() {
       menuOpen = !menuOpen;
       mobileMenuBtn.classList.toggle('active');
       mobileMenu.classList.toggle('active');
@@ -1802,7 +1648,7 @@
         overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
-    }
+    });
 
     // Quick Actions Dropdown - Enhanced with better animations
     const quickActionsBtn = document.querySelector('.quick-actions-btn');
