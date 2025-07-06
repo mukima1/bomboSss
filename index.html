@@ -296,12 +296,12 @@
       top: 18px;
     }
 
-    /* Mobile Menu - Right Side */
+    /* Mobile Menu - Right Side - Improved */
     .mobile-menu {
       position: fixed;
       top: 0;
-      right: -280px;
-      width: 280px;
+      right: -320px;
+      width: 320px;
       height: 100vh;
       background: var(--primary);
       box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
@@ -314,11 +314,47 @@
       right: 0;
     }
 
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-header h3 {
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-menu-header h3 i {
+      margin-right: 0.8rem;
+      color: var(--secondary);
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-close:hover {
+      color: var(--secondary);
+      transform: rotate(90deg);
+    }
+
     .mobile-nav-links {
       display: flex;
       flex-direction: column;
       list-style: none;
-      padding: 5rem 1.5rem 1.5rem;
+      padding: 1.5rem;
     }
 
     .mobile-nav-links li {
@@ -804,15 +840,17 @@
       transform: translateY(-5px);
     }
 
-    /* Footer Quick Buttons - Enhanced Design */
+    /* Footer Quick Buttons - iOS-inspired Design */
     .quick-buttons-section {
       margin-top: 0;
+      width: 100%;
     }
 
     .quick-buttons-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+      justify-items: center;
     }
 
     .quick-button {
@@ -821,14 +859,16 @@
       align-items: center;
       justify-content: center;
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 1rem 0.5rem;
       text-decoration: none;
       color: #ddd;
       transition: var(--transition);
       border: 1px solid rgba(255, 255, 255, 0.1);
       text-align: center;
-      min-height: 90px;
+      min-height: 100px;
+      width: 100%;
+      max-width: 120px;
     }
 
     .quick-button:hover {
@@ -849,7 +889,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 50%;
+      border-radius: 14px;
       transition: var(--transition);
     }
 
@@ -1262,7 +1302,7 @@
       
       /* Adjust footer quick buttons for tablet */
       .quick-buttons-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -1273,6 +1313,10 @@
       
       .quick-buttons-section {
         grid-column: span 2;
+      }
+      
+      .quick-buttons-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
@@ -1308,7 +1352,19 @@
       }
       
       .quick-buttons-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+      }
+      
+      .quick-button {
+        min-height: 90px;
+        padding: 0.8rem 0.3rem;
+      }
+      
+      .quick-button i {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
       }
     }
   </style>
@@ -1400,8 +1456,14 @@
     </button>
   </nav>
 
-  <!-- Mobile Menu - Right Side -->
+  <!-- Mobile Menu - Right Side - Improved -->
   <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <h3><i class="fas fa-bars"></i> Menu</h3>
+      <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
     <ul class="mobile-nav-links">
       <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="#about"><i class="fas fa-info-circle"></i>Org.Structure</a></li>
@@ -1650,7 +1712,7 @@
         </div>
       </div>
 
-      <!-- Quick Buttons Section - Enhanced -->
+      <!-- Quick Buttons Section - iOS-inspired Design -->
       <div class="footer-col quick-buttons-section">
         <h3>Quick Access</h3>
         <div class="quick-buttons-grid">
@@ -1708,6 +1770,7 @@
     const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
     const mobileQuickActionsModal = document.querySelector('.mobile-quick-actions-modal');
     const mobileQuickActionsClose = document.querySelector('.mobile-quick-actions-close');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
     
     let menuOpen = false;
     let quickActionsOpen = false;
@@ -1730,6 +1793,15 @@
         overlay.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
+    });
+
+    // Close mobile menu when close button is clicked
+    mobileMenuClose.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
     });
 
     // Quick Actions Dropdown - Enhanced with better animations
@@ -1770,7 +1842,7 @@
         menuOpen = false;
       }
       
-      if (quickActionsDropdown.classList.contains('active')) {
+      if (quickActionsDropdown && quickActionsDropdown.classList.contains('active')) {
         quickActionsDropdown.classList.remove('active');
       }
       
