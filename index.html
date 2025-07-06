@@ -312,6 +312,7 @@
       overflow-y: auto;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
+      padding-top: 1rem;
     }
 
     .mobile-menu.active {
@@ -319,40 +320,7 @@
     }
 
     .mobile-menu-header {
-      padding: 1.5rem;
-      background: rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1;
-    }
-
-    .mobile-menu-logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .mobile-menu-logo img {
-      height: 40px;
-      margin-right: 10px;
-    }
-
-    .mobile-menu-logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.2;
-    }
-
-    .mobile-menu-logo-text .main {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--white);
-    }
-
-    .mobile-menu-logo-text .sub {
-      font-size: 0.6rem;
-      color: rgba(255, 255, 255, 0.8);
+      display: none;
     }
 
     .mobile-nav-links {
@@ -363,6 +331,17 @@
       list-style: none;
       padding: 0 1.5rem;
       flex-grow: 1;
+    }
+
+    .mobile-nav-links:before {
+      content: "Menu";
+      display: block;
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1rem;
     }
 
     .mobile-nav-links a {
@@ -390,55 +369,7 @@
     }
 
     .mobile-quick-actions {
-      margin-top: auto;
-      padding: 1.5rem;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 12px 12px 0 0;
-      position: sticky;
-      bottom: 0;
-    }
-
-    .mobile-quick-actions h3 {
-      color: var(--secondary);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .mobile-quick-actions h3 i {
-      margin-right: 0.5rem;
-    }
-
-    .mobile-quick-actions-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.8rem;
-    }
-
-    .mobile-quick-action {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 0.8rem 0.5rem;
-      text-decoration: none;
-      color: var(--white);
-      transition: var(--transition);
-      font-size: 0.8rem;
-    }
-
-    .mobile-quick-action:hover {
-      background: var(--secondary);
-      color: var(--black);
-      transform: translateY(-3px);
-    }
-
-    .mobile-quick-action i {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      display: none;
     }
 
     .overlay {
@@ -1103,9 +1034,15 @@
       gap: 1rem;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       .mobile-quick-actions-grid-modal {
         grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mobile-quick-actions-grid-modal {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
@@ -1303,10 +1240,6 @@
       .quick-actions-grid {
         grid-template-columns: 1fr;
       }
-
-      .mobile-quick-actions-grid-modal {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
   </style>
 </head>
@@ -1375,16 +1308,6 @@
 
   <!-- Mobile Menu -->
   <div class="mobile-menu">
-    <div class="mobile-menu-header">
-      <div class="mobile-menu-logo">
-        <img src="bombo.png" alt="Bombo SS Logo">
-        <div class="mobile-menu-logo-text">
-          <span class="main">BOMBO SS</span>
-          <span class="sub">Senior Secondary School</span>
-        </div>
-      </div>
-    </div>
-    
     <ul class="mobile-nav-links">
       <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
@@ -1395,36 +1318,6 @@
       <li><a href="#"><i class="fas fa-images"></i> Gallery</a></li>
       <li><a href="#"><i class="fas fa-calendar-alt"></i> Events</a></li>
     </ul>
-
-    <div class="mobile-quick-actions">
-      <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
-      <div class="mobile-quick-actions-grid">
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-map-marker-alt"></i>
-          <span>Directions</span>
-        </a>
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-phone"></i>
-          <span>Call Us</span>
-        </a>
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-calendar-alt"></i>
-          <span>Events</span>
-        </a>
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-download"></i>
-          <span>Downloads</span>
-        </a>
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-user-tie"></i>
-          <span>Staff</span>
-        </a>
-        <a href="#" class="mobile-quick-action">
-          <i class="fas fa-images"></i>
-          <span>Gallery</span>
-        </a>
-      </div>
-    </div>
   </div>
 
   <!-- Mobile Quick Actions Modal -->
@@ -1718,19 +1611,71 @@
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.overlay');
+    const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
+    const mobileQuickActionsModal = document.querySelector('.mobile-quick-actions-modal');
+    const mobileQuickActionsClose = document.querySelector('.mobile-quick-actions-close');
+    
+    let menuOpen = false;
+    let quickActionsOpen = false;
 
     mobileMenuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
       mobileMenuBtn.classList.toggle('active');
       mobileMenu.classList.toggle('active');
-      overlay.classList.toggle('active');
-      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
+      
+      if (quickActionsOpen) {
+        mobileQuickActionsModal.classList.remove('active');
+        quickActionsOpen = false;
+      }
+      
+      if (menuOpen) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    floatingQuickBtn.addEventListener('click', () => {
+      quickActionsOpen = !quickActionsOpen;
+      mobileQuickActionsModal.classList.toggle('active');
+      
+      if (menuOpen) {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        menuOpen = false;
+      }
+      
+      if (quickActionsOpen) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+    
+    mobileQuickActionsClose.addEventListener('click', () => {
+      mobileQuickActionsModal.classList.remove('active');
+      quickActionsOpen = false;
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
     });
 
     overlay.addEventListener('click', () => {
-      mobileMenuBtn.classList.remove('active');
-      mobileMenu.classList.remove('active');
+      if (menuOpen) {
+        mobileMenuBtn.classList.remove('active');
+        mobileMenu.classList.remove('active');
+        menuOpen = false;
+      }
+      
+      if (quickActionsOpen) {
+        mobileQuickActionsModal.classList.remove('active');
+        quickActionsOpen = false;
+      }
+      
       overlay.classList.remove('active');
-      document.querySelector('.mobile-quick-actions-modal').classList.remove('active');
       document.body.style.overflow = 'auto';
     });
 
@@ -1781,28 +1726,6 @@
         top: 0,
         behavior: 'smooth'
       });
-    });
-
-    // Floating quick actions button functionality
-    const floatingQuickBtn = document.querySelector('.floating-quick-actions-btn');
-    const mobileQuickActionsModal = document.querySelector('.mobile-quick-actions-modal');
-    const mobileQuickActionsClose = document.querySelector('.mobile-quick-actions-close');
-    
-    floatingQuickBtn.addEventListener('click', () => {
-      mobileQuickActionsModal.classList.add('active');
-      overlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-    
-    mobileQuickActionsClose.addEventListener('click', () => {
-      mobileQuickActionsModal.classList.remove('active');
-      overlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    });
-
-    // Close modal when clicking outside
-    overlay.addEventListener('click', () => {
-      mobileQuickActionsModal.classList.remove('active');
     });
 
     // Smooth scrolling for anchor links
