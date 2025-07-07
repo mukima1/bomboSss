@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOMBO SS Newsletter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a3a8f 0%, #0d6e6e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .bombo-newsletter {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 680px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .school-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .school-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a3a8f;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .school-motto {
+            font-style: italic;
+            color: #0d6e6e;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            border-top: 2px solid #f0a500;
+            padding-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .newsletter-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .newsletter-header h2 {
+            color: #2c5282;
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(90deg, #1a3a8f, #0d6e6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .newsletter-header p {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        form {
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #444;
+            transition: all 0.3s ease;
+        }
+
+        .required {
+            color: #e53e3e;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .form-input:focus {
+            border-color: #1a3a8f;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 58, 143, 0.2);
+            background-color: white;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .radio-option:hover {
+            transform: translateY(-2px);
+        }
+
+        .radio-option input[type="radio"] {
+            accent-color: #1a3a8f;
+            width: 16px;
+            height: 16px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #f0a500, #ffbe2e);
+            color: #333;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(240, 165, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(240, 165, 0, 0.4);
+            background: linear-gradient(90deg, #e09b00, #f0a500);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .privacy-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .response {
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #mce-error-response {
+            background: #fee2e2;
+            color: #b91c1c;
+            border-left: 4px solid #b91c1c;
+        }
+
+        #mce-success-response {
+            background: #dcfce7;
+            color: #166534;
+            border-left: 4px solid #166534;
+        }
+
+        @media (max-width: 640px) {
+            .bombo-newsletter {
+                padding: 2rem 1.5rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .school-name {
+                font-size: 2rem;
+            }
+            
+            .newsletter-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="bombo-newsletter floating">
+        <div class="school-header">
+            <div class="school-name">BOMBO SENIOR SECONDARY SCHOOL</div>
+            <div class="school-motto">"Determination Leads To Success"</div>
+        </div>
+        
+        <div class="newsletter-container">
+            <div class="newsletter-header">
+                <h2>Stay Connected with BOMBO SS</h2>
+                <p>Subscribe to our newsletter for school updates, events, and important announcements</p>
+            </div>
+            
+            <form action="https://gmail.us18.list-manage.com/subscribe/post?u=39e71a6436f96370cce6a8e11&amp;id=050a4f12d4&amp;f_id=0049b1e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div class="form-group">
+                    <label for="mce-EMAIL">Email Address <span class="required">*</span></label>
+                    <input type="email" name="EMAIL" class="form-input" id="mce-EMAIL" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mce-FNAME">First Name</label>
+                        <input type="text" name="FNAME" class="form-input" id="mce-FNAME">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mce-LNAME">Last Name</label>
+                        <input type="text" name="LNAME" class="form-input" id="mce-LNAME">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mce-PHONE">Phone Number</label>
+                    <input type="tel" name="PHONE" class="form-input" id="mce-PHONE">
+                </div>
+                
+                <div class="form-group">
+                    <label>I am a:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="MMERGE7" value="Parent"> Parent
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="MMERGE7" value="Student"> Student
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="MMERGE7" value="Alumni"> Alumni
+                        </label>
+                    </div>
+                </div>
+                
+                <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_39e71a6436f96370cce6a8e11_050a4f12d4" tabindex="-1" value="">
+                </div>
+                
+                <div class="form-footer">
+                    <button type="submit" class="submit-btn">Subscribe Now</button>
+                    <p class="privacy-text">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+                
+                <div id="mce-responses">
+                    <div class="response" id="mce-error-response" style="display: none;"></div>
+                    <div class="response" id="mce-success-response" style="display: none;"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script type="text/javascript">
+        (function($) {
+            window.fnames = new Array(); 
+            window.ftypes = new Array();
+            fnames[0]='EMAIL';ftypes[0]='email';
+            fnames[1]='FNAME';ftypes[1]='text';
+            fnames[2]='LNAME';ftypes[2]='text';
+            fnames[4]='PHONE';ftypes[4]='phone';
+            fnames[7]='MMERGE7';ftypes[7]='radio';
+        }(jQuery));
+    </script>
+</body>
+</html>
