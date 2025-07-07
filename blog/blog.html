@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>Bombo SS Blog | News & Updates</title>
+  <meta name="title" content="Bombo SS Blog | News & Updates">
+  <meta name="description" content="Stay updated with the latest news, events, and announcements from Bombo Senior Secondary School">
+  
+  <!-- Fonts and Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    /* Navigation - Simplified */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      background: rgba(44, 82, 130, 0.7);
+      color: var(--white);
+      position: fixed;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+      transition: var(--transition);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-text .main {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo-text .sub {
+      font-size: 0.7rem;
+      opacity: 0.9;
+    }
+
+    .logo-text .motto {
+      font-size: 0.6rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    /* Simplified Navigation Links */
+    .nav-links {
+      display: flex;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .nav-links li {
+      margin-left: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 0.5rem 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+      display: none;
+      cursor: pointer;
+      z-index: 1001;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      background: transparent;
+      border: none;
+    }
+
+    .mobile-menu-btn span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: var(--white);
+      position: absolute;
+      left: 5px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-btn span:nth-child(1) {
+      top: 10px;
+    }
+
+    .mobile-menu-btn span:nth-child(2) {
+      top: 18px;
+    }
+
+    .mobile-menu-btn span:nth-child(3) {
+      top: 26px;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 18px;
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 18px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 320px;
+      height: 100vh;
+      background: var(--primary);
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      background: rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-header h3 {
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-menu-header h3 i {
+      margin-right: 0.8rem;
+      color: var(--secondary);
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-close:hover {
+      color: var(--secondary);
+      transform: rotate(90deg);
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      padding: 1.5rem;
+    }
+
+    .mobile-nav-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .mobile-nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: var(--transition);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-nav-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--secondary);
+    }
+
+    .mobile-nav-links i {
+      margin-right: 1rem;
+      font-size: 1.1rem;
+      width: 25px;
+      text-align: center;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Blog Hero Section */
+    .blog-hero {
+      height: 60vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                  url('../assets/bobo.jpeg') no-repeat center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blog-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .blog-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .blog-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    /* Blog Content */
+    .blog-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      margin: 3rem auto;
+    }
+
+    /* Main Blog Content */
+    .blog-posts {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .blog-post {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+    }
+
+    .blog-post:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .post-image {
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .blog-post:hover .post-image img {
+      transform: scale(1.05);
+    }
+
+    .post-content {
+      padding: 2rem;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    .post-meta span {
+      display: flex;
+      align-items: center;
+      margin-right: 1.5rem;
+    }
+
+    .post-meta i {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+
+    .post-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .post-excerpt {
+      margin-bottom: 1.5rem;
+      color: var(--gray);
+    }
+
+    .read-more {
+      color: var(--secondary);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .read-more:hover {
+      color: var(--dark);
+    }
+
+    .read-more i {
+      margin-left: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: grid;
+      gap: 2rem;
+      align-content: start;
+    }
+
+    .sidebar-widget {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .widget-title {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid var(--secondary);
+    }
+
+    /* About Widget */
+    .about-widget p {
+      margin-bottom: 1rem;
+      color: var(--gray);
+    }
+
+    /* Recent Posts Widget */
+    .recent-post {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .recent-post:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .recent-post-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .recent-post-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .recent-post-content h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .recent-post-content p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    /* Simplified Newsletter Widget */
+    .newsletter-widget p {
+      margin-bottom: 1.5rem;
+      color: var(--gray);
+    }
+
+    .newsletter-form {
+      display: flex;
+    }
+
+    .newsletter-form button {
+      background: var(--secondary);
+      color: var(--black);
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 0.5rem;
+    }
+
+    .page-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .page-link:hover, .page-link.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h3 {
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-col h3:after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary);
+      bottom: 0;
+      left: 0;
+    }
+
+    .footer-col p {
+      margin-bottom: 1rem;
+      color: #ddd;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--secondary);
+      color: var(--black);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      color: #ddd;
+    }
+
+    .contact-item i {
+      color: var(--secondary);
+      margin-top: 3px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .blog-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .sidebar {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .blog-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .blog-hero {
+        height: 50vh;
+      }
+      
+      .blog-hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .post-title {
+        font-size: 1.5rem;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .blog-hero {
+        height: 40vh;
+        padding-top: 70px;
+      }
+      
+      .blog-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .post-meta span {
+        margin-right: 0;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../bombo.png" alt="Bombo SS Logo">
+      <div class="logo-text">
+        <span class="main">BOMBO</span>
+        <span class="sub">SENIOR SECONDARY SCHOOL</span>
+        <span class="motto">"Determination Leads To Success"</span>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html" class="active">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <button class="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-header">
+      <h3><i class="fas fa-bars"></i> Menu</h3>
+      <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="blog.html"><i class="fas fa-newspaper"></i> News</a></li>
+      <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="overlay"></div>
+
+  <!-- Blog Hero Section -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <h1>Bombo SS News</h1>
+      <p>Stay updated with the latest news and announcements from our school community</p>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <main class="container">
+    <div class="blog-container">
+      <!-- Main Blog Content -->
+      <div class="blog-posts">
+        <!-- Blog Post 1 -->
+        <article class="blog-post">
+          <div class="post-image">
+            <img src="../assets/sci.jpeg" alt="Science Fair">
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span><i class="far fa-calendar-alt"></i> June 15, 2024</span>
+              <span><i class="far fa-user"></i> Mr. Kato</span>
+            </div>
+            <h2 class="post-title">Annual Science Fair Showcases Student Innovation</h2>
+            <p class="post-excerpt">Our school's annual science fair was a tremendous success, with students presenting innovative projects ranging from renewable energy solutions to medical breakthroughs. The event was attended by local scientists and university professors who praised the creativity of our students.</p>
+            <a href="science-fair-2024.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="blog-post">
+          <div class="post-image">
+            <img src="" alt="Graduation">
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span><i class="far fa-calendar-alt"></i> May 28, 2024</span>
+              <span><i class="far fa-user"></i> Head Teacher</span>
+            </div>
+            <h2 class="post-title">Class of 2024 Graduation Ceremony</h2>
+            <p class="post-excerpt">We celebrated the achievements of our graduating class last Friday in a moving ceremony attended by parents, teachers, and special guests. The event marked the culmination of years of hard work and dedication from both students and staff.</p>
+            <a href="graduation-2024.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="blog-post">
+          <div class="post-image">
+            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sports Day">
+          </div>
+          <div class="post-content">
+            <div class="post-meta">
+              <span><i class="far fa-calendar-alt"></i> April 10, 2024</span>
+              <span><i class="far fa-user"></i> Sports Dept.</span>
+            </div>
+            <h2 class="post-title">Inter-House Sports Competition Results</h2>
+            <p class="post-excerpt">The annual inter-house sports competition brought out the best in our student athletes. After a day of intense competition, Red House emerged as the overall winner, with Blue House taking second place and Green House in third.</p>
+            <a href="sports-day-2024.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </article>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <a href="#" class="page-link active">1</a>
+          <a href="#" class="page-link">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">4</a>
+          <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- About Widget -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">About Our News</h3>
+          <div class="about-widget">
+            <p>Welcome to the official news page of Bombo Senior Secondary School. Here we share important announcements, events, and achievements from our school community.</p>
+          </div>
+        </div>
+
+        <!-- Recent Posts Widget -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">Recent News</h3>
+          <div class="recent-posts">
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <img src="../assets/sci.jpeg" alt="Recent Post">
+              </div>
+              <div class="recent-post-content">
+                <h4>Science Fair Highlights</h4>
+                <p>June 15, 2024</p>
+              </div>
+            </div>
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Recent Post">
+              </div>
+              <div class="recent-post-content">
+                <h4>Graduation Ceremony</h4>
+                <p>May 28, 2024</p>
+              </div>
+            </div>
+            <div class="recent-post">
+              <div class="recent-post-image">
+                <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Recent Post">
+              </div>
+              <div class="recent-post-content">
+                <h4>Sports Day Results</h4>
+                <p>April 10, 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simplified Newsletter Widget -->
+        <div class="sidebar-widget">
+          <h3 class="widget-title">Get Updates</h3>
+          <div class="newsletter-widget">
+            <p>Click below to subscribe to our newsletter</p>
+            <form class="newsletter-form", action="../newsLetter/mailLetter.html">
+              <button type="submit">Subscribe Now</button>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>About Bombo SS</h3>
+          <p>Bombo Senior Secondary School is committed to providing qualitative, affordable, and sustainable education to nurture future leaders.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Community</a></li>
+            <li><a href="about.html">Student's life</a></li>
+            <li><a href="../newsLetter/mailLetter.html">Email Newsletter</a></li>
+            <li><a href="contact.html">Donations</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Contact Info</h3>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>21 Miles Kampala-Gulu Highway, Bombo, Uganda</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>+256 772 446 667</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>info@bomboss.ac.ug</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.overlay');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    
+    let menuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenuBtn.classList.toggle('active');
+      mobileMenu.classList.toggle('active');
+      
+      if (menuOpen) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close mobile menu when close button is clicked
+    mobileMenuClose.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Close menu when clicking on overlay
+    overlay.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenuBtn.classList.remove('active');
+      mobileMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(44, 82, 130, 0.85)';
+        navbar.style.backdropFilter = 'blur(10px)';
+        navbar.style.padding = '0.8rem 5%';
+        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.background = 'rgba(44, 82, 130, 0.7)';
+        navbar.style.backdropFilter = 'blur(5px)';
+        navbar.style.padding = '1rem 5%';
+        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      // Add loaded class to body when everything is ready
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 500);
+    });
+  </script>
+</body>
+</html>
