@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Visit - Bombo Senior Secondary School</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--dark);
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(135deg, #1a365d 0%, #0f2133 100%);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 1.5rem 0;
+      text-align: center;
+      background: rgba(44, 82, 130, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 15px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .logo-text .sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo-text .motto {
+      font-size: 0.7rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+      transform-origin: center;
+    }
+
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .visit-form-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.3);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: var(--secondary);
+      color: var(--black);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--secondary), #ffd700);
+      z-index: 1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+
+    .btn:hover:before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .visit-types {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .visit-type {
+      position: relative;
+    }
+
+    .visit-type input {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .visit-type label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .visit-type i {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      color: var(--secondary);
+      transition: var(--transition);
+    }
+
+    .visit-type input:checked + label {
+      background: rgba(240, 165, 0, 0.2);
+      border-color: var(--secondary);
+    }
+
+    .visit-type input:checked + label i {
+      color: var(--white);
+    }
+
+    .visit-type:hover label {
+      background: rgba(240, 165, 0, 0.1);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 200, 100, 0.2);
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(0, 200, 100, 0.3);
+    }
+
+    .success-message i {
+      font-size: 3rem;
+      color: #00c853;
+      margin-bottom: 1rem;
+    }
+
+    .success-message h2 {
+      color: #00c853;
+      margin-bottom: 1rem;
+    }
+
+    .loading-spinner {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--secondary);
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      display: none;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(200, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(200, 0, 0, 0.3);
+      color: #ff6b6b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .visit-types {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .visit-form-container {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .visit-types {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .logo-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="../bombo.png" alt="Bombo SS Logo">
+        <div class="logo-text">
+          <span class="main">BOMBO</span>
+          <span class="sub">SENIOR SECONDARY SCHOOL</span>
+          <span class="motto">"Determination Leads To Success"</span>
+        </div>
+      </div>
+      <h1>Request a Visit</h1>
+    </header>
+
+    <p class="intro-text">
+      Please fill out this form to request a visit to Bombo Senior Secondary School. 
+      Our administration will review your request and contact you to confirm the details.
+    </p>
+
+    <div class="success-message" id="successMessage">
+      <i class="fas fa-check-circle"></i>
+      <h2>Request Submitted Successfully!</h2>
+      <p>Thank you for your interest in visiting Bombo SS. We will contact you shortly to confirm your visit details.</p>
+      <button class="btn" onclick="resetForm()" style="max-width: 200px; margin-top: 1.5rem;">
+        <span>Submit Another Request</span>
+      </button>
+    </div>
+
+    <div class="error-message" id="errorMessage">
+      <i class="fas fa-exclamation-circle"></i>
+      <p id="errorText">There was an error submitting your request. Please try again later.</p>
+    </div>
+
+    <form id="visitForm" class="visit-form-container">
+      <div class="form-group">
+        <label>Purpose of Visit</label>
+        <div class="visit-types">
+          <div class="visit-type">
+            <input type="radio" id="admissions" name="visitType" value="Admissions" required>
+            <label for="admissions">
+              <i class="fas fa-user-graduate"></i>
+              Admissions
+            </label>
+          </div>
+          <div class="visit-type">
+            <input type="radio" id="donations" name="visitType" value="Donations">
+            <label for="donations">
+              <i class="fas fa-hand-holding-heart"></i>
+              Donations
+            </label>
+          </div>
+          <div class="visit-type">
+            <input type="radio" id="consultations" name="visitType" value="Consultations">
+            <label for="consultations">
+              <i class="fas fa-comments"></i>
+              Consultations
+            </label>
+          </div>
+          <div class="visit-type">
+            <input type="radio" id="projects" name="visitType" value="Projects">
+            <label for="projects">
+              <i class="fas fa-project-diagram"></i>
+              Projects
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+          <label for="organization">Organization/Institution</label>
+          <input type="text" id="organization" name="organization" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="visitDate">Preferred Visit Date</label>
+        <input type="date" id="visitDate" name="visitDate" required>
+      </div>
+
+      <div class="form-group">
+        <label for="visitTime">Preferred Visit Time</label>
+        <input type="time" id="visitTime" name="visitTime" required>
+      </div>
+
+      <div class="form-group">
+        <label for="attendees">Number of Attendees</label>
+        <input type="number" id="attendees" name="attendees" min="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Additional Information</label>
+        <textarea id="message" name="message" placeholder="Please provide any additional details about your visit..."></textarea>
+      </div>
+
+      <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Submitting your request...</p>
+      </div>
+
+      <button type="submit" class="btn" id="submitButton">
+        <span>Submit Visit Request</span>
+      </button>
+    </form>
+
+    <footer>
+      <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+      <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize EmailJS with your User ID
+    emailjs.init('ghiON-LqQN0Z3PiLw');
+
+    // Form submission handler
+    document.getElementById('visitForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Show loading spinner
+      document.getElementById('loadingSpinner').style.display = 'block';
+      document.getElementById('submitButton').style.display = 'none';
+      document.getElementById('errorMessage').style.display = 'none';
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Prepare email parameters
+      const templateParams = {
+        visitType: data.visitType,
+        fullName: data.fullName,
+        organization: data.organization,
+        email: data.email,
+        phone: data.phone,
+        visitDate: data.visitDate,
+        visitTime: data.visitTime,
+        attendees: data.attendees,
+        message: data.message || "None provided"
+      };
+
+      try {
+        // Send email using EmailJS
+        await emailjs.send('service_p5nxqdw', 'template_tnm7t94', templateParams);
+
+        // Show success message
+        document.getElementById('visitForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('loadingSpinner').style.display = 'none';
+        
+      } catch (error) {
+        console.error('Email sending failed:', error);
+        
+        // Show error message
+        document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('submitButton').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('errorText').textContent = 
+          'There was an error submitting your request. Please try again later or contact us directly at admin@bomboss.sc.ug';
+      }
+    });
+
+    // Reset form function
+    function resetForm() {
+      document.getElementById('visitForm').reset();
+      document.getElementById('visitForm').style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
+    }
+
+    // Set minimum date to today
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('visitDate').min = today;
+      
+      // Initialize particle.js
+      particlesJS('particles-js', {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": {
+              "enable": true,
+              "value_area": 800
+            }
+          },
+          "color": {
+            "value": "#f0a500"
+          },
+          "shape": {
+            "type": "circle",
+            "stroke": {
+              "width": 0,
+              "color": "#000000"
+            },
+            "polygon": {
+              "nb_sides": 5
+            }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": {
+              "enable": false,
+              "speed": 1,
+              "opacity_min": 0.1,
+              "sync": false
+            }
+          },
+          "size": {
+            "value": 3,
+            "random": true,
+            "anim": {
+              "enable": false,
+              "speed": 40,
+              "size_min": 0.1,
+              "sync": false
+            }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#f0a500",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 2,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out",
+            "bounce": false,
+            "attract": {
+              "enable": false,
+              "rotateX": 600,
+              "rotateY": 1200
+            }
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": {
+              "enable": true,
+              "mode": "grab"
+            },
+            "onclick": {
+              "enable": true,
+              "mode": "push"
+            },
+            "resize": true
+          },
+          "modes": {
+            "grab": {
+              "distance": 140,
+              "line_linked": {
+                "opacity": 1
+              }
+            },
+            "bubble": {
+              "distance": 400,
+              "size": 40,
+              "duration": 2,
+              "opacity": 8,
+              "speed": 3
+            },
+            "repulse": {
+              "distance": 200,
+              "duration": 0.4
+            },
+            "push": {
+              "particles_nb": 4
+            },
+            "remove": {
+              "particles_nb": 2
+            }
+          }
+        },
+        "retina_detect": true
+      });
+    });
+  </script>
+</body>
+</html>
