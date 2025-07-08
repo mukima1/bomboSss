@@ -257,61 +257,7 @@
 
     .post-actions {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .file-input {
-      display: none;
-    }
-
-    .file-label {
-      background: rgba(240, 165, 0, 0.2);
-      color: var(--secondary);
-      padding: 0.5rem 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: var(--transition);
-    }
-
-    .file-label:hover {
-      background: rgba(240, 165, 0, 0.3);
-    }
-
-    .post-submit {
-      background: var(--secondary);
-      color: var(--dark);
-      border: none;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .post-submit:hover {
-      background: #e09b00;
-    }
-
-    .preview-container {
-      margin-top: 0.8rem;
-      display: none;
-    }
-
-    .preview-image {
-      max-width: 100%;
-      max-height: 200px;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-    }
-
-    .remove-preview {
-      color: var(--error);
-      font-size: 0.8rem;
-      cursor: pointer;
-      display: inline-block;
-      margin-top: 0.3rem;
+      justify-content: flex-end;
     }
 
     /* Posts Feed */
@@ -380,13 +326,74 @@
       line-height: 1.5;
     }
 
-    .post-image {
-      max-width: 100%;
-      max-height: 300px;
-      border-radius: 8px;
-      margin-bottom: 0.8rem;
-      display: block;
-    }
+
+    .post-submit {
+  background: linear-gradient(135deg, #f0a500 0%, #f0a500 50%, #e09b00 100%);
+  color: #1a365d;
+  border: none;
+  padding: 0.7rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 6px rgba(240, 165, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.post-submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e09b00 0%, #f0a500 50%, #e09b00 100%);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.post-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(240, 165, 0, 0.3);
+}
+
+.post-submit:hover::before {
+  opacity: 1;
+}
+
+.post-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(240, 165, 0, 0.2);
+}
+
+.post-submit i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.post-submit:hover i {
+  transform: translateX(3px);
+}
+
+.post-submit:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.post-submit:disabled i {
+  transform: none;
+}
 
     .post-actions {
       display: flex;
@@ -412,6 +419,103 @@
     .post-action i {
       margin-right: 0.3rem;
       font-size: 0.9rem;
+    }
+
+    /* Comments Section */
+    .comments-section {
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comment-form {
+      display: flex;
+      margin-bottom: 0.8rem;
+    }
+
+    .comment-input {
+      flex: 1;
+      padding: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      resize: none;
+      margin-right: 0.5rem;
+    }
+
+    .comment-input:focus {
+      outline: none;
+      border-color: var(--secondary);
+    }
+
+    .comment-submit {
+      background: var(--secondary);
+      color: var(--dark);
+      border: none;
+      padding: 0 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .comment-submit:hover {
+      background: #e09b00;
+    }
+
+    .comment-list {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .comment-item {
+      display: flex;
+      margin-bottom: 0.8rem;
+    }
+
+    .comment-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 0.6rem;
+      color: var(--dark);
+      font-size: 0.7rem;
+    }
+
+    .comment-content {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.6rem;
+      border-radius: 8px;
+    }
+
+    .comment-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.3rem;
+    }
+
+    .comment-name {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .comment-time {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-left: 0.5rem;
+    }
+
+    .comment-text {
+      font-size: 0.8rem;
+      line-height: 1.4;
     }
 
     @media (max-width: 768px) {
@@ -525,16 +629,10 @@
         <h2 class="section-title">Create Post</h2>
         <div class="post-form">
           <textarea class="post-input" id="postText" placeholder="Share something with the community..."></textarea>
-          <div class="preview-container" id="previewContainer">
-            <img id="previewImage" class="preview-image">
-            <span class="remove-preview" id="removePreview"><i class="fas fa-times"></i> Remove image</span>
-          </div>
           <div class="post-actions">
-            <div>
-              <input type="file" id="fileInput" class="file-input" accept="image/*">
-              <label for="fileInput" class="file-label"><i class="fas fa-image"></i> Add Image</label>
-            </div>
-            <button class="post-submit" id="postSubmit">Post</button>
+            <button class="post-submit" id="postSubmit">
+              <i class="fas fa-paper-plane"></i> Post Now
+            </button>
           </div>
         </div>
 
@@ -556,11 +654,18 @@
             <div class="post-content">
               Excited to announce our annual alumni meetup next month! Let's reconnect and reminisce about our time at Bombo SS.
             </div>
-            <img src="https://via.placeholder.com/600x400" class="post-image">
             <div class="post-actions">
-              <div class="post-action"><i class="far fa-heart"></i> Like</div>
-              <div class="post-action"><i class="far fa-comment"></i> Comment</div>
-              <div class="post-action"><i class="fas fa-share"></i> Share</div>
+              <div class="post-action like-btn"><i class="far fa-heart"></i> Like (0)</div>
+              <div class="post-action comment-btn"><i class="far fa-comment"></i> Comment (0)</div>
+            </div>
+            <div class="comments-section" style="display: none;">
+              <div class="comment-form">
+                <input type="text" class="comment-input" placeholder="Write a comment...">
+                <button class="comment-submit">Post</button>
+              </div>
+              <div class="comment-list">
+                <!-- Comments will appear here -->
+              </div>
             </div>
           </div>
         </div>
@@ -592,14 +697,11 @@
       serverTimestamp,
       query,
       orderBy,
-      onSnapshot
+      onSnapshot,
+      updateDoc,
+      arrayUnion,
+      arrayRemove
     } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
-    import { 
-      getStorage,
-      ref as storageRef,
-      uploadBytes,
-      getDownloadURL
-    } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -618,16 +720,11 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
     const rtdb = getDatabase(app);
-    const storage = getStorage(app);
 
     // DOM elements
     const userAvatar = document.getElementById('userAvatar');
     const logoutBtn = document.getElementById('logoutBtn');
     const postText = document.getElementById('postText');
-    const fileInput = document.getElementById('fileInput');
-    const previewContainer = document.getElementById('previewContainer');
-    const previewImage = document.getElementById('previewImage');
-    const removePreview = document.getElementById('removePreview');
     const postSubmit = document.getElementById('postSubmit');
     const postsFeed = document.getElementById('postsFeed');
     
@@ -657,7 +754,6 @@
     // Current user data
     let currentUser = null;
     let currentUserData = null;
-    let selectedFile = null;
 
     document.addEventListener('DOMContentLoaded', function() {
       // Check authentication state
@@ -687,84 +783,52 @@
         });
       });
 
-      // File input for post image
-      fileInput.addEventListener('change', function(e) {
-        if (e.target.files[0]) {
-          selectedFile = e.target.files[0];
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            previewImage.src = event.target.result;
-            previewContainer.style.display = 'block';
-          };
-          reader.readAsDataURL(selectedFile);
-        }
-      });
-
-      // Remove preview image
-      removePreview.addEventListener('click', function() {
-        selectedFile = null;
-        previewContainer.style.display = 'none';
-        fileInput.value = '';
-      });
-
       // Post submission
       postSubmit.addEventListener('click', async function() {
-  const text = postText.value.trim();
-  if (!text && !selectedFile) {
-    alert('Please enter some text or add an image');
-    return;
-  }
+        const text = postText.value.trim();
+        if (!text) {
+          alert('Please enter some text for your post');
+          return;
+        }
 
-  postSubmit.disabled = true;
-  postSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+        postSubmit.disabled = true;
+        postSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
 
-  try {
-    let imageUrl = null;
-    
-    // Upload image if selected
-    if (selectedFile) {
-      const storageReference = storageRef(storage, `posts/${currentUser.uid}/${Date.now()}_${selectedFile.name}`);
-      const snapshot = await uploadBytes(storageReference, selectedFile);
-      imageUrl = await getDownloadURL(snapshot.ref);
-    }
+        try {
+          // Create post in Firestore
+          const postData = {
+            userId: currentUser.uid,
+            userName: currentUserData.firstName + ' ' + currentUserData.lastName,
+            userType: currentUserData.userType,
+            userInitials: currentUserData.firstName.charAt(0) + (currentUserData.lastName ? currentUserData.lastName.charAt(0) : ''),
+            text: text,
+            createdAt: serverTimestamp(),
+            likes: [],
+            comments: []
+          };
 
-    // Create post in Firestore
-    const postData = {
-      userId: currentUser.uid,
-      userName: currentUserData.firstName + ' ' + currentUserData.lastName,
-      userType: currentUserData.userType,
-      userInitials: currentUserData.firstName.charAt(0) + (currentUserData.lastName ? currentUserData.lastName.charAt(0) : ''),
-      text: text,
-      imageUrl: imageUrl,
-      createdAt: serverTimestamp(),
-      likes: [],
-      comments: []
-    };
+          // Add user type specific data
+          if (currentUserData.userType === 'student' && currentUserData.studentId) {
+            postData.userMeta = 'Student ID: ' + currentUserData.studentId;
+          } else if (currentUserData.userType === 'alumni' && currentUserData.graduationYear) {
+            postData.userMeta = 'Class of ' + currentUserData.graduationYear;
+          } else if (currentUserData.userType === 'staff' && currentUserData.staffId) {
+            postData.userMeta = 'Staff ID: ' + currentUserData.staffId;
+          }
 
-    // Add user type specific data
-    if (currentUserData.userType === 'student' && currentUserData.studentId) {
-      postData.userMeta = 'Student ID: ' + currentUserData.studentId;
-    } else if (currentUserData.userType === 'alumni' && currentUserData.graduationYear) {
-      postData.userMeta = 'Class of ' + currentUserData.graduationYear;
-    } else if (currentUserData.userType === 'staff' && currentUserData.staffId) {
-      postData.userMeta = 'Staff ID: ' + currentUserData.staffId;
-    }
+          await addDoc(collection(db, "posts"), postData);
 
-    await addDoc(collection(db, "posts"), postData);
-
-    // Reset form
-    postText.value = '';
-    selectedFile = null;
-    previewContainer.style.display = 'none';
-    fileInput.value = '';
-  } catch (error) {
-    console.error('Error creating post:', error);
-    alert('Error creating post: ' + error.message);
-  } finally {
-    postSubmit.disabled = false;
-    postSubmit.innerHTML = 'Post';
-  }
-});
+          // Reset form
+          postText.value = '';
+        } catch (error) {
+          console.error('Error creating post:', error);
+          alert('Error creating post: ' + error.message);
+        } finally {
+          postSubmit.disabled = false;
+          postSubmit.innerHTML = 'Post';
+        }
+      });
+      
       // Profile edit buttons
       editProfileBtn.addEventListener('click', function() {
         profileDisplay.style.display = 'none';
@@ -1013,15 +1077,110 @@
               </div>
             </div>
             ${post.text ? `<div class="post-content">${post.text}</div>` : ''}
-            ${post.imageUrl ? `<img src="${post.imageUrl}" class="post-image">` : ''}
             <div class="post-actions">
-              <div class="post-action"><i class="far fa-heart"></i> Like (${post.likes ? post.likes.length : 0})</div>
-              <div class="post-action"><i class="far fa-comment"></i> Comment (${post.comments ? post.comments.length : 0})</div>
-              <div class="post-action"><i class="fas fa-share"></i> Share</div>
+              <div class="post-action like-btn" data-post-id="${doc.id}">
+                <i class="far ${post.likes && post.likes.includes(currentUser.uid) ? 'fas text-danger' : 'far'} fa-heart"></i> 
+                Like (${post.likes ? post.likes.length : 0})
+              </div>
+              <div class="post-action comment-btn" data-post-id="${doc.id}">
+                <i class="far fa-comment"></i> Comment (${post.comments ? post.comments.length : 0})
+              </div>
+            </div>
+            <div class="comments-section" style="display: none;" data-post-id="${doc.id}">
+              <div class="comment-form">
+                <input type="text" class="comment-input" placeholder="Write a comment...">
+                <button class="comment-submit">Post</button>
+              </div>
+              <div class="comment-list">
+                ${post.comments && post.comments.length > 0 ? 
+                  post.comments.map(comment => `
+                    <div class="comment-item">
+                      <div class="comment-avatar">${comment.userInitials}</div>
+                      <div class="comment-content">
+                        <div class="comment-header">
+                          <div class="comment-name">${comment.userName}</div>
+                          <div class="comment-time">${formatTimeAgo(new Date(comment.timestamp))}</div>
+                        </div>
+                        <div class="comment-text">${comment.text}</div>
+                      </div>
+                    </div>
+                  `).join('') : ''}
+              </div>
             </div>
           `;
           
           postsFeed.appendChild(postElement);
+        });
+
+        // Add event listeners for like and comment buttons
+        document.querySelectorAll('.like-btn').forEach(btn => {
+          btn.addEventListener('click', async function() {
+            const postId = this.getAttribute('data-post-id');
+            const postRef = doc(db, "posts", postId);
+            
+            try {
+              // Check if user already liked the post
+              const postDoc = await getDoc(postRef);
+              const postData = postDoc.data();
+              const likes = postData.likes || [];
+              
+              if (likes.includes(currentUser.uid)) {
+                // Unlike the post
+                await updateDoc(postRef, {
+                  likes: arrayRemove(currentUser.uid)
+                });
+              } else {
+                // Like the post
+                await updateDoc(postRef, {
+                  likes: arrayUnion(currentUser.uid)
+                });
+              }
+            } catch (error) {
+              console.error('Error updating like:', error);
+            }
+          });
+        });
+
+        document.querySelectorAll('.comment-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            const commentsSection = document.querySelector(`.comments-section[data-post-id="${postId}"]`);
+            
+            if (commentsSection.style.display === 'none') {
+              commentsSection.style.display = 'block';
+            } else {
+              commentsSection.style.display = 'none';
+            }
+          });
+        });
+
+        document.querySelectorAll('.comment-submit').forEach(btn => {
+          btn.addEventListener('click', async function() {
+            const postId = this.closest('.comments-section').getAttribute('data-post-id');
+            const commentInput = this.previousElementSibling;
+            const commentText = commentInput.value.trim();
+            
+            if (!commentText) return;
+            
+            try {
+              const postRef = doc(db, "posts", postId);
+              const commentData = {
+                userId: currentUser.uid,
+                userName: currentUserData.firstName + ' ' + currentUserData.lastName,
+                userInitials: currentUserData.firstName.charAt(0) + (currentUserData.lastName ? currentUserData.lastName.charAt(0) : ''),
+                text: commentText,
+                timestamp: new Date().toISOString()
+              };
+              
+              await updateDoc(postRef, {
+                comments: arrayUnion(commentData)
+              });
+              
+              commentInput.value = '';
+            } catch (error) {
+              console.error('Error adding comment:', error);
+            }
+          });
         });
       });
     }
