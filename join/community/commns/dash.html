@@ -538,6 +538,43 @@
         justify-content: flex-end;
       }
     }
+
+    @media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    text-align: center; /* Center all header content */
+  }
+
+  .logo {
+    margin-bottom: 0.5rem;
+    flex-direction: column; /* Stack logo and text vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text */
+    width: 100%; /* Take full width */
+  }
+
+  .logo img {
+    margin-right: 0; /* Remove right margin on mobile */
+    margin-bottom: 0.5rem; /* Add space between logo and text */
+  }
+
+  .logo-text {
+    align-items: center; /* Center text elements */
+  }
+
+  .user-nav {
+    width: 100%;
+    justify-content: center; /* Center user nav items */
+    gap: 1.5rem; /* Increase gap between avatar and logout button */
+    margin-top: 0.5rem; /* Add some space above user nav */
+  }
+}
   </style>
 </head>
 <body>
