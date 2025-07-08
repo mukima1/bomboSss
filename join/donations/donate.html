@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support Our School - Bombo Senior Secondary School</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --success: #28a745;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--dark);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(240, 165, 0, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(240, 165, 0, 0.1) 0%, transparent 20%);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 1.5rem 0;
+      text-align: center;
+      background: rgba(44, 82, 130, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 15px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .logo-text .sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo-text .motto {
+      font-size: 0.7rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+      transform-origin: center;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin: 1.5rem 0 1rem;
+      color: var(--secondary);
+    }
+
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .stat-card i {
+      font-size: 2.5rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .stat-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .bank-details {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bank-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .bank-item {
+      margin-bottom: 1rem;
+    }
+
+    .bank-item strong {
+      display: block;
+      color: var(--secondary);
+      margin-bottom: 0.3rem;
+    }
+
+    .copy-btn {
+      background: rgba(240, 165, 0, 0.2);
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+      border-radius: 5px;
+      padding: 0.3rem 0.8rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.8rem;
+    }
+
+    .copy-btn:hover {
+      background: rgba(240, 165, 0, 0.3);
+    }
+
+    .donation-form {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    /* Fixed dropdown styling */
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f0a500'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.5em;
+      padding-right: 2.5rem;
+    }
+
+    select option {
+      background-color: var(--dark);
+      color: var(--white);
+    }
+
+    /* For Firefox */
+    select {
+      text-indent: 1px;
+      text-overflow: '';
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--secondary);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 3px rgba(240, 165, 0, 0.3);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: var(--secondary);
+      color: var(--black);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--secondary), #ffd700);
+      z-index: 1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+
+    .btn:hover:before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(40, 167, 69, 0.2);
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(40, 167, 69, 0.3);
+    }
+
+    .success-message i {
+      font-size: 3rem;
+      color: var(--success);
+      margin-bottom: 1rem;
+    }
+
+    .success-message h2 {
+      color: var(--success);
+      margin-bottom: 1rem;
+    }
+
+    .loading-spinner {
+      display: none;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--secondary);
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      display: none;
+      text-align: center;
+      padding: 1rem;
+      background: rgba(200, 0, 0, 0.2);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(200, 0, 0, 0.3);
+      color: #ff6b6b;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .donation-form {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .logo-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="../../bombo.png" alt="Bombo SS Logo">
+        <div class="logo-text">
+          <span class="main">BOMBO</span>
+          <span class="sub">SENIOR SECONDARY SCHOOL</span>
+          <span class="motto">"Determination Leads To Success"</span>
+        </div>
+      </div>
+      <h1>Support Our School</h1>
+    </header>
+
+    <p class="intro-text">
+      Your generous donation helps us provide quality education, improve facilities, and create opportunities 
+      for students at Bombo Senior Secondary School. Every contribution makes a difference!
+    </p>
+
+    <div class="impact-stats">
+      <div class="stat-card">
+        <i class="fas fa-graduation-cap"></i>
+        <div class="stat-number">1,200+</div>
+        <div class="stat-label">Students Impacted</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-book"></i>
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Programs Funded</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <div class="stat-number">30+</div>
+        <div class="stat-label">Teachers Supported</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-building"></i>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Facilities Improved</div>
+      </div>
+    </div>
+
+    <div class="bank-details">
+      <h2>Bank Transfer Details</h2>
+      <p>You can make a direct bank transfer to our official school account:</p>
+      
+      <div class="bank-info">
+        <div>
+          <div class="bank-item">
+            <strong>Bank Name</strong>
+            <span>Stanbic Bank Uganda</span>
+          </div>
+          <div class="bank-item">
+            <strong>Account Name</strong>
+            <span>Bombo Senior Secondary School</span>
+          </div>
+        </div>
+        <div>
+          <div class="bank-item">
+            <strong>Account Number</strong>
+            <span>9030001234567 <button class="copy-btn" data-text="9030001234567">Copy</button></span>
+          </div>
+          <div class="bank-item">
+            <strong>SWIFT Code</strong>
+            <span>SBICUGKX <button class="copy-btn" data-text="SBICUGKX">Copy</button></span>
+          </div>
+        </div>
+        <div>
+          <div class="bank-item">
+            <strong>Branch</strong>
+            <span>Bombo Road Branch</span>
+          </div>
+          <div class="bank-item">
+            <strong>Currency</strong>
+            <span>UGX (Uganda Shillings)</span>
+          </div>
+        </div>
+      </div>
+      
+      <h3>After Making Your Transfer</h3>
+      <p>Please fill out the form below to notify us of your donation and receive a receipt.</p>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      <i class="fas fa-check-circle"></i>
+      <h2>Thank You For Your Donation!</h2>
+      <p>We've received your donation details. A confirmation receipt has been sent to your email.</p>
+      <button class="btn" onclick="resetForm()" style="max-width: 200px; margin-top: 1.5rem;">
+        <span>Submit Another</span>
+      </button>
+    </div>
+
+    <div class="error-message" id="errorMessage">
+      <i class="fas fa-exclamation-circle"></i>
+      <p id="errorText">There was an error submitting your details. Please try again later.</p>
+    </div>
+
+    <form id="donationForm" class="donation-form">
+      <h2>Donation Notification Form</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="amount">Donation Amount (UGX)</label>
+          <input type="number" id="amount" name="amount" min="1000" step="1000" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Donation Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+
+      <div class="form-group">
+        <label for="reference">Transaction Reference/Number</label>
+        <input type="text" id="reference" name="reference" required>
+      </div>
+
+      <div class="form-group">
+        <label for="purpose">Purpose of Donation</label>
+        <select id="purpose" name="purpose" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="General Fund">General School Fund</option>
+          <option value="Scholarships">Student Scholarships</option>
+          <option value="Facilities">Facilities Improvement</option>
+          <option value="Library">Library Resources</option>
+          <option value="Sports">Sports Programs</option>
+          <option value="STEM">STEM Education</option>
+          <option value="Other">Other (please specify)</option>
+        </select>
+      </div>
+
+      <div class="form-group" id="otherPurposeGroup" style="display: none;">
+        <label for="otherPurpose">Please specify</label>
+        <input type="text" id="otherPurpose" name="otherPurpose">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Additional Notes (Optional)</label>
+        <textarea id="message" name="message" placeholder="Any special instructions or dedication..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="anonymous" name="anonymous"> 
+          I would like to make this donation anonymously
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="receipt" name="receipt" checked> 
+          Please send me a receipt via email
+        </label>
+      </div>
+
+      <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Submitting your details...</p>
+      </div>
+
+      <button type="submit" class="btn btn-block" id="submitButton">
+        <span>Submit Donation Details</span>
+      </button>
+    </form>
+
+    <footer>
+      <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+      <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+      <p>For donation inquiries: info@bomboss.sc.ug | +256 752 123 456</p>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize EmailJS with your User ID
+    emailjs.init('ghiON-LqQN0Z3PiLw');
+    
+    // Set today's date as default
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('date').value = today;
+      document.getElementById('date').min = '2020-01-01';
+      document.getElementById('date').max = today;
+      
+      // Copy buttons for bank details
+      document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const text = this.getAttribute('data-text');
+          navigator.clipboard.writeText(text).then(() => {
+            const originalText = this.textContent;
+            this.textContent = 'Copied!';
+            setTimeout(() => {
+              this.textContent = originalText;
+            }, 2000);
+          });
+        });
+      });
+      
+      // Show/hide other purpose field
+      document.getElementById('purpose').addEventListener('change', function() {
+        const otherPurposeGroup = document.getElementById('otherPurposeGroup');
+        otherPurposeGroup.style.display = this.value === 'Other' ? 'block' : 'none';
+        if (this.value === 'Other') {
+          document.getElementById('otherPurpose').required = true;
+        } else {
+          document.getElementById('otherPurpose').required = false;
+        }
+      });
+    });
+
+    // Form submission handler
+    document.getElementById('donationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Validate form
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+      
+      // Show loading spinner
+      document.getElementById('loadingSpinner').style.display = 'block';
+      document.getElementById('submitButton').style.display = 'none';
+      document.getElementById('errorMessage').style.display = 'none';
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Prepare email parameters - ensure all values are strings
+      const templateParams = {
+        fullName: String(data.fullName),
+        email: String(data.email),
+        phone: String(data.phone),
+        amount: `UGX ${new Intl.NumberFormat().format(data.amount)}`, // Formatted as string
+        date: new Date(data.date).toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+        reference: String(data.reference),
+        purpose: data.purpose === 'Other' ? String(data.otherPurpose) : String(data.purpose),
+        message: data.message ? String(data.message) : "None provided",
+        anonymous: data.anonymous ? 'Yes' : 'No',
+        receipt: data.receipt ? 'Yes' : 'No'
+      };
+
+      // Debug: Log the parameters before sending
+      console.log('EmailJS Template Parameters:', templateParams);
+
+      try {
+        // Send email using EmailJS
+        const response = await emailjs.send(
+          'service_p5nxqdw', 
+          'template_x3vgay1', 
+          templateParams
+        );
+        
+        console.log('EmailJS Success:', response);
+        
+        // Show success message
+        document.getElementById('donationForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('loadingSpinner').style.display = 'none';
+        
+      } catch (error) {
+        console.error('EmailJS Error:', error);
+        
+        // Show error message
+        document.getElementById('loadingSpinner').style.display = 'none';
+        document.getElementById('submitButton').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'block';
+        
+        let errorMessage = 'There was an error submitting your details. ';
+        if (error.status === 400) {
+          errorMessage += 'The email template has invalid variables.';
+        } else if (error.message.includes('402')) {
+          errorMessage += 'Please check your internet connection.';
+        } else {
+          errorMessage += 'Please try again or contact info@bomboss.sc.ug.';
+        }
+        
+        document.getElementById('errorText').textContent = errorMessage;
+      }
+    });
+
+    // Reset form function
+    function resetForm() {
+      document.getElementById('donationForm').reset();
+      document.getElementById('donationForm').style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
+      document.getElementById('otherPurposeGroup').style.display = 'none';
+      document.getElementById('date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('submitButton').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
