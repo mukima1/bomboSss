@@ -30,6 +30,8 @@
       line-height: 1.6;
       overflow-x: hidden;
       background-color: var(--dark);
+      overflow-y: auto;
+      height: 100%;
     }
 
     #particles-js {
@@ -49,6 +51,7 @@
       padding: 2rem 0;
       position: relative;
       z-index: 1;
+      min-height: 100vh;
     }
 
     header {
@@ -182,7 +185,7 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    /* Elegant Floating Chatbot Button */
+    /* Enhanced Floating Chatbot Button */
     .chatbot-btn {
       position: fixed;
       bottom: 30px;
@@ -212,10 +215,19 @@
       border-radius: 15px;
       font-size: 0.7rem;
       font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.3s ease;
       white-space: nowrap;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      opacity: 1;
+    }
+    
+    @media (hover: hover) {
+      .chatbot-btn::after {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .chatbot-btn:hover::after {
+        opacity: 1;
+      }
     }
     
     .chatbot-btn:hover {
@@ -223,13 +235,9 @@
       box-shadow: 0 6px 25px rgba(240, 165, 0, 0.7);
     }
     
-    .chatbot-btn:hover::after {
-      opacity: 1;
-    }
-    
     .chatbot-btn img {
       width: 55%;
-      height: 70%;
+      height: 80%;
       transition: transform 0.3s ease;
     }
     
@@ -243,6 +251,7 @@
       bottom: 120px;
       right: 30px;
       width: 350px;
+      max-width: calc(100% - 60px);
       background-color: white;
       border-radius: 15px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.2);
@@ -252,6 +261,9 @@
       transition: var(--transition);
       z-index: 99;
       opacity: 0;
+      max-height: 60vh;
+      display: flex;
+      flex-direction: column;
     }
     
     .chatbot-popup.active {
@@ -274,10 +286,11 @@
     }
     
     .chatbox {
-      height: 350px;
+      flex: 1;
       padding: 1rem;
       overflow-y: auto;
       background-color: #f9f9f9;
+      -webkit-overflow-scrolling: touch;
     }
     
     .message {
@@ -359,17 +372,31 @@
         max-width: 300px;
       }
       
-      .chatbot-popup {
-        width: 90%;
-        right: 5%;
-        bottom: 110px;
-      }
-      
       .chatbot-btn {
         width: 50px;
         height: 50px;
         bottom: 20px;
         right: 20px;
+      }
+      
+      .chatbot-btn::after {
+        font-size: 0.6rem;
+        top: -20px;
+      }
+      
+      .chatbot-popup {
+        width: 90%;
+        right: 5%;
+        bottom: 80px;
+        max-height: 50vh;
+      }
+      
+      #userInput {
+        pointer-events: none;
+      }
+      
+      .chatbot-popup.active #userInput {
+        pointer-events: auto;
       }
     }
   </style>
@@ -422,7 +449,7 @@
       <div class="message bot-message">Hello! I'm here to help you with information about Bombo SS. How can I assist you today?</div>
     </div>
     <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Type your question here..." autofocus>
+      <input type="text" id="userInput" placeholder="Type your question here...">
       <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
@@ -527,13 +554,30 @@
       "community": "Join our community by attending PTA meetings, volunteering, or donating to school projects. Contact the administration office for details."
     };
     
-    // Toggle chatbot popup
-    chatbotBtn.addEventListener('click', function() {
+    // Improved toggle function for mobile
+    function toggleChatbot() {
+      const wasActive = chatbotPopup.classList.contains('active');
       chatbotPopup.classList.toggle('active');
+      
       if (chatbotPopup.classList.contains('active')) {
-        userInput.focus();
+        // Only focus input on desktop or after user interaction
+        if (window.innerWidth > 768 || wasActive) {
+          userInput.focus();
+        }
       }
-    });
+    }
+    
+    // Toggle chatbot popup
+    chatbotBtn.addEventListener('click', toggleChatbot);
+    
+    // Mobile: Only focus input when popup is already open
+    if (window.innerWidth <= 768) {
+      userInput.addEventListener('click', function() {
+        if (chatbotPopup.classList.contains('active')) {
+          this.focus();
+        }
+      });
+    }
     
     // Button click handlers
     document.getElementById('joinCommunityBtn').addEventListener('click', function() {
