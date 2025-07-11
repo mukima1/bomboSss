@@ -182,38 +182,65 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
-    /* Floating Chatbot Button */
+    /* Elegant Floating Chatbot Button */
     .chatbot-btn {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 70px;
-      height: 70px;
+      width: 60px;
+      height: 60px;
       background-color: var(--secondary);
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      box-shadow: 0 5px 25px rgba(240, 165, 0, 0.4);
+      box-shadow: 0 4px 20px rgba(240, 165, 0, 0.5);
       z-index: 100;
-      transition: var(--transition);
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
+    
+    .chatbot-btn::after {
+      content: 'Ask';
+      position: absolute;
+      top: -25px;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     
     .chatbot-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 30px rgba(240, 165, 0, 0.6);
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 6px 25px rgba(240, 165, 0, 0.7);
+    }
+    
+    .chatbot-btn:hover::after {
+      opacity: 1;
     }
     
     .chatbot-btn img {
-      width: 60%;
-      height: 80%;
+      width: 55%;
+      height: 70%;
+      transition: transform 0.3s ease;
     }
     
+    .chatbot-btn:hover img {
+      transform: scale(1.1);
+    }
+
     /* Chatbot Popup */
     .chatbot-popup {
       position: fixed;
-      bottom: 10px;
+      bottom: 120px;
       right: 30px;
       width: 350px;
       background-color: white;
@@ -339,8 +366,8 @@
       }
       
       .chatbot-btn {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         bottom: 20px;
         right: 20px;
       }
@@ -380,8 +407,8 @@
     </div>
   </div>
   
-  <!-- Floating Chatbot Button -->
-  <div class="chatbot-btn" id="chatbotBtn">
+  <!-- Elegant Floating Chatbot Button -->
+  <div class="chatbot-btn" id="chatbotBtn" title="Ask our assistant">
     <img src="../../bombo.png" alt="Chat Icon">
   </div>
   
