@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bombo SS - School Assistant</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: var(--dark);
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #1a365d 0%, #0f2133 100%);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      padding: 1.5rem 0;
+      text-align: center;
+      background: rgba(44, 82, 130, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 15px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .logo-text .sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo-text .motto {
+      font-size: 0.7rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+      transform-origin: center;
+    }
+
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2.5rem;
+      background: var(--secondary);
+      color: var(--black);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      font-size: 1rem;
+    }
+
+    .btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, var(--secondary), #ffd700);
+      z-index: 1;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s ease;
+    }
+
+    .btn:hover:before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Floating Chatbot Button */
+    .chatbot-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 5px 25px rgba(240, 165, 0, 0.4);
+      z-index: 100;
+      transition: var(--transition);
+    }
+    
+    .chatbot-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(240, 165, 0, 0.6);
+    }
+    
+    .chatbot-btn img {
+      width: 60%;
+      height: 80%;
+    }
+    
+    /* Chatbot Popup */
+    .chatbot-popup {
+      position: fixed;
+      bottom: 10px;
+      right: 30px;
+      width: 350px;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      overflow: hidden;
+      transform: scale(0);
+      transform-origin: bottom right;
+      transition: var(--transition);
+      z-index: 99;
+      opacity: 0;
+    }
+    
+    .chatbot-popup.active {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    .chatbot-header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .chatbot-header img {
+      width: 30px;
+      height: auto;
+    }
+    
+    .chatbox {
+      height: 350px;
+      padding: 1rem;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+    
+    .message {
+      margin: 0.5rem 0;
+      padding: 0.8rem 1rem;
+      border-radius: 18px;
+      max-width: 80%;
+      word-wrap: break-word;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .bot-message {
+      background-color: #e3f2fd;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      color: #333;
+    }
+    
+    .user-message {
+      background-color: var(--primary);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .chat-input {
+      display: flex;
+      padding: 1rem;
+      background-color: white;
+      border-top: 1px solid #eee;
+    }
+    
+    #userInput {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      font-size: 1rem;
+    }
+    
+    #sendBtn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 0 1.5rem;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+    
+    #sendBtn:hover {
+      background-color: #1a3e6f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .action-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .chatbot-popup {
+        width: 90%;
+        right: 5%;
+        bottom: 110px;
+      }
+      
+      .chatbot-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="../../bombo.png" alt="Bombo SS Logo">
+        <div class="logo-text">
+          <span class="main">BOMBO</span>
+          <span class="sub">SENIOR SECONDARY SCHOOL</span>
+          <span class="motto">"Determination Leads To Success"</span>
+        </div>
+      </div>
+      <h1>Welcome to Bombo SS</h1>
+    </header>
+
+    <p class="intro-text">
+      Discover excellence in education at Bombo Senior Secondary School. 
+      Our dedicated faculty and state-of-the-art facilities provide the perfect environment for academic success.
+    </p>
+
+    <div class="action-buttons">
+      <a href="../community/engagments.html"><button class="btn" id="joinCommunityBtn">
+        <i class="fas fa-users"></i>
+        <span>Join Our Community</span>
+      </button></a>
+      <a href=""><button class="btn" id="admissionBtn">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Admission Forms</span>
+      </button></a>
+    </div>
+  </div>
+  
+  <!-- Floating Chatbot Button -->
+  <div class="chatbot-btn" id="chatbotBtn">
+    <img src="../../bombo.png" alt="Chat Icon">
+  </div>
+  
+  <!-- Chatbot Popup -->
+  <div class="chatbot-popup" id="chatbotPopup">
+    <div class="chatbot-header">
+      <img src="../../bombo.png" alt="Small Logo">
+      <h3>Bombo SS Assistant</h3>
+    </div>
+    <div class="chatbox" id="chatbox">
+      <div class="message bot-message">Hello! I'm here to help you with information about Bombo SS. How can I assist you today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your question here..." autofocus>
+      <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+    <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    // Initialize particles.js
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#f0a500"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          }
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#f0a500",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "push": {
+            "particles_nb": 4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Chatbot functionality
+    const chatbox = document.getElementById('chatbox');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const chatbotBtn = document.getElementById('chatbotBtn');
+    const chatbotPopup = document.getElementById('chatbotPopup');
+    
+    // Knowledge base for the chatbot
+    const knowledgeBase = {
+      "admission": "Admissions are open from January to March. Requirements include: Completed application form, academic transcripts, and an interview. Application fee is UGX 50,000.",
+      "fees": "Annual tuition fee is UGX 1,200,000. We offer scholarships for top performers and financial aid for qualifying students.",
+      "programs": "We offer Sciences, Arts, and Vocational programs at both O-Level and A-Level with modern facilities and experienced teachers.",
+      "facilities": "Our campus features: Science labs, Computer labs, Library, Sports fields, Dormitories, and a modern cafeteria.",
+      "uniform": "School uniform is mandatory: Blue shirt/blouse with school logo, grey trousers/skirt, and black shoes. Available at the school store.",
+      "contact": "You can reach us at:\nPhone: +256 123 456 789\nEmail: info@bomboss.edu\nOffice Hours: 8:00 AM - 5:00 PM (Mon-Fri)",
+      "location": "We're located on Bombo Road, about 2km from the town center. Public transport is available with our school buses serving major routes.",
+      "calendar": "School terms:\n1st Term: Feb-Apr\n2nd Term: May-Aug\n3rd Term: Sep-Nov\nHolidays: April, August, December",
+      "community": "Join our community by attending PTA meetings, volunteering, or donating to school projects. Contact the administration office for details."
+    };
+    
+    // Toggle chatbot popup
+    chatbotBtn.addEventListener('click', function() {
+      chatbotPopup.classList.toggle('active');
+      if (chatbotPopup.classList.contains('active')) {
+        userInput.focus();
+      }
+    });
+    
+    // Button click handlers
+    document.getElementById('joinCommunityBtn').addEventListener('click', function() {
+      if (!chatbotPopup.classList.contains('active')) {
+        chatbotPopup.classList.add('active');
+      }
+      addBotMessage("To join our community, you can:\n1. Attend PTA meetings\n2. Volunteer for school events\n3. Donate to school projects\n4. Participate in alumni activities\n\nWould you like more details about any of these options?");
+    });
+    
+    document.getElementById('admissionBtn').addEventListener('click', function() {
+      if (!chatbotPopup.classList.contains('active')) {
+        chatbotPopup.classList.add('active');
+      }
+      addBotMessage("Our admission process requires:\n1. Completed application form\n2. Previous academic records\n3. Interview\n4. Medical report\n\nApplication fee: UGX 50,000\n\nWould you like the application form or more specific information?");
+    });
+    
+    // Add message to chat
+    function addMessage(text, isUser) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+      messageDiv.textContent = text;
+      chatbox.appendChild(messageDiv);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    
+    function addBotMessage(text) {
+      addMessage(text, false);
+    }
+    
+    function addUserMessage(text) {
+      addMessage(text, true);
+    }
+    
+    // Process user input
+    function processUserInput() {
+      const message = userInput.value.trim();
+      if (message) {
+        addUserMessage(message);
+        userInput.value = '';
+        
+        // Simple response logic
+        setTimeout(() => {
+          let response = "I'm sorry, I didn't understand that. Could you rephrase? Try asking about:\n- Admission\n- Fees\n- Programs\n- Facilities\n- Uniform\n- School calendar";
+          
+          const lowerMessage = message.toLowerCase();
+          
+          // Check for greetings
+          if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey')) {
+            response = "Hello! Welcome to Bombo SS. How can I help you today?";
+          }
+          // Check for thanks
+          else if (lowerMessage.includes('thank')) {
+            response = "You're welcome! Is there anything else I can help with?";
+          }
+          // Check for help
+          else if (lowerMessage.includes('help')) {
+            response = "I can help with information about:\n- Admission process\n- School fees\n- Academic programs\n- School facilities\n- Uniform requirements\n- Term dates\n- Community involvement\n\nWhat would you like to know?";
+          }
+          // Check knowledge base
+          else {
+            for (const [keyword, answer] of Object.entries(knowledgeBase)) {
+              if (lowerMessage.includes(keyword)) {
+                response = answer;
+                break;
+              }
+            }
+          }
+          
+          addBotMessage(response);
+        }, 500);
+      }
+    }
+    
+    // Event listeners
+    sendBtn.addEventListener('click', processUserInput);
+    
+    userInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        processUserInput();
+      }
+    });
+
+    // Close chatbot when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!chatbotPopup.contains(event.target) && 
+          !chatbotBtn.contains(event.target) && 
+          chatbotPopup.classList.contains('active')) {
+        chatbotPopup.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
