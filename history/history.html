@@ -299,9 +299,12 @@
             font-style: italic;
         }
 
+        /* Timeline Styles */
         .timeline {
             position: relative;
             padding: 15px 0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .timeline::before {
@@ -346,12 +349,13 @@
             font-size: 0.8rem;
             min-width: 60px;
             text-align: center;
+            z-index: 2;
         }
 
         .timeline-dot {
             position: absolute;
             left: 15px;
-            top: 50%;
+            top: 30px;
             transform: translate(-50%, -50%);
             width: 12px;
             height: 12px;
@@ -627,42 +631,49 @@
                 float: left;
                 margin: 0 15px 15px 0;
             }
-            
+
+            /* Timeline Desktop Layout */
             .timeline::before {
                 left: 50%;
                 transform: translateX(-50%);
             }
-            
+
             .timeline-item {
                 padding-left: 0;
+                width: 100%;
                 display: flex;
-                align-items: center;
+                justify-content: space-between;
+                align-items: flex-start;
                 margin: 30px 0;
             }
-            
-            .timeline-item:nth-child(odd) {
-                flex-direction: row;
+
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: auto;
+                margin-right: 30px;
+                width: calc(50% - 60px);
             }
-            
-            .timeline-item:nth-child(even) {
-                flex-direction: row-reverse;
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-right: auto;
+                margin-left: 30px;
+                width: calc(50% - 60px);
             }
-            
-            .timeline-content {
-                flex: 1;
-                margin: 0 30px;
+
+            .timeline-item:nth-child(odd) .timeline-year {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 0;
             }
-            
-            .timeline-year {
-                position: relative;
-                left: auto;
-                top: auto;
-                transform: none;
-                margin: 0 15px;
+
+            .timeline-item:nth-child(even) .timeline-year {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 0;
             }
-            
+
             .timeline-dot {
                 left: 50%;
+                top: 30px;
             }
         }
 
