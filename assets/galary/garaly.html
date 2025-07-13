@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombo Senior Secondary School - Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .app-bar {
+            background: linear-gradient(135deg, #2c5364 0%, #4a6741 100%);
+            color: white;
+            padding: 10px 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+            order: 3;
+            margin-left: auto;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-1px);
+        }
+
+        .school-title {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .school-title h1 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 0.5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .school-subtitle {
+            font-size: 0.8rem;
+            font-weight: 300;
+            margin: 2px 0;
+            letter-spacing: 0.3px;
+            opacity: 0.9;
+        }
+
+        .school-motto {
+            font-size: 0.7rem;
+            font-style: italic;
+            color: #ffd700;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        .page {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .page.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        /* Enhanced Gallery Styles */
+        .gallery-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+            perspective: 1000px;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+            height: 70vh;
+            min-height: 400px;
+            align-items: center;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.4;
+            transform: scale(0.9);
+            filter: brightness(0.8);
+        }
+
+        .gallery-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            filter: brightness(1);
+            z-index: 2;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transform: translateZ(0);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .gallery-slide.active img {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+            opacity: 0;
+        }
+
+        .gallery-slide.active .gallery-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .gallery-caption p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            z-index: 10;
+        }
+
+        .gallery-nav-btn {
+            background: rgba(255,255,255,0.7);
+            border: none;
+            color: #2c5364;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .gallery-nav-btn:hover {
+            background: rgba(255,255,255,0.9);
+            transform: scale(1.1);
+        }
+
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .gallery-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(44, 83, 100, 0.3);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #2c5364;
+            transition: all 10s linear;
+        }
+
+        .gallery-dot.active {
+            background: rgba(44, 83, 100, 0.5);
+            transform: scale(1.3);
+        }
+
+        .gallery-dot.active::after {
+            animation: progress 10s linear forwards;
+        }
+
+        @keyframes progress {
+            from { left: -100%; }
+            to { left: 0; }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 480px) {
+            .app-bar {
+                padding: 12px 15px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .school-title h1 {
+                font-size: 1.6rem;
+            }
+            
+            .school-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .school-motto {
+                font-size: 0.8rem;
+            }
+            
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .gallery-caption h3 {
+                font-size: 2rem;
+            }
+
+            .gallery-caption p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .app-bar {
+                padding: 15px 20px;
+                flex-wrap: nowrap;
+            }
+            
+            .logo {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .school-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .school-subtitle {
+                font-size: 1rem;
+            }
+            
+            .school-motto {
+                font-size: 0.9rem;
+            }
+            
+            .back-btn {
+                order: 0;
+                margin-left: 0;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .gallery-slide {
+                min-width: 50%;
+            }
+
+            .gallery-track {
+                height: 80vh;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .app-bar {
+                padding: 20px;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .school-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .school-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .school-motto {
+                font-size: 1rem;
+            }
+            
+            .gallery-slide {
+                min-width: 33.33%;
+            }
+
+            .gallery-caption h3 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-caption p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-bar">
+        <div class="logo">
+            <img src="../../bombo.png" alt="Bombo SS Logo" id="schoolLogo">
+        </div>
+        <div class="school-title">
+            <h1>BOMBO</h1>
+            <div class="school-subtitle">SENIOR SECONDARY SCHOOL</div>
+            <div class="school-motto">"Determination Leads To Success"</div>
+        </div>
+        <a href="../../index.html" class="back-btn">← Home</a>
+    </div>
+
+    <div class="container">
+        <div id="gallery" class="page active">
+            <div class="page-header">
+                <h1>Historical Gallery</h1>
+                <p>Moments and People Who Shaped Our School</p>
+            </div>
+            <div class="content">
+                <div class="gallery-container">
+                    <div class="gallery-track">
+                        <div class="gallery-slide active">
+                            <img src="../../history\assets\Alhajji Bisaso Ntamu Muhammad.jpeg" alt="Alhajji Bisaso Ntamu Muhammad">
+                            <div class="gallery-caption">
+                                <h3>Alhajji Bisaso Ntamu Muhammad</h3>
+                                <p>Former Headteacher (2016-2024)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\haaji lubega musa.jpeg" alt="Hajj Matovu Musa Lubega">
+                            <div class="gallery-caption">
+                                <h3>Hajj Matovu Musa Lubega</h3>
+                                <p>Current Headteacher (2024-Present)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Hajji Abdallatiff Wangubo.jpeg" alt="Haji Abdallatif Wangubo">
+                            <div class="gallery-caption">
+                                <h3>Haji Abdallatif Wangubo</h3>
+                                <p>Headteacher (1986-1988)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Hajji Habib sulaiman.jpeg" alt="Haji Habib Sulaiman">
+                            <div class="gallery-caption">
+                                <h3>Haji Habib Sulaiman</h3>
+                                <p>Headteacher (1988-2003)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Hajji kayongo Abdu Ngobya(late).jpeg" alt="Haji kayongo Abdu Ngobya">
+                            <div class="gallery-caption">
+                                <h3>Haji kayongo Abdu Ngobya</h3>
+                                <p>Headteacher (2003-2005)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Hajji Waggwa Badru Lubega.jpeg" alt="Haji Waggwa Badru Lubega">
+                            <div class="gallery-caption">
+                                <h3>Haji Waggwa Badru Lubega</h3>
+                                <p>Headteacher (1984-1986)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Idi-Amin-Dada-58b9cd813df78c353c38387a.jpg" alt="Idi Amin Dada">
+                            <div class="gallery-caption">
+                                <h3>Idi Amin Dada</h3>
+                                <p>President during school's government recognition</p>
+                            </div>
+                        </div>
+                        <div class="gallery-slide">
+                            <img src="../../history\assets\Kanatta Abdulkarim.jpeg" alt="Kanatta Abdulkarim">
+                            <div class="gallery-caption">
+                                <h3>Kanatta Abdulkarim</h3>
+                                <p>Headteacher (2005-2006)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gallery-nav">
+                        <button class="gallery-nav-btn prev-btn">&#10094;</button>
+                        <button class="gallery-nav-btn next-btn">&#10095;</button>
+                    </div>
+                    <div class="gallery-dots">
+                        <div class="gallery-dot active"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                        <div class="gallery-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add function to handle logo replacement
+        function replaceSchoolLogo() {
+            const logoImg = document.getElementById('schoolLogo');
+            if (logoImg) {
+                logoImg.onerror = function() {
+                    // If image fails to load, show a placeholder
+                    this.style.display = 'none';
+                    this.parentElement.innerHTML = '<div style="font-size: 1.2rem; font-weight: bold; color: #2c5364;">BSS</div>';
+                };
+            }
+        }
+
+        // Enhanced Gallery Slider with Beautiful Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.gallery-track');
+            const slides = document.querySelectorAll('.gallery-slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            const dots = document.querySelectorAll('.gallery-dot');
+            
+            let currentSlide = 0;
+            let autoSlideInterval;
+            const slideCount = slides.length;
+            const slideWidth = slides[0].clientWidth;
+            
+            // Set initial position
+            updateSlider();
+            
+            // Next slide function with effects
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+                resetAutoSlide();
+            }
+            
+            // Previous slide function with effects
+            function prevSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSlider();
+                resetAutoSlide();
+            }
+            
+            // Update slider position and effects
+            function updateSlider() {
+                track.style.transform = `translateX(${-currentSlide * slideWidth}px)`;
+                
+                // Update active slide with transition effects
+                slides.forEach((slide, index) => {
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                    // Reset progress animation
+                    dot.style.animation = 'none';
+                    void dot.offsetWidth; // Trigger reflow
+                    if (index === currentSlide) {
+                        dot.style.animation = 'progress 10s linear forwards';
+                    }
+                });
+            }
+            
+            // Reset autoslide timer
+            function resetAutoSlide() {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = setInterval(nextSlide, 10000);
+            }
+            
+            // Button event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = index;
+                    updateSlider();
+                    resetAutoSlide();
+                });
+            });
+            
+            // Auto slide every 10 seconds
+            autoSlideInterval = setInterval(nextSlide, 10000);
+            
+            // Pause on hover (optional)
+            track.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            track.addEventListener('mouseleave', () => {
+                resetAutoSlide();
+            });
+            
+            // Initialize logo handling
+            replaceSchoolLogo();
+            
+            // Parallax effect on scroll
+            window.addEventListener('scroll', function() {
+                const scrollPosition = window.pageYOffset;
+                track.style.transform = `translateX(${-currentSlide * slideWidth}px) translateY(${scrollPosition * 0.2}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
