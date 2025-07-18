@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Bombo SS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f7fafc;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    .school-header {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: var(--white);
+      padding: 1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .school-logo {
+      height: 50px;
+      margin-right: 15px;
+    }
+
+    .school-title {
+      text-align: left;
+    }
+
+    .school-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .school-motto {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    /* Main Content */
+    .error-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .error-content {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .error-content::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(240, 165, 0, 0.1) 0%, transparent 70%);
+      animation: rotate 15s linear infinite;
+      z-index: -1;
+    }
+
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .error-code::after {
+      content: '404';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--secondary);
+      z-index: -1;
+      animation: glitch 2s infinite alternate;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(44, 82, 130, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(240, 165, 0, 0.4);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .construction-icon {
+      font-size: 4rem;
+      color: var(--secondary);
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    /* Footer Styles */
+    .school-footer {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: var(--white);
+      padding: 1.5rem 0;
+      text-align: center;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .footer-info {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-contact {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      background: var(--secondary);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Animations */
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(-5px, -5px); }
+      60% { transform: translate(5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 6rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      p {
+        font-size: 1rem;
+      }
+      
+      .error-content {
+        padding: 2rem;
+      }
+
+      .school-name {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-code {
+        font-size: 4rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .construction-icon {
+        font-size: 3rem;
+      }
+      
+      .btn {
+        padding: 0.6rem 1.5rem;
+      }
+
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .school-logo {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .school-title {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- School Header -->
+  <header class="school-header">
+    <div class="header-container">
+      <img src="../bombo.png" alt="Bombo SS Logo" class="school-logo">
+      <div class="school-title">
+        <div class="school-name">BOMBO SECONDARY SCHOOL</div>
+        <div class="school-motto">"Determination Leads To Success"</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="error-container">
+    <div class="error-content">
+      <div class="construction-icon">
+        <i class="fas fa-tools"></i>
+      </div>
+      <div class="error-code">404</div>
+      <h1>Page Not Found / Under Development</h1>
+      <p>Oops! The page you're looking for doesn't exist or is currently under construction. Our team is working hard to bring you this content soon.</p>
+      <a href="../index.html" class="btn">
+        <i class="fas fa-arrow-left"></i> Return to Homepage
+      </a>
+    </div>
+  </main>
+
+  <!-- School Footer -->
+  <footer class="school-footer">
+    <div class="footer-container">
+      <div class="footer-info">&copy; 2025 Bombo Secondary School. All Rights Reserved.</div>
+      <div class="footer-contact">21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</div>
+    </div>
+  </footer>
+
+  <script>
+    // Create floating particles
+    function createParticles() {
+      const colors = ['#f0a500', '#2c5282', '#1a365d'];
+      const container = document.body;
+      
+      for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 10 + 5;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 10 + 10;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.background = color;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    // Handle window resize
+    function handleResize() {
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach(p => p.remove());
+      createParticles();
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      window.addEventListener('resize', handleResize);
+    });
+  </script>
+</body>
+</html>

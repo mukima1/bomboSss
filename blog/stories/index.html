@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bombo SS School - Achievements</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-color: #f5f7fa;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 70px;
+      margin-right: 15px;
+      margin-bottom: 10px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .logo-text .sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+    }
+
+    .intro-text {
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+      color: var(--white);
+      padding: 0 1rem;
+    }
+
+    /* Achievements Grid */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .achievement-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: var(--transition);
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .achievement-image {
+      height: 250px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .achievement-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .achievement-card:hover .achievement-image img {
+      transform: scale(1.05);
+    }
+
+    .achievement-content {
+      padding: 1.5rem;
+    }
+
+    .achievement-content h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    .achievement-content p {
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .achievement-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--dark);
+      font-size: 0.9rem;
+      border-top: 1px dashed #ddd;
+      padding-top: 0.8rem;
+    }
+
+    /* Categories */
+    .category-header {
+      text-align: center;
+      margin: 3rem 0 2rem;
+      position: relative;
+    }
+
+    .category-header h2 {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.5rem 2rem;
+      border-radius: 30px;
+      font-size: 1.5rem;
+    }
+
+    /* Placeholder for missing images */
+    .placeholder-image {
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.2rem;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: var(--primary);
+      color: var(--white);
+      padding: 3rem 0;
+      margin: 3rem 0;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      padding: 1.5rem;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--secondary);
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--dark));
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .logo {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .logo img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .logo-text {
+        text-align: center;
+      }
+      
+      .achievement-image {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .category-header h2 {
+        font-size: 1.3rem;
+        padding: 0.5rem 1.5rem;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="../../bombo.png" alt="Bombo SS Logo">
+        <div class="logo-text">
+          <span class="main">BOMBO SECONDARY SCHOOL</span>
+          <span class="sub">Celebrating Excellence Since 1964</span>
+        </div>
+      </div>
+      <h1>Our Achievements</h1>
+      <p class="intro-text">Proud moments and outstanding accomplishments of our students and alumni</p>
+    </header>
+
+    <!-- Athletics Achievements -->
+    <div class="category-header">
+      <h2>Athletics Champions</h2>
+    </div>
+
+    <div class="achievements-grid">
+      <!-- Halima Nakaayi -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <img src="2011.jpeg" alt="Halima Nakaayi with gold medals">
+        </div>
+        <div class="achievement-content">
+          <h3>Halima Nakaayi - Olympic Gold Medalist</h3>
+          <p>Halima Nakaayi displays gold medals she had won at the women's 400 meter Olympic champion in UK in 2011 while still a student at Bombo SS. Her remarkable achievement put our school on the international athletics map.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-trophy"></i> Gold Medal</span>
+            <span><i class="fas fa-calendar-alt"></i> 2011</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catherine Webombesa -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <img src="1990.jpeg" alt="Catherine Webombesa with gold medal">
+        </div>
+        <div class="achievement-content">
+          <h3>Catherine Webombesa - Marathon Champion</h3>
+          <p>Catherine Webombesa, then a student at Bombo SS, displays a gold medal she won in the women's athletics marathon in Russia in 1999. Her endurance and determination brought honor to our school.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-trophy"></i> Gold Medal</span>
+            <span><i class="fas fa-calendar-alt"></i> 1999</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Athletics Placeholder -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            More Athletics Achievements
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>Regional Athletics Champions</h3>
+          <p>Bombo SS has produced numerous regional and national athletics champions over the years in various track and field events.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-medal"></i> Multiple Awards</span>
+            <span><i class="fas fa-calendar-alt"></i> 1995-Present</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Achievements -->
+    <div class="category-header">
+      <h2>Academic Excellence</h2>
+    </div>
+
+    <div class="achievements-grid">
+      <!-- National Debate -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <img src="../../assets/ac.jpeg" alt="National Debate Team">
+        </div>
+        <div class="achievement-content">
+          <h3>National Debate Champions</h3>
+          <p>Our debate team has consistently participated and excelled in national debate competitions, showcasing the intellectual prowess of Bombo SS students.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-trophy"></i> Debate Champions</span>
+            <span><i class="fas fa-calendar-alt"></i> Multiple Years</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Science Competition -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            Science Fair Winners
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>National Science Competition Winners</h3>
+          <p>Our students have won several awards in national science competitions, demonstrating innovation and scientific understanding.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-award"></i> 1st Place</span>
+            <span><i class="fas fa-calendar-alt"></i> 2018</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Placeholder -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            Academic Awards
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>Outstanding Academic Performance</h3>
+          <p>Bombo SS students consistently achieve top grades in national examinations, with many receiving national recognition.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-graduation-cap"></i> Distinctions</span>
+            <span><i class="fas fa-calendar-alt"></i> Annual</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cultural Achievements -->
+    <div class="category-header">
+      <h2>Cultural & Arts</h2>
+    </div>
+
+    <div class="achievements-grid">
+      <!-- Music Festival -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            Music Festival
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>National Music Festival Winners</h3>
+          <p>Our school choir and instrumental ensembles have won numerous awards at national music festivals.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-music"></i> Gold Award</span>
+            <span><i class="fas fa-calendar-alt"></i> Multiple Years</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drama Competition -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            Drama Performance
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>Regional Drama Champions</h3>
+          <p>Bombo SS drama club has won regional competitions with powerful performances addressing social issues.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-theater-masks"></i> Best Performance</span>
+            <span><i class="fas fa-calendar-alt"></i> Years</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cultural Placeholder -->
+      <div class="achievement-card">
+        <div class="achievement-image">
+          <div class="placeholder-image">
+            Art Exhibition
+          </div>
+        </div>
+        <div class="achievement-content">
+          <h3>Art & Creative Works</h3>
+          <p>Our students' artworks have been featured in national exhibitions and competitions.</p>
+          <div class="achievement-meta">
+            <span><i class="fas fa-palette"></i> Creative Arts</span>
+            <span><i class="fas fa-calendar-alt"></i> Years</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics Section -->
+    <div class="stats-section">
+      <h2>By The Numbers</h2>
+      <p>Our proud achievements in figures</p>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">25+</div>
+          <div class="stat-label">National Champions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">International Competitions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Academic Awards</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+      <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+    </footer>
+  </div>
+</body>
+</html>
