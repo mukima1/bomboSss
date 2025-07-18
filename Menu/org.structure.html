@@ -31,6 +31,7 @@
       color: var(--black);
       line-height: 1.6;
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     #vanta-bg {
@@ -40,6 +41,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+      background-color: #10203a; /* Fallback color */
     }
 
     .container {
@@ -86,11 +88,13 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
     }
 
     .logo img {
       height: 60px;
       margin-right: 15px;
+      margin-bottom: 10px;
       filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
     }
 
@@ -146,7 +150,7 @@
       margin: 0 auto 3rem;
       font-size: 1.1rem;
       color: var(--white);
-    
+      padding: 0 1rem;
     }
 
     .org-container {
@@ -167,8 +171,7 @@
     }
 
     .org-section:hover {
-      transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
     }
 
     .org-header {
@@ -181,6 +184,7 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .org-header::before {
@@ -244,7 +248,7 @@
     }
 
     .org-card:hover {
-      transform: translateY(-5px) rotateX(1deg) rotateY(1deg) scale(1.02);
+      transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       background: var(--white);
     }
@@ -308,9 +312,97 @@
       pointer-events: none;
     }
 
+    /* Animation control panel */
+    .animation-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .control-btn {
+      background: rgba(44, 82, 130, 0.9);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .control-btn:hover {
+      background: var(--secondary);
+      transform: scale(1.1);
+    }
+    
+    .control-btn i {
+      font-size: 1.2rem;
+    }
+    
+    /* Reduced motion styles */
+    @media (prefers-reduced-motion: reduce) {
+      .floating,
+      .org-section,
+      .org-card,
+      .particle {
+        animation: none !important;
+        transition: none !important;
+      }
+      
+      .org-header::before {
+        display: none;
+      }
+    }
+    
+    /* Animation-disabled state */
+    .animations-disabled {
+      /* Background animation */
+      #vanta-bg {
+        display: none;
+        background-color: #10203a;
+      }
+      
+      /* Floating animation */
+      .floating {
+        animation: none !important;
+      }
+      
+      /* Card hover effects */
+      .org-section:hover,
+      .org-card:hover {
+        transform: none !important;
+      }
+      
+      /* Particle effects */
+      .particle {
+        display: none !important;
+      }
+      
+      /* Header effects */
+      .org-header::before {
+        display: none !important;
+      }
+      
+      /* 3D effects */
+      .org-section {
+        transform-style: flat !important;
+        perspective: none !important;
+      }
+    }
+
+    /* Mobile optimizations */
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
+        padding: 0 1rem;
       }
 
       .org-header h2 {
@@ -319,6 +411,31 @@
 
       .org-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .org-header {
+        padding: 1rem;
+      }
+      
+      .org-content.active {
+        padding: 1rem;
+      }
+      
+      .org-card {
+        padding: 1rem;
+      }
+      
+      .container {
+        padding: 1rem 0;
+      }
+      
+      header {
+        margin-bottom: 2rem;
+        padding: 1rem 0;
+      }
+      
+      .intro-text {
+        margin-bottom: 2rem;
       }
     }
 
@@ -335,6 +452,38 @@
 
       .logo-text {
         text-align: center;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .org-header h2 {
+        font-size: 1.1rem;
+      }
+      
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      footer {
+        padding: 1.5rem 0;
+        font-size: 0.8rem;
+      }
+    }
+    
+    /* Touch device detection */
+    @media (hover: none) {
+      .org-section:hover,
+      .org-card:hover {
+        transform: none !important;
+      }
+      
+      .control-btn:hover {
+        transform: none !important;
       }
     }
   </style>
@@ -508,25 +657,147 @@
     </footer>
   </div>
 
-  <script>
-    // Initialize Vanta.js background
-    VANTA.NET({
-      el: "#vanta-bg",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x3a6ab4,
-      backgroundColor: 0x10203a,
-      points: 12.00,
-      maxDistance: 22.00,
-      spacing: 18.00
-    });
+  <!-- Animation control button -->
+  <div class="animation-controls">
+    <button class="control-btn" id="toggleAnimations" title="Toggle Animations" aria-label="Toggle animations">
+      <i class="fas fa-play" id="animationIcon"></i>
+    </button>
+  </div>
 
+  <script>
+    // Initialize with animations on by default
+    let animationsEnabled = true;
+    let vantaEffect;
+    
+    // Function to initialize animations
+    function initAnimations() {
+      if (animationsEnabled) {
+        // Initialize Vanta.js background if not already initialized
+        if (!vantaEffect) {
+          vantaEffect = VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3a6ab4,
+            backgroundColor: 0x10203a,
+            points: 12.00,
+            maxDistance: 22.00,
+            spacing: 18.00
+          });
+        } else {
+          // If already initialized, just show it
+          document.getElementById('vanta-bg').style.display = 'block';
+        }
+        
+        createParticles();
+        document.getElementById('animationIcon').className = 'fas fa-pause';
+        document.body.classList.remove('animations-disabled');
+      } else {
+        if (vantaEffect) {
+          // Don't destroy, just hide to preserve performance
+          document.getElementById('vanta-bg').style.display = 'none';
+        }
+        removeParticles();
+        document.getElementById('animationIcon').className = 'fas fa-play';
+        document.body.classList.add('animations-disabled');
+      }
+    }
+    
+    // Function to create particles
+    function createParticles() {
+      // Don't create particles on mobile devices
+      if (window.innerWidth <= 768) return;
+      
+      const colors = ['#f0a500', '#2c5282', '#ffffff'];
+      const container = document.querySelector('.container');
+      
+      // Clear existing particles first
+      const existingParticles = document.querySelectorAll('.particle');
+      existingParticles.forEach(p => p.remove());
+      
+      // Reduce number of particles on smaller screens
+      const particleCount = window.innerWidth <= 1024 ? 15 : 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 5 + 2;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 10 + 10;
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        particle.style.background = color;
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        particle.style.opacity = Math.random() * 0.5 + 0.3;
+        
+        container.appendChild(particle);
+      }
+    }
+    
+    // Function to remove particles
+    function removeParticles() {
+      const particles = document.querySelectorAll('.particle');
+      particles.forEach(p => p.remove());
+    }
+    
+    // Toggle animations function
+    function toggleAnimations() {
+      animationsEnabled = !animationsEnabled;
+      localStorage.setItem('animationsEnabled', animationsEnabled);
+      initAnimations();
+      
+      // Provide visual feedback on mobile
+      if (window.innerWidth <= 768) {
+        const btn = document.getElementById('toggleAnimations');
+        btn.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          btn.style.transform = 'scale(1)';
+        }, 100);
+      }
+    }
+    
     document.addEventListener('DOMContentLoaded', function() {
+      // Check user preference for reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      // Check localStorage for user preference
+      const storedPreference = localStorage.getItem('animationsEnabled');
+      if (storedPreference !== null) {
+        animationsEnabled = storedPreference === 'true' && !prefersReducedMotion;
+      } else {
+        animationsEnabled = !prefersReducedMotion;
+      }
+      
+      // Initialize animations based on preferences
+      initAnimations();
+      
+      // Set up toggle button
+      const toggleBtn = document.getElementById('toggleAnimations');
+      toggleBtn.addEventListener('click', toggleAnimations);
+      
+      // Touch feedback for mobile
+      toggleBtn.addEventListener('touchstart', function() {
+        this.style.transform = 'scale(0.95)';
+      });
+      
+      toggleBtn.addEventListener('touchend', function() {
+        this.style.transform = 'scale(1)';
+      });
+      
+      // Existing accordion functionality
       const orgHeaders = document.querySelectorAll('.org-header');
       
       // Initialize first section as open
@@ -540,10 +811,8 @@
           const content = this.nextElementSibling;
           const icon = this.querySelector('i');
           
-          // Toggle active class on header
           this.classList.toggle('active');
           
-          // Toggle content visibility
           if (content.style.maxHeight) {
             content.style.maxHeight = null;
             content.classList.remove('active');
@@ -552,59 +821,26 @@
             content.classList.add('active');
           }
           
-          // Rotate icon
           icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
         });
       });
       
-      // Create floating particles
-      function createParticles() {
-        const colors = ['#f0a500', '#2c5282', '#ffffff'];
-        const container = document.querySelector('.container');
-        
-        for (let i = 0; i < 30; i++) {
-          const particle = document.createElement('div');
-          particle.classList.add('particle');
+      // Handle window resize
+      let resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          // Recreate particles if needed
+          if (animationsEnabled) {
+            removeParticles();
+            createParticles();
+          }
           
-          // Random properties
-          const size = Math.random() * 5 + 2;
-          const posX = Math.random() * 100;
-          const posY = Math.random() * 100;
-          const delay = Math.random() * 5;
-          const duration = Math.random() * 10 + 10;
-          const color = colors[Math.floor(Math.random() * colors.length)];
-          
-          particle.style.width = `${size}px`;
-          particle.style.height = `${size}px`;
-          particle.style.left = `${posX}%`;
-          particle.style.top = `${posY}%`;
-          particle.style.background = color;
-          particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-          particle.style.opacity = Math.random() * 0.5 + 0.3;
-          
-          container.appendChild(particle);
-        }
-      }
-      
-      createParticles();
-      
-      // 3D tilt effect for cards
-      const orgSections = document.querySelectorAll('.org-section');
-      orgSections.forEach(section => {
-        section.addEventListener('mousemove', (e) => {
-          const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-          const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-          section.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-        
-        section.addEventListener('mouseenter', () => {
-          section.style.transition = 'all 0.1s ease';
-        });
-        
-        section.addEventListener('mouseleave', () => {
-          section.style.transition = 'all 0.5s ease';
-          section.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        });
+          // Update accordion heights
+          document.querySelectorAll('.org-content.active').forEach(content => {
+            content.style.maxHeight = content.scrollHeight + "px";
+          });
+        }, 250);
       });
     });
   </script>
