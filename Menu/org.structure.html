@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bombo SS School - Organizational Structure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    header {
+      padding: 1.5rem 0;
+      text-align: center;
+      background: rgba(44, 82, 130, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(240,165,0,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 15px;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .logo-text .sub {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .logo-text .motto {
+      font-size: 0.7rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-top: 2px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+      transform-origin: center;
+    }
+
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      font-size: 1.1rem;
+      color: var(--white);
+    
+    }
+
+    .org-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .org-section {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .org-section:hover {
+      transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .org-header {
+      background: linear-gradient(to right, var(--primary), var(--dark));
+      color: var(--white);
+      padding: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .org-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .org-header:hover::before {
+      transform: translateX(100%);
+    }
+
+    .org-header h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .org-header i {
+      transition: var(--transition);
+    }
+
+    .org-header.active i {
+      transform: rotate(180deg);
+    }
+
+    .org-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: var(--transition);
+      padding: 0 1.5rem;
+      transform: translateZ(0);
+    }
+
+    .org-content.active {
+      max-height: 1000px;
+      padding: 1.5rem;
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .org-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--secondary);
+      transition: var(--transition);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transform-style: preserve-3d;
+    }
+
+    .org-card:hover {
+      transform: translateY(-5px) rotateX(1deg) rotateY(1deg) scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      background: var(--white);
+    }
+
+    .org-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .org-card p, .org-card li {
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .org-card ul {
+      padding-left: 1.2rem;
+    }
+
+    .current-leader {
+      font-weight: 600;
+      color: var(--dark);
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    .current-leader span {
+      color: var(--secondary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 3rem;
+      color: var(--white);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(44, 82, 130, 0.7);
+      backdrop-filter: blur(5px);
+      border-radius: 20px 20px 0 0;
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Particles */
+    .particle {
+      position: absolute;
+      background: var(--secondary);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .org-header h2 {
+        font-size: 1.3rem;
+      }
+
+      .org-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo img {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+
+      .logo-text {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="vanta-bg"></div>
+  <div class="container">
+    <header class="floating">
+      <div class="logo">
+        <img src="../bombo.png" alt="Bombo SS Logo">
+        <div class="logo-text">
+          <span class="main">BOMBO</span>
+          <span class="sub">SENIOR SECONDARY SCHOOL</span>
+          <span class="motto">"Determination Leads To Success"</span>
+        </div>
+      </div>
+      <h1>Organizational Structure</h1>
+      <p class="intro-text">by Hajji Lubega Musa H.M and Mr Habiib Ibrahim D.H.T</p>
+    </header>
+
+    <div class="intro-text">
+      <p>Owning to its historical background Bombo SS school is owned by Nakatonya Islamic Community NICB. Bombo as its foundation body. Currently, it's a government aided school run under the guidelines of the ministry of Education and Sports through the education act of 2008. The foundation body is not involved in the management of the school.</p>
+    </div>
+
+    <div class="org-container">
+      <!-- Board of Governors -->
+      <div class="org-section">
+        <div class="org-header active">
+          <h2>Board of Governors (B.O.G)</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content active">
+          <p>The school Board of Governors represents the Ministry of Education in governing the school. The foundation body nominates five members of the board through whom its interests are channeled. Other members are selected from parents, teachers, the local government which includes the town council and the district representatives.</p>
+          <p>The B.O.G is the supreme governing body of the school. Its composition formed every after three years is approved by the ministry of Education.</p>
+          <div class="current-leader">Current chairman: <span>Dr. Ahmed Musa (P.H.D)</span></div>
+        </div>
+      </div>
+
+      <!-- Head Teacher -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Head Teacher</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <p>Bombo SS head teachers are posted by the ministry of Education and sports from time to time. Our head teacher is the accounting officer of the school who takes charge of day to day running of the school managing both teaching and non-teaching staff.</p>
+          <p>The head teacher has to implement decisions of the Board where he also takes charge as board secretary. The school has had several head teachers since its inception in 1964.</p>
+          <div class="current-leader">Current head teacher: <span>Hajji Lubega Musa Matovu</span></div>
+        </div>
+      </div>
+
+      <!-- Deputy Head Teachers -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Deputy Head Teachers</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <div class="org-grid">
+            <div class="org-card">
+              <h3>Deputy Head Teacher (Administration)</h3>
+              <p>Supervises the welfare department, games and sports among others.</p>
+            </div>
+            <div class="org-card">
+              <h3>Deputy Head Teacher (Academics)</h3>
+              <p>Monitors the teachers, teaching and external examinations and skilling programs among others.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Director of Studies -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Director of Studies</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <p>In charge of day to day academic activities in the school including the management of the teaching time table, internal examinations among others. The office has two other assistants helping in different duties.</p>
+        </div>
+      </div>
+
+      <!-- Heads of Department -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Heads of Department</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <div class="org-grid">
+            <div class="org-card">
+              <h3>Head of Biological Sciences</h3>
+              <p>Manages biology, agriculture and related subjects.</p>
+            </div>
+            <div class="org-card">
+              <h3>Head of Physical Sciences</h3>
+              <p>Manages physics, chemistry, mathematics and related subjects.</p>
+            </div>
+            <div class="org-card">
+              <h3>Head of Vocational Sciences</h3>
+              <p>Manages practical subjects like woodwork, metalwork, home economics.</p>
+            </div>
+            <div class="org-card">
+              <h3>Head of Humanities</h3>
+              <p>Manages history, geography, CRE, IRE and related subjects.</p>
+            </div>
+            <div class="org-card">
+              <h3>Head of Languages</h3>
+              <p>Manages English, Luganda, French and other languages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Class Teachers -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Class Teachers</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <p>These are individual teachers charged with managing particular classes and academic performance of individual students in their classes. They also monitor individual students discipline and give them guidance on various issues. Our class teachers can have direct contact with parents of individual learners. Class teachers make reports on each learner from time to time.</p>
+        </div>
+      </div>
+
+      <!-- PTA -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Parents Teachers Association (P.T.A)</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <p>The school P.T.A comprises of parents, Teachers and some school administrators. It is an Association formed at school level mainly to bridge the gap between parent's teachers and the school.</p>
+          <p>As development partners, the PTA helps to mobilize parents to discuss issues of development in the school, school fees collection, construction of new structures etc. before such are approved by the B.O.G for implementation.</p>
+          <div class="current-leader">Current chairman: <span>Mr. Shafi Muzamil</span></div>
+        </div>
+      </div>
+
+      <!-- Student Leaders -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Student Leaders</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <div class="org-grid">
+            <div class="org-card">
+              <h3>Prefects</h3>
+              <ul>
+                <li>Head Prefect (male)</li>
+                <li>Head Girl (Female)</li>
+                <li>Other prefects</li>
+              </ul>
+            </div>
+            <div class="org-card">
+              <h3>Students' Council</h3>
+              <ul>
+                <li>The chairperson student's council</li>
+                <li>The vice chairperson</li>
+                <li>Councilors</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+      <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize Vanta.js background
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x3a6ab4,
+      backgroundColor: 0x10203a,
+      points: 12.00,
+      maxDistance: 22.00,
+      spacing: 18.00
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const orgHeaders = document.querySelectorAll('.org-header');
+      
+      // Initialize first section as open
+      const firstHeader = orgHeaders[0];
+      const firstContent = firstHeader.nextElementSibling;
+      firstHeader.classList.add('active');
+      firstContent.classList.add('active');
+      
+      orgHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const icon = this.querySelector('i');
+          
+          // Toggle active class on header
+          this.classList.toggle('active');
+          
+          // Toggle content visibility
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            content.classList.remove('active');
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add('active');
+          }
+          
+          // Rotate icon
+          icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+      });
+      
+      // Create floating particles
+      function createParticles() {
+        const colors = ['#f0a500', '#2c5282', '#ffffff'];
+        const container = document.querySelector('.container');
+        
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement('div');
+          particle.classList.add('particle');
+          
+          // Random properties
+          const size = Math.random() * 5 + 2;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const delay = Math.random() * 5;
+          const duration = Math.random() * 10 + 10;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+          particle.style.background = color;
+          particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+          particle.style.opacity = Math.random() * 0.5 + 0.3;
+          
+          container.appendChild(particle);
+        }
+      }
+      
+      createParticles();
+      
+      // 3D tilt effect for cards
+      const orgSections = document.querySelectorAll('.org-section');
+      orgSections.forEach(section => {
+        section.addEventListener('mousemove', (e) => {
+          const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+          const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+          section.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        
+        section.addEventListener('mouseenter', () => {
+          section.style.transition = 'all 0.1s ease';
+        });
+        
+        section.addEventListener('mouseleave', () => {
+          section.style.transition = 'all 0.5s ease';
+          section.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
