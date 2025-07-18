@@ -41,7 +41,7 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      background-color: #10203a; /* Fallback color */
+      background-color: #10203a;
     }
 
     .container {
@@ -171,7 +171,7 @@
     }
 
     .org-section:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
     }
 
     .org-header {
@@ -248,7 +248,7 @@
     }
 
     .org-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-5px) rotateX(1deg) rotateY(1deg) scale(1.02);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       background: var(--white);
     }
@@ -347,6 +347,27 @@
       font-size: 1.2rem;
     }
     
+    /* 3D animations disabled state */
+    .no-3d-animations {
+      /* Disable 3D card effects */
+      .org-section {
+        transform-style: flat !important;
+        perspective: none !important;
+      }
+      
+      .org-section:hover {
+        transform: translateY(-5px) !important;
+      }
+      
+      .org-card {
+        transform-style: flat !important;
+      }
+      
+      .org-card:hover {
+        transform: translateY(-5px) !important;
+      }
+    }
+
     /* Reduced motion styles */
     @media (prefers-reduced-motion: reduce) {
       .floating,
@@ -360,41 +381,9 @@
       .org-header::before {
         display: none;
       }
-    }
-    
-    /* Animation-disabled state */
-    .animations-disabled {
-      /* Background animation */
-      #vanta-bg {
-        display: none;
-        background-color: #10203a;
-      }
       
-      /* Floating animation */
-      .floating {
-        animation: none !important;
-      }
-      
-      /* Card hover effects */
-      .org-section:hover,
-      .org-card:hover {
-        transform: none !important;
-      }
-      
-      /* Particle effects */
-      .particle {
-        display: none !important;
-      }
-      
-      /* Header effects */
-      .org-header::before {
-        display: none !important;
-      }
-      
-      /* 3D effects */
-      .org-section {
-        transform-style: flat !important;
-        perspective: none !important;
+      .no-3d-animations {
+        display: none; /* Don't need this class if reduced motion is on */
       }
     }
 
@@ -437,6 +426,13 @@
       .intro-text {
         margin-bottom: 2rem;
       }
+      
+      .control-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -460,13 +456,6 @@
       
       .org-header h2 {
         font-size: 1.1rem;
-      }
-      
-      .control-btn {
-        width: 45px;
-        height: 45px;
-        bottom: 15px;
-        right: 15px;
       }
       
       footer {
@@ -521,22 +510,6 @@
           <div class="current-leader">Current chairman: <span>Dr. Ahmed Musa (P.H.D)</span></div>
         </div>
       </div>
-
-
-
-      <!-- PTA -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Parents Teachers Association (P.T.A)</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <p>The school P.T.A comprises of parents, Teachers and some school administrators. It is an Association formed at school level mainly to bridge the gap between parent's teachers and the school.</p>
-          <p>As development partners, the PTA helps to mobilize parents to discuss issues of development in the school, school fees collection, construction of new structures etc. before such are approved by the B.O.G for implementation.</p>
-          <div class="current-leader">Current chairman: <span>Mr. Shafi Muzamil</span></div>
-        </div>
-      </div>
-
 
       <!-- Head Teacher -->
       <div class="org-section">
@@ -625,6 +598,19 @@
         </div>
       </div>
 
+      <!-- PTA -->
+      <div class="org-section">
+        <div class="org-header">
+          <h2>Parents Teachers Association (P.T.A)</h2>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="org-content">
+          <p>The school P.T.A comprises of parents, Teachers and some school administrators. It is an Association formed at school level mainly to bridge the gap between parent's teachers and the school.</p>
+          <p>As development partners, the PTA helps to mobilize parents to discuss issues of development in the school, school fees collection, construction of new structures etc. before such are approved by the B.O.G for implementation.</p>
+          <div class="current-leader">Current chairman: <span>Mr. Shafi Muzamil</span></div>
+        </div>
+      </div>
+
       <!-- Student Leaders -->
       <div class="org-section">
         <div class="org-header">
@@ -662,53 +648,33 @@
 
   <!-- Animation control button -->
   <div class="animation-controls">
-    <button class="control-btn" id="toggleAnimations" title="Toggle Animations" aria-label="Toggle animations">
-      <i class="fas fa-play" id="animationIcon"></i>
+    <button class="control-btn" id="toggleAnimations" title="Toggle 3D Animations" aria-label="Toggle 3D animations">
+      <i class="fas fa-cube" id="animationIcon"></i>
     </button>
   </div>
 
   <script>
-    // Initialize with animations on by default
-    let animationsEnabled = true;
+    // Initialize with 3D animations on by default
+    let threeDAnimationsEnabled = true;
     let vantaEffect;
     
-    // Function to initialize animations
-    function initAnimations() {
-      if (animationsEnabled) {
-        // Initialize Vanta.js background if not already initialized
-        if (!vantaEffect) {
-          vantaEffect = VANTA.NET({
-            el: "#vanta-bg",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x3a6ab4,
-            backgroundColor: 0x10203a,
-            points: 12.00,
-            maxDistance: 22.00,
-            spacing: 18.00
-          });
-        } else {
-          // If already initialized, just show it
-          document.getElementById('vanta-bg').style.display = 'block';
-        }
-        
-        createParticles();
-        document.getElementById('animationIcon').className = 'fas fa-pause';
-        document.body.classList.remove('animations-disabled');
-      } else {
-        if (vantaEffect) {
-          // Don't destroy, just hide to preserve performance
-          document.getElementById('vanta-bg').style.display = 'none';
-        }
-        removeParticles();
-        document.getElementById('animationIcon').className = 'fas fa-play';
-        document.body.classList.add('animations-disabled');
-      }
+    // Initialize Vanta.js background
+    function initVanta() {
+      vantaEffect = VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x3a6ab4,
+        backgroundColor: 0x10203a,
+        points: 12.00,
+        maxDistance: 22.00,
+        spacing: 18.00
+      });
     }
     
     // Function to create particles
@@ -756,11 +722,18 @@
       particles.forEach(p => p.remove());
     }
     
-    // Toggle animations function
-    function toggleAnimations() {
-      animationsEnabled = !animationsEnabled;
-      localStorage.setItem('animationsEnabled', animationsEnabled);
-      initAnimations();
+    // Toggle 3D animations function
+    function toggle3DAnimations() {
+      threeDAnimationsEnabled = !threeDAnimationsEnabled;
+      localStorage.setItem('threeDAnimationsEnabled', threeDAnimationsEnabled);
+      
+      if (threeDAnimationsEnabled) {
+        document.body.classList.remove('no-3d-animations');
+        document.getElementById('animationIcon').className = 'fas fa-cube';
+      } else {
+        document.body.classList.add('no-3d-animations');
+        document.getElementById('animationIcon').className = 'fas fa-cube';
+      }
       
       // Provide visual feedback on mobile
       if (window.innerWidth <= 768) {
@@ -777,19 +750,27 @@
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       
       // Check localStorage for user preference
-      const storedPreference = localStorage.getItem('animationsEnabled');
+      const storedPreference = localStorage.getItem('threeDAnimationsEnabled');
       if (storedPreference !== null) {
-        animationsEnabled = storedPreference === 'true' && !prefersReducedMotion;
+        threeDAnimationsEnabled = storedPreference === 'true' && !prefersReducedMotion;
       } else {
-        animationsEnabled = !prefersReducedMotion;
+        threeDAnimationsEnabled = !prefersReducedMotion;
       }
       
       // Initialize animations based on preferences
-      initAnimations();
+      if (!prefersReducedMotion) {
+        initVanta();
+        createParticles();
+      }
+      
+      // Set initial 3D animation state
+      if (!threeDAnimationsEnabled) {
+        document.body.classList.add('no-3d-animations');
+      }
       
       // Set up toggle button
       const toggleBtn = document.getElementById('toggleAnimations');
-      toggleBtn.addEventListener('click', toggleAnimations);
+      toggleBtn.addEventListener('click', toggle3DAnimations);
       
       // Touch feedback for mobile
       toggleBtn.addEventListener('touchstart', function() {
@@ -834,7 +815,7 @@
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
           // Recreate particles if needed
-          if (animationsEnabled) {
+          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             removeParticles();
             createParticles();
           }
