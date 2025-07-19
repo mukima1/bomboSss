@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+        
+  <!-- Homepage (Highest Priority) -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bomboss.ac.ug/"/>
+    <image:image>
+      <image:loc>https://www.bomboss.ac.ug/bombo.png</image:loc>
+      <image:title>Bombo SS Logo</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Key Content Pages -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/about</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bomboss.ac.ug/about"/>
+  </url>
+  
+  <url>
+    <loc>https://www.bomboss.ac.ug/history/history.html</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.bomboss.ac.ug/assets/bobo.jpeg</image:loc>
+      <image:title>Bombo SS History</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Academic Sections -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/academics</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bomboss.ac.ug/admissions</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  
+  <!-- Dynamic Content -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/blog</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bomboss.ac.ug/events</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <!-- Media Pages -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/gallery</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+    <image:image>
+      <image:loc>https://www.bomboss.ac.ug/assets/bombostds.jpeg</image:loc>
+      <image:title>Student Gallery</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.bomboss.ac.ug/assets/spots.jpeg</image:loc>
+      <image:title>Sports Events</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Contact -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/contact</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <!-- Utility Pages -->
+  <url>
+    <loc>https://www.bomboss.ac.ug/sitemap.xml</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.bomboss.ac.ug/robots.txt</loc>
+    <lastmod>2025-07-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.10</priority>
+  </url>
+</urlset>

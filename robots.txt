@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /wp-admin/
+
+# Sitemap Locations
+Sitemap: https://www.bomboss.ac.ug/sitemap.xml
+Sitemap: https://www.bomboss.ac.ug/sitemap-images.xml
+
+# Crawl-Delay: 10  # Uncomment if needed for server load
+
+# Special Directives
+Host: https://www.bomboss.ac.ug
+Clean-param: ref /blog/
+Clean-param: utm_source /
