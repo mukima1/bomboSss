@@ -215,6 +215,34 @@
             border-left: 4px solid #166534;
         }
 
+        .indicates-required {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .asterisk {
+            color: #e53e3e;
+            font-weight: bold;
+        }
+
+        .mailchimp-badge {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .mailchimp-badge img {
+            height: 30px;
+            width: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .mailchimp-badge img:hover {
+            opacity: 1;
+        }
+
         @media (max-width: 640px) {
             .bombo-newsletter {
                 padding: 2rem 1.5rem;
@@ -231,6 +259,11 @@
             
             .newsletter-header h2 {
                 font-size: 1.5rem;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
 
@@ -258,10 +291,12 @@
                 <p>Subscribe to our newsletter for school updates, events, and important announcements</p>
             </div>
             
-            <form action="https://gmail.us18.list-manage.com/subscribe/post?u=39e71a6436f96370cce6a8e11&amp;id=050a4f12d4&amp;f_id=0049b1e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <form action="https://bomboss.us3.list-manage.com/subscribe/post?u=62bfe0eb0253dcca3fcea00cd&amp;id=fa88d464d2&amp;f_id=000a3ce1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                
                 <div class="form-group">
-                    <label for="mce-EMAIL">Email Address <span class="required">*</span></label>
-                    <input type="email" name="EMAIL" class="form-input" id="mce-EMAIL" required>
+                    <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                    <input type="email" name="EMAIL" class="form-input required email" id="mce-EMAIL" required>
                 </div>
                 
                 <div class="form-row">
@@ -282,6 +317,11 @@
                 </div>
                 
                 <div class="form-group">
+                    <label for="mce-COMPANY">Company/Organization</label>
+                    <input type="text" name="COMPANY" class="form-input" id="mce-COMPANY">
+                </div>
+                
+                <div class="form-group">
                     <label>I am a:</label>
                     <div class="radio-group">
                         <label class="radio-option">
@@ -293,16 +333,24 @@
                         <label class="radio-option">
                             <input type="radio" name="MMERGE7" value="Alumni"> Alumni
                         </label>
+                        <label class="radio-option">
+                            <input type="radio" name="MMERGE7" value="Staff"> Staff
+                        </label>
                     </div>
                 </div>
                 
                 <div aria-hidden="true" style="position: absolute; left: -5000px;">
-                    <input type="text" name="b_39e71a6436f96370cce6a8e11_050a4f12d4" tabindex="-1" value="">
+                    <input type="text" name="b_62bfe0eb0253dcca3fcea00cd_fa88d464d2" tabindex="-1" value="">
                 </div>
                 
                 <div class="form-footer">
-                    <button type="submit" class="submit-btn">Subscribe Now</button>
+                    <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="submit-btn">Subscribe Now</button>
                     <p class="privacy-text">We respect your privacy. Unsubscribe at any time.</p>
+                    <div class="mailchimp-badge">
+                        <a href="http://eepurl.com/jjHEtk" title="Mailchimp - email marketing made easy and fun">
+                            <img src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp">
+                        </a>
+                    </div>
                 </div>
                 
                 <div id="mce-responses">
@@ -322,8 +370,12 @@
             fnames[1]='FNAME';ftypes[1]='text';
             fnames[2]='LNAME';ftypes[2]='text';
             fnames[4]='PHONE';ftypes[4]='phone';
+            fnames[6]='COMPANY';ftypes[6]='text';
+            fnames[3]='ADDRESS';ftypes[3]='address';
+            fnames[5]='BIRTHDAY';ftypes[5]='birthday';
             fnames[7]='MMERGE7';ftypes[7]='radio';
         }(jQuery));
+        var $mcj = jQuery.noConflict(true);
     </script>
 </body>
 </html>
