@@ -237,7 +237,7 @@
     
     .chatbot-btn img {
       width: 55%;
-      height: 80%;
+      height: 60%;
       transition: transform 0.3s ease;
     }
     
@@ -281,7 +281,7 @@
     }
     
     .chatbot-header img {
-      width: 30px;
+      width: 20px;
       height: auto;
     }
     
@@ -541,17 +541,23 @@
     const chatbotBtn = document.getElementById('chatbotBtn');
     const chatbotPopup = document.getElementById('chatbotPopup');
     
-    // Knowledge base for the chatbot
+    // Enhanced knowledge base for the chatbot
     const knowledgeBase = {
-      "admission": "Admissions are open from January to March. Requirements include: Completed application form, academic transcripts, and an interview. Application fee is UGX 50,000.",
-      "fees": "Annual tuition fee is UGX 1,200,000. We offer scholarships for top performers and financial aid for qualifying students.",
-      "programs": "We offer Sciences, Arts, and Vocational programs at both O-Level and A-Level with modern facilities and experienced teachers.",
-      "facilities": "Our campus features: Science labs, Computer labs, Library, Sports fields, Dormitories, and a modern cafeteria.",
-      "uniform": "School uniform is mandatory: Blue shirt/blouse with school logo, grey trousers/skirt, and black shoes. Available at the school store.",
+      "admission": "Admission at Bombo SS is done from December to February each year. Requirements include:\n- PLE Results for S.1 (Grade I or II)\n- UCE Results for S.5\n- Islamic Theology (IPLE) for Islamic studies\n\nContact:\n+256-772 446 667\n+256-758 761 724\n+256-752 815 650",
+      "fees": "Fees Structure:\n\nO-Level (S.1-S.4): UGX 690,000 per term\nA-Level (S.5-S.6): UGX 745,000 per term\n\nOther charges:\n- Transfer fees: UGX 30,000 (once)\n- Identity card/file: UGX 10,000 (once)\n- Uniform (full set): UGX 255,000 (once)\n- Medical insurance: UGX 20,000 per term\n- ICT Fee: UGX 15,000 per term (ICT students only)",
+      "programs": "We offer:\n\nO-LEVEL SUBJECTS:\n1. English\n2. Mathematics\n3. Physics\n4. Chemistry\n5. Biology\n6. Geography\n7. History And Political Education\n8. Physical Education\n9. Christian Religious Education (CRE)\n10. Islamic Religious Education (IRE)\n11. Kiswahili\n12. Arabic Language\n13. Luganda\n14. Enterprenuership Education\n15. Literature In English\n16. Nutrition And Food Technology\n17. Agriculture\n18. Information And Communication Technology (ICT)\n19. Art And Design\n\nA-LEVEL SUBJECTS:\n1. General Paper\n2. Subsidiary Mathematics\n3. Subsidiary ICT\n4. History\n5. Economics\n6. Enterprenuership\n7. Christian Religious Education\n8. Islamic Religous Education\n9. Geography\n10. Literature In English\n11. Kiswahili\n12. Luganda\n13. Arabic\n14. Mathematics\n15. Physics\n16. Chemistry\n17. Biology\n18. Art And Design\n19. Food And Nutrition\n20. Technical Drawing (Mechanics)\n21. Technical Drawing (Building)",
+      "facilities": "Our campus features:\n- Science labs\n- Computer labs\n- Library\n- Sports fields\n- Dormitories\n- Modern cafeteria",
+      "uniform": "School uniform is mandatory:\n- Blue shirt/blouse with school logo\n- Grey trousers/skirt\n- Black shoes\nAvailable at the school store",
       "contact": "You can reach us at:\nPhone: +256 123 456 789\nEmail: info@bomboss.edu\nOffice Hours: 8:00 AM - 5:00 PM (Mon-Fri)",
       "location": "We're located on Bombo Road, about 2km from the town center. Public transport is available with our school buses serving major routes.",
       "calendar": "School terms:\n1st Term: Feb-Apr\n2nd Term: May-Aug\n3rd Term: Sep-Nov\nHolidays: April, August, December",
-      "community": "Join our community by attending PTA meetings, volunteering, or donating to school projects. Contact the administration office for details."
+      "community": "Join our community by:\n- Attending PTA meetings\n- Volunteering\n- Donating to school projects\nContact the administration office for details.",
+      "staff": "Staff Enrolment:\n- Teaching Staff: 72\n- Non-Teaching Staff: 10\n- Support Staff: 17\nTotal: 99 staff members",
+      "bank": "Bank Information:\nBank Name: Tropical Bank\nAccount Name: Bombo S S\nAccount Number: 2000091718\nBranch: Main Branch Kampala\nCurrency: Uganda Shillings",
+      "requirements": "Admission Requirements:\n- Completed application form\n- Academic transcripts\n- Interview\n- Medical report\nApplication fee: UGX 50,000",
+      "islamic": "Islamic Theology Program:\nAccepts students with IPLE results\nAlso welcomes beginners in Islamic studies",
+      "selection": "Selection Criteria:\nFor S.1: Based on PLE results (Grade I or II)\nFor S.5: Based on UCE results\nSchool sets additional criteria based on facilities",
+      "transport": "Transportation:\nSchool buses available serving major routes\nLocated 2km from town center on Bombo Road"
     };
     
     // Improved toggle function for mobile
@@ -612,7 +618,7 @@
       addMessage(text, true);
     }
     
-    // Process user input
+    // Process user input with enhanced keyword matching
     function processUserInput() {
       const message = userInput.value.trim();
       if (message) {
@@ -621,7 +627,7 @@
         
         // Simple response logic
         setTimeout(() => {
-          let response = "I'm sorry, I didn't understand that. Could you rephrase? Try asking about:\n- Admission\n- Fees\n- Programs\n- Facilities\n- Uniform\n- School calendar";
+          let response = "I'm sorry, I didn't understand that. Could you rephrase? Try asking about:\n- Admission\n- Fees\n- Programs\n- Facilities\n- Uniform\n- School calendar\n- Staff\n- Bank details";
           
           const lowerMessage = message.toLowerCase();
           
@@ -635,12 +641,16 @@
           }
           // Check for help
           else if (lowerMessage.includes('help')) {
-            response = "I can help with information about:\n- Admission process\n- School fees\n- Academic programs\n- School facilities\n- Uniform requirements\n- Term dates\n- Community involvement\n\nWhat would you like to know?";
+            response = "I can help with information about:\n- Admission process\n- School fees\n- Academic programs\n- School facilities\n- Uniform requirements\n- Term dates\n- Community involvement\n- Staff information\n- Bank details\n\nWhat would you like to know?";
           }
-          // Check knowledge base
+          // Check knowledge base with more comprehensive matching
           else {
             for (const [keyword, answer] of Object.entries(knowledgeBase)) {
-              if (lowerMessage.includes(keyword)) {
+              if (lowerMessage.includes(keyword) || 
+                  (keyword === 'admission' && (lowerMessage.includes('apply') || lowerMessage.includes('join') || lowerMessage.includes('enroll'))) ||
+                  (keyword === 'fees' && (lowerMessage.includes('payment') || lowerMessage.includes('cost') || lowerMessage.includes('fee structure'))) ||
+                  (keyword === 'programs' && (lowerMessage.includes('subject') || lowerMessage.includes('course') || lowerMessage.includes('study'))) ||
+                  (keyword === 'staff' && (lowerMessage.includes('teacher') || lowerMessage.includes('employee') || lowerMessage.includes('faculty')))) {
                 response = answer;
                 break;
               }

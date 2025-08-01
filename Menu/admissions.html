@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admissions & Fees - Bombo SS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2c5282;
+      --secondary: #f0a500;
+      --dark: #1a365d;
+      --light: #f5f7fa;
+      --white: #ffffff;
+      --black: #333333;
+      --gray: #666666;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--black);
+      line-height: 1.6;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ed 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(240,165,0,0.1) 0%, transparent 70%);
+      transform: rotate(30deg);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo img {
+      height: 70px;
+      margin-right: 15px;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .logo-text .main {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--white);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .logo-text .sub {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--white);
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 4px;
+      background: var(--secondary);
+      bottom: -10px;
+      left: 25%;
+      border-radius: 2px;
+    }
+
+    h2 {
+      color: var(--primary);
+      margin: 2rem 0 1.5rem;
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      bottom: -5px;
+      left: 0;
+      border-radius: 3px;
+    }
+
+    h3 {
+      color: var(--dark);
+      margin: 2rem 0 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .content-card {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: var(--transition);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .admission-period {
+      background: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      margin: 1rem 0;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(44, 82, 130, 0.3);
+    }
+
+    .admission-period i {
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+
+    li:before {
+      content: '';
+      position: absolute;
+      left: -1.2rem;
+      top: 0.6rem;
+      width: 8px;
+      height: 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+    }
+
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .requirement-card {
+      background: rgba(44, 82, 130, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: var(--transition);
+      border: 1px solid rgba(44, 82, 130, 0.1);
+    }
+
+    .requirement-card:hover {
+      background: rgba(44, 82, 130, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .requirement-card h4 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .requirement-card h4 i {
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+
+    .fees-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 2rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .fees-table th, .fees-table td {
+      padding: 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .fees-table th {
+      background-color: var(--primary);
+      color: var(--white);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.9rem;
+    }
+
+    .fees-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .fees-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .fees-table tr:hover {
+      background-color: rgba(240, 165, 0, 0.05);
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+      color: var(--white);
+      padding: 2rem;
+      border-radius: 15px;
+      margin: 3rem 0;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(44, 82, 130, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(240,165,0,0.1) 0%, transparent 70%);
+    }
+
+    .contact-box h3 {
+      color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-box p {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1rem;
+    }
+
+    .contact-box a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      margin: 0.5rem;
+    }
+
+    .contact-box a:hover {
+      color: #ffd700;
+      transform: translateX(5px);
+    }
+
+    .contact-box a i {
+      margin-right: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--secondary);
+      color: var(--black);
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 1rem;
+      transition: var(--transition);
+      box-shadow: 0 5px 20px rgba(240, 165, 0, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(240, 165, 0, 0.4);
+      background: #ffb700;
+    }
+
+    .btn i {
+      margin-right: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 0;
+      margin-top: 3rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.7);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .content-card {
+        padding: 1.8rem;
+      }
+      
+      .requirements-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .logo img {
+        height: 60px;
+      }
+      
+      .logo-text .main {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../bombo.png" alt="Bombo SS Logo">
+      <div class="logo-text">
+        <span class="main">BOMBO</span>
+        <span class="sub">SENIOR SECONDARY SCHOOL</span>
+      </div>
+    </div>
+    <h1>Admissions & Fees Structure</h1>
+  </header>
+
+  <div class="container">
+    <div class="content-card">
+      <h2>Admission Information</h2>
+      
+      <div class="admission-period">
+        <i class="fas fa-calendar-alt"></i> Admission Period: December – February
+      </div>
+      
+      <p>Bombo Senior Secondary School welcomes students from all nationalities and religious backgrounds. Admission is based on academic performance and fulfillment of our requirements.</p>
+      
+      <h3>Admission Requirements</h3>
+      
+      <div class="requirements-grid">
+        <div class="requirement-card">
+          <h4><i class="fas fa-graduation-cap"></i> S.1 Admission</h4>
+          <p>Based on Primary Leaving Examinations (PLE) Results:</p>
+          <ul>
+            <li>Students with Grade I or II</li>
+            <li>Selected through UNEB or school selection</li>
+          </ul>
+        </div>
+        
+        <div class="requirement-card">
+          <h4><i class="fas fa-user-graduate"></i> S.5 Admission</h4>
+          <p>Based on Uganda Certificate of Education (UCE) Results:</p>
+          <ul>
+            <li>Meeting UNEB criteria</li>
+            <li>Subject to school capacity</li>
+          </ul>
+        </div>
+        
+        <div class="requirement-card">
+          <h4><i class="fas fa-mosque"></i> Islamic Theology</h4>
+          <p>Special program for:</p>
+          <ul>
+            <li>Students with IPLE results</li>
+            <li>Beginners in Islamic studies</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="contact-box">
+        <h3>For More Admission Details</h3>
+        <p>Contact our administration office:</p>
+        <p>
+          <a href="tel:+256772446667"><i class="fas fa-phone"></i> +256-772 446 667</a><br>
+          <a href="tel:+256758761724"><i class="fas fa-phone"></i> +256-758 761 724</a><br>
+          <a href="tel:+256752815650"><i class="fas fa-phone"></i> +256-752 815 650</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="content-card">
+      <h2>Fees Structure</h2>
+      
+      <h3>Tuition Fees</h3>
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Program</th>
+            <th>Duration</th>
+            <th>Fee Per Term</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>O-Level (S.1 - S.4)</td>
+            <td>Per Term</td>
+            <td class="highlight">690,000 UGX</td>
+          </tr>
+          <tr>
+            <td>A-Level (S.5 - S.6)</td>
+            <td>Per Term</td>
+            <td class="highlight">745,000 UGX</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>Other Charges</h3>
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Frequency</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Transfer fees</td>
+            <td>One-time</td>
+            <td>30,000 UGX</td>
+          </tr>
+          <tr>
+            <td>Identity card/file</td>
+            <td>One-time</td>
+            <td>10,000 UGX</td>
+          </tr>
+          <tr>
+            <td>Uniform (full set)</td>
+            <td>One-time</td>
+            <td>255,000 UGX</td>
+          </tr>
+          <tr>
+            <td>Medical insurance</td>
+            <td>Per Term</td>
+            <td>20,000 UGX</td>
+          </tr>
+          <tr>
+            <td>ICT Fee (ICT students only)</td>
+            <td>Per Term</td>
+            <td>15,000 UGX</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <button class="btn"><i class="fas fa-download"></i> Download Admission Form</button>
+    </div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+    <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+  </footer>
+</body>
+</html>
