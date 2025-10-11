@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Leadership - Bombo SS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #2c5282;
+            --secondary: #e6a400;
+            --secondary-light: #f0a500;
+            --dark: #0f1f38;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --black: #1e293b;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --accent: #0ea5e9;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        /* Premium Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 3rem 0 4rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.03"><polygon points="0,0 1000,50 1000,100 0,100"/></svg>');
+            background-size: cover;
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo img {
+            height: 70px;
+            margin-right: 20px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .logo-text .main {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .sub {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        h1:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 5px;
+            background: var(--secondary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin: 2rem 0 1.5rem;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            bottom: -8px;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        h3 {
+            color: var(--dark);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Premium Department Navigation */
+        .dept-nav-container {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .dept-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .dept-btn {
+            background: var(--light);
+            color: var(--primary);
+            border: none;
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dept-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.7s;
+        }
+
+        .dept-btn:hover::before {
+            left: 100%;
+        }
+
+        .dept-btn:hover, .dept-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(30, 58, 95, 0.2);
+        }
+
+        /* Premium Department Sections */
+        .department {
+            margin-bottom: 4rem;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .department.active {
+            display: block;
+        }
+
+        .dept-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dept-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="%23ffffff" opacity="0.05"><polygon points="0,100 1000,0 1000,100"/></svg>');
+            background-size: cover;
+        }
+
+        .dept-header h2 {
+            color: var(--white);
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dept-header h2:after {
+            background: var(--secondary);
+        }
+
+        /* Premium Staff Grid */
+        .staff-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 0;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 0 0 15px 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .staff-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid var(--light-gray);
+        }
+
+        .staff-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .staff-img-container {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        .staff-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .staff-card:hover .staff-img {
+            transform: scale(1.08);
+        }
+
+        .staff-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 2rem 1.5rem 1.5rem;
+            color: var(--white);
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .staff-card:hover .staff-overlay {
+            transform: translateY(0);
+        }
+
+        .staff-info {
+            padding: 2rem;
+        }
+
+        .staff-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .staff-position {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .staff-position i {
+            font-size: 0.9rem;
+        }
+
+        .staff-qualification {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .staff-qualification i {
+            color: var(--accent);
+        }
+
+        .staff-bio {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 1rem;
+        }
+
+        /* Premium HOD Highlight */
+        .hod-card {
+            border: 2px solid var(--secondary);
+            position: relative;
+        }
+
+        .hod-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(230, 164, 0, 0.03) 0%, transparent 50%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .hod-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            z-index: 3;
+            box-shadow: 0 5px 15px rgba(230, 164, 0, 0.3);
+        }
+
+        /* Premium Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            color: var(--gray);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--light-gray);
+            background: var(--white);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .staff-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+            
+            .logo-text .main {
+                font-size: 1.7rem;
+            }
+            
+            .staff-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 2rem;
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.6rem;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .logo-text {
+                text-align: center;
+            }
+            
+            .dept-nav {
+                gap: 0.7rem;
+            }
+            
+            .dept-btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.9rem;
+            }
+            
+            .staff-container {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+                padding: 1.5rem;
+            }
+            
+            .home-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1.5rem;
+                display: inline-flex;
+            }
+            
+            header {
+                padding: 2.5rem 0 3.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text .main {
+                font-size: 1.5rem;
+            }
+            
+            .intro-text {
+                font-size: 1rem;
+            }
+            
+            .dept-nav-container {
+                padding: 1rem;
+            }
+            
+            .dept-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="home-btn" onclick="window.location.href='../index.html'">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </button>
+            <div class="logo">
+                <img src="../bombo.png" alt="Bombo SS Logo">
+                <div class="logo-text">
+                    <span class="main">BOMBO SECONDARY SCHOOL</span>
+                    <span class="sub">Ministry of Education & Sports | Academic Excellence</span>
+                </div>
+            </div>
+            <h1>Academic Leadership</h1>
+            <div class="intro-text">
+                <p>Meet our distinguished academic leaders and dedicated teaching staff who drive excellence in education and inspire students to achieve their fullest potential at Bombo Secondary School.</p>
+            </div>
+        </header>
+
+        <div class="dept-nav-container">
+            <div class="dept-nav">
+                <button class="dept-btn active" data-dept="all">All Departments</button>
+                <button class="dept-btn" data-dept="islamic">Islamic Studies</button>
+                <button class="dept-btn" data-dept="ict">ICT</button>
+                <button class="dept-btn" data-dept="arts">Arts & Design</button>
+                <button class="dept-btn" data-dept="geography">Geography</button>
+                <button class="dept-btn" data-dept="business">Business Education</button>
+                <button class="dept-btn" data-dept="science">Science</button>
+                <button class="dept-btn" data-dept="support">Support Staff</button>
+            </div>
+        </div>
+
+        <!-- All Staff View -->
+        <div class="department active" id="all">
+            <div class="dept-header">
+                <h2>Our Distinguished Academic Team</h2>
+            </div>
+            
+            <div class="staff-container">
+                <!-- Islamic Theology -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Sheikh Ahmad Hamza Ibrahim.jpg" alt="Sheikh Ahmad Hamza Ibrahim" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Sheikh Ahmad Hamza Ibrahim</div>
+                            <div class="staff-position">Head of Islamic Theology</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Sheikh Ahmad Hamza Ibrahim</div>
+                        <div class="staff-position"><i class="fas fa-user-tie"></i> Head of Islamic Theology</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.A. in Islamic Studies, B.Ed.</div>
+                        <div class="staff-bio">Specializes in Quranic studies and Islamic jurisprudence. Leads religious activities and moral guidance programs, fostering spiritual growth and ethical development among students.</div>
+                    </div>
+                </div>
+                
+                <!-- ICT Department -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms.Nalubwama Fatuma.jpg" alt="Ms. Nalubwama Fatuma" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Nalubwama Fatuma</div>
+                            <div class="staff-position">Head of ICT Department</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Nalubwama Fatuma</div>
+                        <div class="staff-position"><i class="fas fa-laptop-code"></i> Head of ICT Department</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.Sc. in Computer Science, B.Ed.</div>
+                        <div class="staff-bio">Expert in computer programming and network administration. Oversees the school's digital transformation initiatives and prepares students for the technological future.</div>
+                    </div>
+                </div>
+                
+                <!-- Art & Design -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms.Nambi Damali.jpg" alt="Ms. Nambi Damali" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Nambi Damali</div>
+                            <div class="staff-position">Head of Art & Design</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Nambi Damali</div>
+                        <div class="staff-position"><i class="fas fa-palette"></i> Head of Art & Design</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.A. in Fine Arts, B.Ed.</div>
+                        <div class="staff-bio">Specializes in visual arts and creative design. Coordinates the school's art exhibitions and creative projects, nurturing artistic talent and creative expression.</div>
+                    </div>
+                </div>
+                
+                <!-- Geography -->
+                <div class="staff-card">
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Mr.Walyawula Rober.jpg" alt="Mr. Walyawula Robert" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Mr. Walyawula Robert</div>
+                            <div class="staff-position">Geography Teacher</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Mr. Walyawula Robert</div>
+                        <div class="staff-position"><i class="fas fa-globe-africa"></i> Geography Teacher</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.A. in Geography, B.Ed.</div>
+                        <div class="staff-bio">Focuses on physical geography and environmental studies. Leads field trips and geographical research projects, connecting classroom learning with real-world applications.</div>
+                    </div>
+                </div>
+                
+                <!-- Nutrition and Food Technology -->
+                <div class="staff-card">
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms, Bingi K Justine.jpg" alt="Ms. Bingi K Justine" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Bingi K Justine</div>
+                            <div class="staff-position">Nutrition & Food Technology</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Bingi K Justine</div>
+                        <div class="staff-position"><i class="fas fa-utensils"></i> Nutrition & Food Technology</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.Sc. in Food Science, B.Ed.</div>
+                        <div class="staff-bio">Specializes in food safety and nutrition. Manages the school's food technology laboratory and practical sessions, teaching essential life skills and health awareness.</div>
+                    </div>
+                </div>
+                
+                <!-- Entrepreneurship -->
+                <div class="staff-card">
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Mr Awel James.jpg" alt="Mr. Awel James" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Mr. Awel James</div>
+                            <div class="staff-position">Entrepreneurship Teacher</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Mr. Awel James</div>
+                        <div class="staff-position"><i class="fas fa-chart-line"></i> Entrepreneurship Teacher</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> MBA, B.Ed. in Business Studies</div>
+                        <div class="staff-bio">Focuses on business development and entrepreneurial skills. Coordinates student business projects and competitions, fostering innovation and economic empowerment.</div>
+                    </div>
+                </div>
+                
+                <!-- Librarian -->
+                <div class="staff-card">
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms Phiona Nahabwe.jpg" alt="Ms. Phiona Nahabwe" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Phiona Nahabwe</div>
+                            <div class="staff-position">School Librarian</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Phiona Nahabwe</div>
+                        <div class="staff-position"><i class="fas fa-book-reader"></i> School Librarian</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.L.I.S., B.A. in Literature</div>
+                        <div class="staff-bio">Manages the school library resources and promotes reading culture. Organizes literary events and book clubs, cultivating a love for literature and lifelong learning.</div>
+                    </div>
+                </div>
+                
+                <!-- Head of Geography -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms.Namatovu Viola.jpg" alt="Ms. Namatovu Viola" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Namatovu Viola</div>
+                            <div class="staff-position">Head of Geography Department</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Namatovu Viola</div>
+                        <div class="staff-position"><i class="fas fa-map-marked-alt"></i> Head of Geography Department</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> Ph.D. in Geography, M.Ed.</div>
+                        <div class="staff-bio">Expert in human geography and regional planning. Leads geographical research and community mapping projects, connecting academic knowledge with community development.</div>
+                    </div>
+                </div>
+                
+                <!-- Islamic Studies -->
+                <div class="staff-card">
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Ms. Nantume Fahiima.jpg" alt="Ms. Nantume Fahiimah" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Ms. Nantume Fahiimah</div>
+                            <div class="staff-position">Islamic Studies Teacher</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Ms. Nantume Fahiimah</div>
+                        <div class="staff-position"><i class="fas fa-mosque"></i> Islamic Studies Teacher</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> M.A. in Islamic Studies, B.Ed.</div>
+                        <div class="staff-bio">Specializes in Islamic history and ethics. Coordinates religious education programs and interfaith dialogues, promoting understanding and moral development.</div>
+                    </div>
+                </div>
+                
+                <!-- Business Education -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Hajati Fatuma.jpg" alt="Hajati Fatuma" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Hajati Fatuma</div>
+                            <div class="staff-position">Head of Business Education</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Hajati Fatuma</div>
+                        <div class="staff-position"><i class="fas fa-business-time"></i> Head of Business Education</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> MBA, B.Ed. in Commerce</div>
+                        <div class="staff-bio">Expert in accounting and business management. Oversees commerce education and student business initiatives, preparing students for careers in business and entrepreneurship.</div>
+                    </div>
+                </div>
+                
+                <!-- Bio-Chemistry -->
+                <div class="staff-card hod-card">
+                    <div class="hod-badge">Head of Department</div>
+                    <div class="staff-img-container">
+                        <img src="../assets/galary/Mr. Odong Denis.jpg" alt="Mr. Odong Denis" class="staff-img">
+                        <div class="staff-overlay">
+                            <div class="staff-name">Mr. Odong Denis</div>
+                            <div class="staff-position">Head of Bio-Chemistry</div>
+                        </div>
+                    </div>
+                    <div class="staff-info">
+                        <div class="staff-name">Mr. Odong Denis</div>
+                        <div class="staff-position"><i class="fas fa-dna"></i> Head of Bio-Chemistry Department</div>
+                        <div class="staff-qualification"><i class="fas fa-graduation-cap"></i> Ph.D. in Biochemistry, M.Sc.</div>
+                        <div class="staff-bio">Specializes in molecular biology and biochemical processes. Manages the school's science laboratory and research projects, inspiring the next generation of scientists.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Bombo Secondary School. All Rights Reserved.</p>
+            <p>"Determination Leads To Success"</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Department navigation
+            const deptButtons = document.querySelectorAll('.dept-btn');
+            const departments = document.querySelectorAll('.department');
+            
+            deptButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const deptId = this.getAttribute('data-dept');
+                    
+                    // Update active button
+                    deptButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide departments
+                    if (deptId === 'all') {
+                        departments.forEach(dept => dept.classList.add('active'));
+                    } else {
+                        departments.forEach(dept => dept.classList.remove('active'));
+                        document.getElementById(deptId).classList.add('active');
+                    }
+                });
+            });
+            
+            // Add subtle animation to cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe staff cards for animation
+            document.querySelectorAll('.staff-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

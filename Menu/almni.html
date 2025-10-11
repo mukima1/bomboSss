@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombo SS Alumni Association | BOSA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c5282;
+            --secondary: #f0a500;
+            --dark: #1a365d;
+            --light: #f5f7fa;
+            --white: #ffffff;
+            --black: #333333;
+            --gray: #666666;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--secondary);
+            bottom: -12px;
+            left: 0;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1s ease;
+        }
+
+        .section-in-view h2:after {
+            transform: scaleX(1);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 2rem;
+            background: var(--secondary);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), #ffd700);
+            z-index: 1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .btn:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:before {
+            background: linear-gradient(45deg, var(--primary), var(--dark));
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(44, 82, 130, 0.95);
+            color: var(--white);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-text .main {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text .sub {
+            font-size: 0.7rem;
+            opacity: 0.9;
+        }
+
+        .logo-text .motto {
+            font-size: 0.6rem;
+            font-style: italic;
+            color: var(--secondary);
+            margin-top: 2px;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            background: transparent;
+            border: none;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: var(--white);
+            position: absolute;
+            left: 5px;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn span:nth-child(1) {
+            top: 10px;
+        }
+
+        .mobile-menu-btn span:nth-child(2) {
+            top: 18px;
+        }
+
+        .mobile-menu-btn span:nth-child(3) {
+            top: 26px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 18px;
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 18px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100vh;
+            background: var(--primary);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-header h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-menu-header h3 i {
+            margin-right: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu-close:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            padding: 1.5rem;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-links a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--secondary);
+        }
+
+        .mobile-nav-links i {
+            margin-right: 1rem;
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .alumni-hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alumni-hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 0;
+        }
+
+        .alumni-hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .alumni-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .alumni-hero .motto {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards 1s;
+            color: var(--secondary);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Message Section */
+        .message-section {
+            background: var(--white);
+        }
+
+        .chairperson-info {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .chairperson-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid var(--secondary);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .chairperson-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .chairperson-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .message-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .message-block {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .message-block:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .message-block h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .message-block h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .quote {
+            font-style: italic;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+            border-radius: 15px;
+            margin: 40px 0;
+            border-left: 4px solid var(--secondary);
+            position: relative;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .quote:before {
+            content: '"';
+            font-size: 5rem;
+            color: var(--secondary);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.2rem;
+            padding: 20px;
+            border-top: 2px solid var(--secondary);
+        }
+
+        /* Alumni Grid */
+        .alumni-section {
+            background: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+
+        .alumni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .alumni-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alumni-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .alumni-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .alumni-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--secondary);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .alumni-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Get Involved Section */
+        .involvement-section {
+            background: var(--white);
+        }
+
+        .involvement-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .involvement-card {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .involvement-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .involvement-card:hover {
+            background: #e3f2fd;
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .involvement-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            background: rgba(44, 82, 130, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(44, 82, 130, 0.95), rgba(26, 54, 93, 0.95)), 
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            font-size: 2.8rem;
+        }
+
+        .cta-section h2:after {
+            background: var(--secondary);
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+        }
+
+        .section-in-view .cta-section h2:after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--secondary);
+            margin-bottom: 1.8rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-col p, .footer-col a {
+            color: #ddd;
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-item i {
+            color: var(--secondary);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .alumni-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .alumni-hero .motto {
+                font-size: 1.4rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .alumni-hero h1 {
+                font-size: 2rem;
+            }
+
+            .alumni-hero .motto {
+                font-size: 1.2rem;
+            }
+
+            .chairperson-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .mobile-menu {
+                width: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+    <div class="logo">
+      <img src="../bombo.png" alt="Bombo SS Logo">
+      <div class="logo-text">
+        <span class="main">BOMBO</span>
+        <span class="sub">SENIOR SECONDARY SCHOOL</span>
+        <span class="motto">"Determination Leads To Success"</span>
+      </div>
+    </div>
+
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="#" class="active">Alumni</a></li>
+                <li><a href="../Menu/applications.html">Academics</a></li>
+                <li><a href="../Menu/admissions.html">Admissions</a></li>
+                <li><a href="../Menu/contact.html">Contact</a></li>
+            </ul>
+
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <h3><i class="fas fa-bars"></i> Menu</h3>
+            <button class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="alumni.html" class="active"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+            <li><a href="academics.html"><i class="fas fa-book"></i> Academics</a></li>
+            <li><a href="admissions.html"><i class="fas fa-user-plus"></i> Admissions</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="alumni-hero">
+        <div class="alumni-hero-content">
+            <h1>Bombo SS Alumni Association</h1>
+            <p class="motto">"Strength Through Unity"</p>
+            <div class="hero-buttons">
+                <a href="#message" class="btn">Read Chairperson's Message</a>
+                <a href="../join/donations/donate.html" class="btn btn-primary">Make a Contribution</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chairperson's Message -->
+    <section class="message-section" id="message">
+        <div class="container">
+            <div class="chairperson-info">
+                <div class="chairperson-photo">
+                    <img src="../assets/Picture1.png" alt="CPA Samuel Opio">
+                </div>
+                <h2>CPA Samuel Opio</h2>
+                <p>Chairperson, Bombo SS Old Student's Association (BOSA)</p>
+            </div>
+            
+            <div class="message-content">
+                <div class="message-block">
+                    <p>As the Chairperson of the Bombo Senior Secondary School Alumni Association, it is with great pleasure that I extend a warm welcome to you, our esteemed stakeholders. Whether you recently completed or have been a valued member of our alumni network for many years, we are thrilled to have you join us in this virtual space where we can connect, engage, and continue to support one another in our shared commitment to our alma mater.</p>
+                </div>
+
+                <div class="message-block">
+                    <p>As most of you are aware, the magic that both you and I had the honor of being enlightened with at the school (which certainly varies as the school has gone through a number of setbacks over the years) has been under threat for quite some time. As Bombo SS's Alumni/Strength, we have been looking for ways to keep the magic alive for years to come. As the present Executive Committee, we have established our vision, mission, and objectives. As the Strength, we continue to be the pillars of this Bombo SS, a true beacon of light in an otherwise dark world. No doubt if there is anyone capable of reigniting the daring and maverick spirit of holistic brilliance, it should be us.</p>
+                </div>
+
+                <div class="message-block">
+                    <p>Our time there gave us the knowledge, abilities, and confidence to believe that we can be whatever we want to be. It is within the confines of this prestigious school that both staff and fellow students have given me the confidence to take up any leadership mantle thrown at me with a sense of responsibility and the understanding that the 'student' body plays an important role in the continued success of this special school mentored me. The spill-over benefits of those who came before us undoubtedly left a lasting impression on the school's memory long after your departure, becoming not only part of the school's oral traditions, but also an integral element of the school's distinct DNA.</p>
+                </div>
+
+                <div class="message-block">
+                    <h3><i class="fas fa-user-tie"></i> To our Headteacher</h3>
+                    <p>We appreciate the leadership and vision you bring to the school, fostering an environment of academic excellence and personal growth. The alumni are grateful for the strong foundation laid during our time at school and are committed to supporting the school's ongoing development, and recognize the efforts of the staff and students and are eager to collaborate on initiatives that benefit the school; we commend your dedication to nurturing talented individuals and continued partnership.</p>
+                </div>
+
+                <div class="message-block">
+                    <h3><i class="fas fa-user-graduate"></i> To our dear Students</h3>
+                    <p>We have walked the paths you have started on and understand the excitement and challenges of your academic journey. We are proud of your achievements and inspired by your potential.</p>
+                    <p>We encourage you to work diligently, pursue your passions, and make the most of the opportunities available to you. Stay curious, be resilient, and support one another – these are keys to success, we are here to support you, share our experiences, and celebrate your accomplishments. Believe in yourselves and strive for excellence.</p>
+                </div>
+
+                <div class="message-block">
+                    <h3><i class="fas fa-users"></i> The Board of Governors</h3>
+                    <p>We appreciate your stewardship and commitment to guiding the school towards continued excellence and growth. The alumni value the strategic direction and oversight you provide, which enables Bombo SS to maintain high standards of education and foster a supportive community. We are proud of the school's achievements and are committed to collaborating with the Board and the school administration to support initiatives that benefit Bombo SS.</p>
+                </div>
+
+                <div class="message-block">
+                    <p>We value the contributions of parents, teachers, local leaders, and partners who work together to create a conducive learning environment. The alumni are committed to collaborating with stakeholders to enhance the school's growth, promote excellence, and foster strong relationships.</p>
+                    <p>Together, we can build on Bombo SS's strengths and address challenges to ensure the school continues to thrive and produce capable, responsible citizens.</p>
+                </div>
+
+                <div class="message-block">
+                    <p>As we set out to revitalize the school's illustrious tradition of excellence, we extend a warm invitation to you to join us in an effort to rebuild our school and ensure that we keep generating tomorrow's leaders, for which many of you are living example. Let us continue to uphold the values and excellence of our institution, working together to make a positive impact. We encourage you to stay engaged, share your experiences, and support current students and fellow alumni. Your involvement strengthens our network and inspires the next generation.</p>
+                </div>
+
+                <div class="message-block">
+                    <p>We appreciate the dedication of the staff and the opportunities provided to us. We remain committed to giving back, supporting current students, and contributing to the school's continued growth and success.</p>
+                    <p>Thank you for your support during this time; we are committed to keeping you informed. Let us embrace this period with courage and conviction. Together, we have the power to leave a lasting impact on generations to come. I am honored to serve as your alumni Chairperson and I look forward to the journey ahead.</p>
+                </div>
+
+                <div class="quote">
+                    <p>"The future belongs to those who believe in the beauty of their dreams."</p>
+                    <p>- Eleanor Roosevelt</p>
+                </div>
+
+                <div class="message-block">
+                    <p>Indeed, the future of Bombo SS is in our hands.</p>
+                    <p>Thank you.</p>
+                </div>
+
+                <div class="signature">
+                    <p>CPA Samuel Opio</p>
+                    <p>Chairperson, Bombo SS Old Student's Association (BOSA)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Distinguished Alumni -->
+    <section class="alumni-section" id="alumni">
+        <div class="container">
+            <h2 class="section-title">Our Distinguished Alumni</h2>
+            <div class="alumni-grid" id="alumniGrid">
+                <!-- Alumni cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="involvement-section" id="involvement">
+        <div class="container">
+            <h2 class="section-title">Get Involved & Stay Connected</h2>
+            <p style="text-align: center; margin-bottom: 30px;">The strength of our alumni network lies in our active participation.</p>
+            
+            <div class="involvement-options">
+                <div class="involvement-card">
+                    <div class="involvement-icon">📝</div>
+                    <h3>Update Your Details</h3>
+                    <p>Keep us informed of your current contact information and professional achievements.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">👥</div>
+                    <h3>Become a Mentor</h3>
+                    <p>Share your experience and guide current students on their career paths.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">💡</div>
+                    <h3>Support Initiatives</h3>
+                    <p>Contribute to school projects, scholarships, or infrastructure development.</p>
+                </div>
+                <div class="involvement-card">
+                    <div class="involvement-icon">📚</div>
+                    <h3>Share Your Story</h3>
+                    <p>Inspire others by telling us about your journey since leaving Bombo SS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join us in supporting our alma mater and shaping the future of Bombo SS. Your contribution can help transform lives and build a better tomorrow.</p>
+            <div class="cta-buttons">
+                <a href="../join/donations/donate.html" class="btn">Make a Contribution</a>
+                <a href="#involvement" class="btn btn-outline">Other Ways to Help</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>About BOSA</h3>
+                <p>Bombo SS Alumni Association (BOSA) connects past, present, and future generations of Bombo SS students to support our alma mater.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="../index.html">Home</a>
+                <a href="#">Alumni</a>
+                <a href="../Menu/applications.html">Academics</a>
+                <a href="../Menu/admissions.html">Admissions</a>
+                <a href="../Menu/contact.html">Contact</a>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact BOSA</h3>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>bosa@bomboss.ac.ug</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+256 772 446 667</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bombo Senior Secondary School, Bombo</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Bombo SS Alumni Association. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const overlay = document.querySelector('.overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        
+        let menuOpen = false;
+
+        if (mobileMenuBtn && mobileMenu && overlay && mobileMenuClose) {
+            mobileMenuBtn.addEventListener('click', () => {
+                menuOpen = !menuOpen;
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+                
+                if (menuOpen) {
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Close mobile menu when close button is clicked
+            mobileMenuClose.addEventListener('click', () => {
+                menuOpen = false;
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        // Overlay click handler
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                if (menuOpen) {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    menuOpen = false;
+                }
+                
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        // Alumni Data with Network Images
+        const alumniData = [
+            {
+                name: "Hon. Alum Sandra Ogwang Santa, MP",
+                position: "District Woman Representative",
+                organization: "Parliament of Uganda - Oyam District",
+                description: "Represents the people of Oyam District as District Woman Representative to the Parliament of Uganda.",
+                category: "Leadership & Service",
+                image: "../assets/Mp.jpg"
+            },
+            {
+                name: "Dr. Shaft Nasser Mukwaya",
+                position: "Commission Secretary",
+                organization: "Equal Opportunities Commission",
+                description: "The Commission Secretary, Equal Opportunities Commission. Dr. Shaft was formerly Secretary to the National Youth Council.",
+                category: "Public Service",
+                image: "../assets/Dr Shaft.jpg"
+                },
+            {
+                name: "Mr. Nuwagira Micheal 'Toyota'",
+                position: "Businessman & Community Leader",
+                organization: "Private Sector",
+                description: "A prominent businessman and community leader known for his contributions to local development.",
+                category: "Business & Development",
+                image: "../assets/mzee bro.jpg"
+            }
+        ];
+
+        // Populate Alumni Grid
+        function populateAlumniGrid() {
+            const grid = document.getElementById('alumniGrid');
+            
+            alumniData.forEach(alumni => {
+                const card = document.createElement('div');
+                card.className = 'alumni-card';
+                
+                card.innerHTML = `
+                    <div class="alumni-photo">
+                        <img src="${alumni.image}" alt="${alumni.name}">
+                    </div>
+                    <h3>${alumni.name}</h3>
+                    <p><strong>${alumni.position}</strong></p>
+                    <p>${alumni.organization}</p>
+                    <p style="margin-top: 15px; font-size: 0.9em;">${alumni.description}</p>
+                    <div style="margin-top: 15px; padding: 5px 10px; background: #e3f2fd; border-radius: 15px; display: inline-block;">
+                        ${alumni.category}
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(44, 82, 130, 0.95)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                    navbar.style.padding = '0.8rem 5%';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.style.background = 'rgba(44, 82, 130, 0.95)';
+                    navbar.style.backdropFilter = 'blur(10px)';
+                    navbar.style.padding = '1rem 5%';
+                    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+                }
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        if (sections.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-in-view');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            populateAlumniGrid();
+            
+            // Add loaded class to body when everything is ready
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

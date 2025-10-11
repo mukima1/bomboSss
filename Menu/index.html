@@ -1,832 +1,669 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bombo SS School - Organizational Structure</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-  <style>
-    :root {
-      --primary: #2c5282;
-      --secondary: #f0a500;
-      --dark: #1a365d;
-      --light: #f5f7fa;
-      --white: #ffffff;
-      --black: #333333;
-      --gray: #666666;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombo SS - Organizational Structure Report</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Color Palette and Base --- */
+        :root {
+            --primary: #1a456d; /* Deep Blue - Structure/Primary Titles */
+            --primary-light: #2c5e8f;
+            --secondary: #f0a500; /* Amber - Accent/Current Leaders */
+            --secondary-light: #ffb82e;
+            --tertiary: #3a6ab4; /* Lighter Blue - Sub-level Titles */
+            --background-light: #ffffff; 
+            --background-alt: #f8fafc;
+            --text-dark: #222a35;
+            --text-gray: #6b778d;
+            --text-light: #8a94a6;
+            --border-color: #e9ecef; /* Light, subtle border */
+            --border-light: #f1f3f5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+            --radius: 8px;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--black);
-      line-height: 1.6;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--background-alt);
+            min-height: 100vh;
+        }
 
-    #vanta-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background-color: #10203a;
-    }
+        .container {
+            width: 95%; /* Wider container for better mobile usage */
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 0;
-      position: relative;
-    }
+        /* --- Header --- */
+        header {
+            padding: 1.5rem 0;
+            text-align: center;
+            background: var(--background-light);
+            border-bottom: 5px solid var(--secondary);
+            box-shadow: var(--shadow-light);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    header {
-      padding: 1.5rem 0;
-      text-align: center;
-      background: rgba(44, 82, 130, 0.85);
-      backdrop-filter: blur(10px);
-      border-radius: 0 0 20px 20px;
-      margin-bottom: 3rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      color: var(--white);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
 
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(240,165,0,0.1) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
-      z-index: -1;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
 
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
+        .logo-text {
+            text-align: left;
+        }
 
-    .logo img {
-      height: 60px;
-      margin-right: 15px;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
-    }
+        .logo-text .main {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
 
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-    }
+        .logo-text .sub {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-top: 2px;
+        }
+        
+        .logo-text .motto {
+             display: none; /* Hide motto in the professional header logo */
+        }
 
-    .logo-text .main {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      color: var(--white);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
+        h1 {
+            font-size: 2.25rem;
+            margin-top: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
 
-    .logo-text .sub {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.9);
-    }
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
 
-    .logo-text .motto {
-      font-size: 0.7rem;
-      font-style: italic;
-      color: var(--secondary);
-      margin-top: 2px;
-    }
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            font-size: 1rem;
+            color: var(--text-gray);
+            line-height: 1.7;
+            padding: 0 1rem;
+        }
+        
+        /* --- Organization Report Structure (The "Table") --- */
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      display: inline-block;
-    }
+        .org-report {
+            display: flex;
+            flex-direction: column;
+            background: var(--background-light);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
 
-    h1:after {
-      content: '';
-      position: absolute;
-      width: 50%;
-      height: 4px;
-      background: var(--secondary);
-      bottom: -10px;
-      left: 25%;
-      transform-origin: center;
-    }
+        /* Common row style */
+        .org-row {
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+            background-color: var(--background-light);
+            transition: var(--transition);
+        }
 
-    .intro-text {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      font-size: 1.1rem;
-      color: var(--white);
-      padding: 0 1rem;
-    }
+        .org-row:last-child {
+            border-bottom: none;
+        }
+        
+        .org-row:hover {
+            background-color: #fdfdfd;
+        }
+        
+        /* Header style */
+        .org-row-header {
+            background-color: var(--primary);
+            color: var(--background-light);
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .org-container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
+        /* Collapsible Title Bar */
+        .org-title-bar {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 5px solid transparent;
+            position: relative;
+        }
 
-    .org-section {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      transition: var(--transition);
-      transform-style: preserve-3d;
-      perspective: 1000px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
+        .org-title-bar:hover {
+            background-color: #f7f9fc;
+        }
+        
+        .org-title-bar.primary-level {
+            background-color: #f0f5fa; /* Subtle tint for top level */
+            border-left-color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .org-title-bar.secondary-level {
+            padding-left: 2.5rem; /* Indentation for hierarchy */
+            border-left-color: var(--tertiary);
+            font-weight: 500;
+        }
+        
+        .org-title-bar.tertiary-level {
+            padding-left: 4rem; /* Deeper Indentation */
+            border-left-color: var(--secondary);
+            font-size: 0.95rem;
+        }
 
-    .org-section:hover {
-      transform: translateY(-5px) rotateX(1deg) rotateY(1deg);
-    }
+        .org-title-bar.active {
+            background-color: var(--border-light);
+        }
 
-    .org-header {
-      background: linear-gradient(to right, var(--primary), var(--dark));
-      color: var(--white);
-      padding: 1.5rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      -webkit-tap-highlight-color: transparent;
-    }
+        .org-title-bar span {
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+            gap: 12px;
+        }
+        
+        .org-title-bar span i {
+            color: var(--secondary);
+            width: 20px;
+            text-align: center;
+        }
 
-    .org-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
+        .org-title-bar .fa-chevron-down {
+            color: var(--text-light);
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
 
-    .org-header:hover::before {
-      transform: translateX(100%);
-    }
+        .org-title-bar.active .fa-chevron-down {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
 
-    .org-header h2 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      position: relative;
-    }
+        /* Content Area */
+        .org-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
 
-    .org-header i {
-      transition: var(--transition);
-    }
+        .org-details-inner {
+            padding: 1.5rem 1.5rem 1.5rem 2rem; /* Adjusted padding */
+            border-top: 1px solid var(--border-light);
+            background-color: var(--background-alt);
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .org-details-inner.secondary-level {
+             padding-left: 3.5rem; 
+        }
+        
+        .org-details-inner.tertiary-level {
+             padding-left: 5rem; 
+        }
 
-    .org-header.active i {
-      transform: rotate(180deg);
-    }
+        .org-details-inner p {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
 
-    .org-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: var(--transition);
-      padding: 0 1.5rem;
-      transform: translateZ(0);
-    }
+        .current-leader {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .org-content.active {
-      max-height: 1000px;
-      padding: 1.5rem;
-    }
+        .current-leader i {
+            color: var(--secondary);
+        }
 
-    .org-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
+        .current-leader span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* List Groupings (HODs/Student Leaders) */
+        .group-heading {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 1.5rem 0 0.75rem 0;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--secondary);
+            display: inline-block;
+        }
+        
+        .org-sub-list {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+        
+        .org-sub-list li {
+            background-color: var(--background-light);
+            padding: 0.6rem 0.8rem;
+            border-radius: 6px;
+            color: var(--text-dark);
+            border-left: 4px solid var(--tertiary);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+        
+        .org-sub-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
 
-    .org-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 10px;
-      padding: 1.5rem;
-      border-left: 4px solid var(--secondary);
-      transition: var(--transition);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transform-style: preserve-3d;
-    }
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            color: var(--background-light);
+            font-size: 0.85rem;
+            background: var(--primary);
+            border-top: 4px solid var(--secondary);
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+        }
 
-    .org-card:hover {
-      transform: translateY(-5px) rotateX(1deg) rotateY(1deg) scale(1.02);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      background: var(--white);
-    }
+        footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .org-card h3 {
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-    }
+        /* --- Mobile Optimization --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem 0;
+                width: 100%;
+            }
 
-    .org-card p, .org-card li {
-      color: var(--gray);
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
+            header {
+                margin-bottom: 1.5rem;
+                padding: 1rem 0;
+            }
+            
+            .logo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .logo-text {
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .intro-text {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
 
-    .org-card ul {
-      padding-left: 1.2rem;
-    }
+            .org-report {
+                margin: 0;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                box-shadow: none;
+            }
+            
+            .org-row-header {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .org-title-bar {
+                padding: 1rem 1.25rem;
+            }
+            
+            .org-title-bar.secondary-level {
+                padding-left: 1.75rem;
+            }
+            
+            .org-title-bar.tertiary-level {
+                padding-left: 2.5rem;
+            }
+            
+            .org-details-inner {
+                padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+            }
+            
+            .org-details-inner.secondary-level {
+                 padding-left: 2.5rem;
+            }
+            
+            .org-details-inner.tertiary-level {
+                 padding-left: 3.5rem;
+            }
 
-    .current-leader {
-      font-weight: 600;
-      color: var(--dark);
-      margin-top: 0.5rem;
-      padding-top: 0.5rem;
-      border-top: 1px dashed rgba(0, 0, 0, 0.1);
-    }
-
-    .current-leader span {
-      color: var(--secondary);
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 0;
-      margin-top: 3rem;
-      color: var(--white);
-      font-size: 0.9rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(44, 82, 130, 0.7);
-      backdrop-filter: blur(5px);
-      border-radius: 20px 20px 0 0;
-    }
-
-    /* Floating animation */
-    @keyframes float {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
-      100% { transform: translateY(0px) rotate(0deg); }
-    }
-
-    .floating {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    /* Particles */
-    .particle {
-      position: absolute;
-      background: var(--secondary);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    /* Animation control panel */
-    .animation-controls {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-      display: flex;
-      gap: 10px;
-    }
-    
-    .control-btn {
-      background: rgba(44, 82, 130, 0.9);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .control-btn:hover {
-      background: var(--secondary);
-      transform: scale(1.1);
-    }
-    
-    .control-btn i {
-      font-size: 1.2rem;
-    }
-    
-    /* 3D animations disabled state */
-    .no-3d-animations {
-      /* Disable 3D card effects */
-      .org-section {
-        transform-style: flat !important;
-        perspective: none !important;
-      }
-      
-      .org-section:hover {
-        transform: translateY(-5px) !important;
-      }
-      
-      .org-card {
-        transform-style: flat !important;
-      }
-      
-      .org-card:hover {
-        transform: translateY(-5px) !important;
-      }
-    }
-
-    /* Reduced motion styles */
-    @media (prefers-reduced-motion: reduce) {
-      .floating,
-      .org-section,
-      .org-card,
-      .particle {
-        animation: none !important;
-        transition: none !important;
-      }
-      
-      .org-header::before {
-        display: none;
-      }
-      
-      .no-3d-animations {
-        display: none; /* Don't need this class if reduced motion is on */
-      }
-    }
-
-    /* Mobile optimizations */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-        padding: 0 1rem;
-      }
-
-      .org-header h2 {
-        font-size: 1.3rem;
-      }
-
-      .org-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .org-header {
-        padding: 1rem;
-      }
-      
-      .org-content.active {
-        padding: 1rem;
-      }
-      
-      .org-card {
-        padding: 1rem;
-      }
-      
-      .container {
-        padding: 1rem 0;
-      }
-      
-      header {
-        margin-bottom: 2rem;
-        padding: 1rem 0;
-      }
-      
-      .intro-text {
-        margin-bottom: 2rem;
-      }
-      
-      .control-btn {
-        width: 45px;
-        height: 45px;
-        bottom: 15px;
-        right: 15px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .logo img {
-        margin-right: 0;
-        margin-bottom: 1rem;
-      }
-
-      .logo-text {
-        text-align: center;
-      }
-      
-      h1 {
-        font-size: 1.8rem;
-      }
-      
-      .org-header h2 {
-        font-size: 1.1rem;
-      }
-      
-      footer {
-        padding: 1.5rem 0;
-        font-size: 0.8rem;
-      }
-    }
-    
-    /* Touch device detection */
-    @media (hover: none) {
-      .org-section:hover,
-      .org-card:hover {
-        transform: none !important;
-      }
-      
-      .control-btn:hover {
-        transform: none !important;
-      }
-    }
-  </style>
+            .org-details-inner p {
+                font-size: 0.9rem;
+            }
+            
+            .org-sub-list {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text .main {
+                font-size: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .org-title-bar span {
+                font-size: 0.95rem;
+            }
+            
+            .org-title-bar.tertiary-level {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="vanta-bg"></div>
-  <div class="container">
-    <header class="floating">
-      <div class="logo">
-        <img src="../bombo.png" alt="Bombo SS Logo">
-        <div class="logo-text">
-          <span class="main">BOMBO</span>
-          <span class="sub">SENIOR SECONDARY SCHOOL</span>
-          <span class="motto">"Determination Leads To Success"</span>
-        </div>
-      </div>
-      <h1>Organizational Structure</h1>
-      <p class="intro-text">by Hajji Lubega Musa</p>
-    </header>
-
-    <div class="intro-text">
-      <p>Owning to its historical background Bombo SS school is owned by Nakatonya Islamic Community NICB. Bombo as its foundation body. Currently, it's a government aided school run under the guidelines of the ministry of Education and Sports through the education act of 2008. The foundation body is not involved in the management of the school.</p>
-    </div>
-
-    <div class="org-container">
-      <!-- Board of Governors -->
-      <div class="org-section">
-        <div class="org-header active">
-          <h2>Board of Governors (B.O.G)</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content active">
-          <p>The school Board of Governors represents the Ministry of Education in governing the school. The foundation body nominates five members of the board through whom its interests are channeled. Other members are selected from parents, teachers, the local government which includes the town council and the district representatives.</p>
-          <p>The B.O.G is the supreme governing body of the school. Its composition formed every after three years is approved by the ministry of Education.</p>
-          <div class="current-leader">Current chairman: <span>Dr. Ahmed Musa (P.H.D)</span></div>
-        </div>
-      </div>
-
-      <!-- PTA -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Parents Teachers Association (P.T.A)</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <p>The school P.T.A comprises of parents, Teachers and some school administrators. It is an Association formed at school level mainly to bridge the gap between parent's teachers and the school.</p>
-          <p>As development partners, the PTA helps to mobilize parents to discuss issues of development in the school, school fees collection, construction of new structures etc. before such are approved by the B.O.G for implementation.</p>
-          <div class="current-leader">Current chairman: <span>Mr. Shafi Muzamil</span></div>
-        </div>
-      </div>
-
-      <!-- Head Teacher -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Head Teacher</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <p>Bombo SS head teachers are posted by the ministry of Education and sports from time to time. Our head teacher is the accounting officer of the school who takes charge of day to day running of the school managing both teaching and non-teaching staff.</p>
-          <p>The head teacher has to implement decisions of the Board where he also takes charge as board secretary. The school has had several head teachers since its inception in 1964.</p>
-          <div class="current-leader">Current head teacher: <span>Hajji Lubega Musa Matovu</span></div>
-        </div>
-      </div>
-
-      <!-- Deputy Head Teachers -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Deputy Head Teachers</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <div class="org-grid">
-            <div class="org-card">
-              <h3>Deputy Head Teacher (Administration)</h3>
-              <p>Supervises the welfare department, games and sports among others.</p>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="../bombo.png" alt="Bombo SS Logo">
+                <div class="logo-text">
+                    <span class="main">BOMBO SENIOR SECONDARY SCHOOL</span>
+                    <span class="sub">Ministry of Education & Sports Aided Institution</span>
+                </div>
             </div>
-            <div class="org-card">
-              <h3>Deputy Head Teacher (Academics)</h3>
-              <p>Monitors the teachers, teaching and external examinations and skilling programs among others.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+            <h1>Organizational Structure Report</h1>
+        </header>
 
-      <!-- Director of Studies -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Director of Studies</h2>
-          <i class="fas fa-chevron-down"></i>
+        <div class="intro-text">
+            <p>A professional report outlining the governance and administrative hierarchy of Bombo Senior Secondary School. Sections can be expanded or collapsed for clean, focused viewing, especially on mobile devices.</p>
         </div>
-        <div class="org-content">
-          <p>In charge of day to day academic activities in the school including the management of the teaching time table, internal examinations among others. The office has two other assistants helping in different duties.</p>
-        </div>
-      </div>
 
-      <!-- Heads of Department -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Heads of Department</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <div class="org-grid">
-            <div class="org-card">
-              <h3>Head of Biological Sciences</h3>
-              <p>Manages biology, agriculture and related subjects.</p>
+        <div class="org-report">
+            <div class="org-row-header"><i class="fas fa-sitemap"></i> Governance & Executive Administration</div>
+            
+            <div class="org-row">
+                <div class="org-title-bar primary-level active">
+                    <span><i class="fas fa-gavel"></i> Board of Governors (B.O.G)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner">
+                        <p>The <strong>Supreme Governing Body</strong> representing the Ministry of Education. Responsible for strategic planning, policy approval, and ensuring compliance with government guidelines. Their composition is reviewed every three years.</p>
+                        <div class="current-leader"><i class="fas fa-user-tie"></i> Chairman: <span>Dr. Ahmed Musa (P.H.D)</span></div>
+                    </div>
+                </div>
             </div>
-            <div class="org-card">
-              <h3>Head of Physical Sciences</h3>
-              <p>Manages physics, chemistry, mathematics and related subjects.</p>
+            
+            <div class="org-row">
+                <div class="org-title-bar primary-level">
+                    <span><i class="fas fa-handshake"></i> Parents Teachers Association (P.T.A)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner">
+                        <p>Acts as the key <strong>development partner</strong>, mobilizing parents for essential school infrastructure projects, fee collection support, and bridging communication between home and school.</p>
+                        <div class="current-leader"><i class="fas fa-user-tie"></i> Chairman: <span>Mr. Shafi Muzamil</span></div>
+                    </div>
+                </div>
             </div>
-            <div class="org-card">
-              <h3>Head of Vocational Sciences</h3>
-              <p>Manages practical subjects like woodwork, metalwork, home economics.</p>
-            </div>
-            <div class="org-card">
-              <h3>Head of Humanities</h3>
-              <p>Manages history, geography, CRE, IRE and related subjects.</p>
-            </div>
-            <div class="org-card">
-              <h3>Head of Languages</h3>
-              <p>Manages English, Luganda, French and other languages.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Class Teachers -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Class Teachers</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <p>These are individual teachers charged with managing particular classes and academic performance of individual students in their classes. They also monitor individual students discipline and give them guidance on various issues. Our class teachers can have direct contact with parents of individual learners. Class teachers make reports on each learner from time to time.</p>
-        </div>
-      </div>
+            <div class="org-row">
+                <div class="org-title-bar primary-level">
+                    <span><i class="fas fa-user-tie"></i> Head Teacher (CEO / Accounting Officer)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner">
+                        <p>The chief executive officer and accounting officer, responsible for the implementation of B.O.G policies, managing all staff (teaching and non-teaching), and the daily administration of the school.</p>
+                        <div class="current-leader"><i class="fas fa-user-tie"></i> <span>Hajji Lubega Musa Matovu</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="org-row-header"><i class="fas fa-cogs"></i> Key Administrative & Academic Management</div>
 
-      <!-- Student Leaders -->
-      <div class="org-section">
-        <div class="org-header">
-          <h2>Student Leaders</h2>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="org-content">
-          <div class="org-grid">
-            <div class="org-card">
-              <h3>Prefects</h3>
-              <ul>
-                <li>Head Prefect (male)</li>
-                <li>Head Girl (Female)</li>
-                <li>Other prefects</li>
-              </ul>
+            <div class="org-row">
+                <div class="org-title-bar secondary-level">
+                    <span><i class="fas fa-building"></i> Deputy Head Teacher (Administration)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner secondary-level">
+                        <p>Manages the school's non-academic operations, including student welfare, discipline, physical maintenance of facilities, and oversight of games and sports.</p>
+                    </div>
+                </div>
             </div>
-            <div class="org-card">
-              <h3>Students' Council</h3>
-              <ul>
-                <li>The chairperson student's council</li>
-                <li>The vice chairperson</li>
-                <li>Councilors</li>
-              </ul>
+
+            <div class="org-row">
+                <div class="org-title-bar secondary-level">
+                    <span><i class="fas fa-graduation-cap"></i> Deputy Head Teacher (Academics)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner secondary-level">
+                        <p>Monitors teaching quality, teacher evaluation, coordinates external examinations, and ensures the successful execution of skilling and curriculum programs.</p>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <div class="org-row">
+                <div class="org-title-bar secondary-level">
+                    <span><i class="fas fa-book-open"></i> Director of Studies (D.O.S)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner secondary-level">
+                        <p>Responsible for the <strong>day-to-day academic workflow</strong>, including the creation and management of the teaching timetable, scheduling internal examinations, and student class placement. Supported by two assistants.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="org-row">
+                <div class="org-title-bar tertiary-level">
+                    <span><i class="fas fa-sitemap"></i> Heads of Department (H.O.D)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner tertiary-level">
+                        <p>Departmental heads manage subject-specific resources, mentor teachers, and ensure consistent curriculum delivery across their disciplines.</p>
+                        <div class="group-heading">Academic Departments:</div>
+                        <ul class="org-sub-list">
+                            <li>Biological Sciences</li>
+                            <li>Physical Sciences</li>
+                            <li>Vocational Sciences</li>
+                            <li>Humanities</li>
+                            <li>Languages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="org-row">
+                <div class="org-title-bar tertiary-level">
+                    <span><i class="fas fa-chalkboard-user"></i> Class Teachers</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner tertiary-level">
+                        <p>Teachers assigned to individual classes, serving as the first point of contact for student performance, welfare, and discipline matters. They compile learner reports.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="org-row-header"><i class="fas fa-users-line"></i> Student Governance & Leadership</div>
+            
+            <div class="org-row">
+                <div class="org-title-bar secondary-level">
+                    <span><i class="fas fa-user-shield"></i> Student Leadership Structure</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="org-details">
+                    <div class="org-details-inner secondary-level">
+                        <p>The student body is represented through two main leadership organs that liaise with the administration for student welfare and conduct.</p>
+                        
+                        <div class="group-heading">Prefectorial Body:</div>
+                        <ul class="org-sub-list">
+                            <li>Head Prefect (Male)</li>
+                            <li>Head Girl (Female)</li>
+                            <li>Other Prefects (Various Duties)</li>
+                        </ul>
+                        
+                        <div class="group-heading">Students' Council:</div>
+                         <ul class="org-sub-list">
+                            <li>Chairperson</li>
+                            <li>Vice Chairperson</li>
+                            <li>Elected Councilors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
+        
     </div>
 
     <footer>
-      <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
-      <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
+        <p>&copy; 2025 Bombo Senior Secondary School. All Rights Reserved.</p>
+        <p>21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</p>
     </footer>
-  </div>
 
-  <!-- Animation control button -->
-  <div class="animation-controls">
-    <button class="control-btn" id="toggleAnimations" title="Toggle 3D Animations" aria-label="Toggle 3D animations">
-      <i class="fas fa-cube" id="animationIcon"></i>
-    </button>
-  </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const orgTitleBars = document.querySelectorAll('.org-title-bar');
+            
+            // Set initial state for active sections
+            orgTitleBars.forEach(bar => {
+                const details = bar.nextElementSibling;
+                if (bar.classList.contains('active')) {
+                    details.style.maxHeight = details.scrollHeight + "px";
+                }
+            });
 
-  <script>
-    // Initialize with 3D animations on by default
-    let threeDAnimationsEnabled = true;
-    let vantaEffect;
-    
-    // Initialize Vanta.js background
-    function initVanta() {
-      vantaEffect = VANTA.NET({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x3a6ab4,
-        backgroundColor: 0x10203a,
-        points: 12.00,
-        maxDistance: 22.00,
-        spacing: 18.00
-      });
-    }
-    
-    // Function to create particles
-    function createParticles() {
-      // Don't create particles on mobile devices
-      if (window.innerWidth <= 768) return;
-      
-      const colors = ['#f0a500', '#2c5282', '#ffffff'];
-      const container = document.querySelector('.container');
-      
-      // Clear existing particles first
-      const existingParticles = document.querySelectorAll('.particle');
-      existingParticles.forEach(p => p.remove());
-      
-      // Reduce number of particles on smaller screens
-      const particleCount = window.innerWidth <= 1024 ? 15 : 30;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random properties
-        const size = Math.random() * 5 + 2;
-        const posX = Math.random() * 100;
-        const posY = Math.random() * 100;
-        const delay = Math.random() * 5;
-        const duration = Math.random() * 10 + 10;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}%`;
-        particle.style.top = `${posY}%`;
-        particle.style.background = color;
-        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
-        particle.style.opacity = Math.random() * 0.5 + 0.3;
-        
-        container.appendChild(particle);
-      }
-    }
-    
-    // Function to remove particles
-    function removeParticles() {
-      const particles = document.querySelectorAll('.particle');
-      particles.forEach(p => p.remove());
-    }
-    
-    // Toggle 3D animations function
-    function toggle3DAnimations() {
-      threeDAnimationsEnabled = !threeDAnimationsEnabled;
-      localStorage.setItem('threeDAnimationsEnabled', threeDAnimationsEnabled);
-      
-      if (threeDAnimationsEnabled) {
-        document.body.classList.remove('no-3d-animations');
-        document.getElementById('animationIcon').className = 'fas fa-cube';
-      } else {
-        document.body.classList.add('no-3d-animations');
-        document.getElementById('animationIcon').className = 'fas fa-cube';
-      }
-      
-      // Provide visual feedback on mobile
-      if (window.innerWidth <= 768) {
-        const btn = document.getElementById('toggleAnimations');
-        btn.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-          btn.style.transform = 'scale(1)';
-        }, 100);
-      }
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check user preference for reduced motion
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-      // Check localStorage for user preference
-      const storedPreference = localStorage.getItem('threeDAnimationsEnabled');
-      if (storedPreference !== null) {
-        threeDAnimationsEnabled = storedPreference === 'true' && !prefersReducedMotion;
-      } else {
-        threeDAnimationsEnabled = !prefersReducedMotion;
-      }
-      
-      // Initialize animations based on preferences
-      if (!prefersReducedMotion) {
-        initVanta();
-        createParticles();
-      }
-      
-      // Set initial 3D animation state
-      if (!threeDAnimationsEnabled) {
-        document.body.classList.add('no-3d-animations');
-      }
-      
-      // Set up toggle button
-      const toggleBtn = document.getElementById('toggleAnimations');
-      toggleBtn.addEventListener('click', toggle3DAnimations);
-      
-      // Touch feedback for mobile
-      toggleBtn.addEventListener('touchstart', function() {
-        this.style.transform = 'scale(0.95)';
-      });
-      
-      toggleBtn.addEventListener('touchend', function() {
-        this.style.transform = 'scale(1)';
-      });
-      
-      // Existing accordion functionality
-      const orgHeaders = document.querySelectorAll('.org-header');
-      
-      // Initialize first section as open
-      const firstHeader = orgHeaders[0];
-      const firstContent = firstHeader.nextElementSibling;
-      firstHeader.classList.add('active');
-      firstContent.classList.add('active');
-      
-      orgHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-          const content = this.nextElementSibling;
-          const icon = this.querySelector('i');
-          
-          this.classList.toggle('active');
-          
-          if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-            content.classList.remove('active');
-          } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            content.classList.add('active');
-          }
-          
-          icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+            orgTitleBars.forEach(bar => {
+                bar.addEventListener('click', function() {
+                    const details = this.nextElementSibling;
+                    
+                    this.classList.toggle('active');
+
+                    if (details.style.maxHeight && details.style.maxHeight !== '0px') {
+                        details.style.maxHeight = null;
+                    } else {
+                        // Use scrollHeight to set max-height dynamically
+                        details.style.maxHeight = details.scrollHeight + "px";
+                    }
+                });
+            });
+            
+            // Recalculate max-height on resize for responsive accordion
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    document.querySelectorAll('.org-details').forEach(details => {
+                         const bar = details.previousElementSibling;
+                        if (bar && bar.classList.contains('active')) {
+                            details.style.maxHeight = details.scrollHeight + "px";
+                        }
+                    });
+                }, 150);
+            });
         });
-      });
-      
-      // Handle window resize
-      let resizeTimer;
-      window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-          // Recreate particles if needed
-          if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            removeParticles();
-            createParticles();
-          }
-          
-          // Update accordion heights
-          document.querySelectorAll('.org-content.active').forEach(content => {
-            content.style.maxHeight = content.scrollHeight + "px";
-          });
-        }, 250);
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
