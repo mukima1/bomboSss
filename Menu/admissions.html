@@ -74,7 +74,7 @@
       gap: 20px;
     }
 
-    .logo {
+      .logo {
       width: 80px;
       height: 80px;
       border-radius: 50%;
@@ -86,13 +86,13 @@
       overflow: hidden;
       background: var(--white);
     }
-
+    
     .logo img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      padding: 5px;
+      object-fit: cover; /* Ensures the image fills the circle without stretching */
     }
+
 
     .school-info h1 {
       font-family: 'Montserrat', sans-serif;
@@ -874,16 +874,6 @@
               border-bottom: 3px double #000;
             }
             
-            .logo-container {
-              text-align: center;
-              margin-bottom: 15px;
-            }
-            
-            .logo {
-              height: 80px;
-              display: inline-block;
-            }
-            
             .school-name {
               font-size: 22pt;
               font-weight: bold;
@@ -1057,9 +1047,6 @@
         <body>
           <!-- Header -->
           <div class="header">
-            <div class="logo-container">
-              <div style="display: inline-block; width: 80px; height: 80px; background: #1a365d; color: white; text-align: center; line-height: 80px; font-size: 20px; font-weight: bold; border: 3px solid #d4af37; border-radius: 50%;">BSS</div>
-            </div>
             <div class="school-name">Bombo Senior Secondary School</div>
             <div class="school-address">21 Miles Kampala-Gulu Highway, P.O. Box 118, Bombo, Uganda</div>
             <div class="school-contacts">Tel: +256 772 446 667 / +256 701 446 667 / +256 779 100 313</div>
