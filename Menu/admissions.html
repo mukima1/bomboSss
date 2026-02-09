@@ -1,344 +1,1097 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admissions & Fees - Bombo Senior Secondary School</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bombo SS - Admissions & Fees</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-blue: #1a365d;
+      --secondary-blue: #2c5282;
+      --accent-gold: #d4af37;
+      --light-blue: #e6f2ff;
+      --light-gray: #f8f9fa;
+      --dark-gray: #333;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
 
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --primary-dark: #1e3a8a;
-            --accent: #927238;
-            --text-main: #1f2937;
-            --text-muted: #4b5563;
-            --bg-body: #f3f4f6;
-            --white: #ffffff;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* WEB PAGE STYLING (Mobile First) */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--dark-gray);
+      background-color: var(--light-gray);
+      line-height: 1.6;
+    }
 
-        .web-header {
-            background: linear-gradient(rgba(30, 58, 138, 0.95), rgba(30, 58, 138, 0.95)), url('https://images.unsplash.com/photo-1523050853064-59f6f30a961d?auto=format&fit=crop&q=80') center/cover;
-            color: white;
-            padding: 3rem 1rem;
-            text-align: center;
-        }
+    /* Header & Navigation */
+    .top-header {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: var(--white);
+      padding: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .web-header img {
-            height: 80px;
-            margin-bottom: 1rem;
-        }
+    .top-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    }
 
-        .web-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-        .action-bar {
-            background: var(--white);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: -2rem;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            position: sticky;
-            top: 10px;
-            z-index: 100;
-        }
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-        .btn {
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-blue);
+      font-weight: 700;
+      font-size: 1.8rem;
+      border: 3px solid var(--accent-gold);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-        .btn-pdf { background: var(--primary); color: white; }
-        .btn-call { background: var(--accent); color: white; }
-        .btn:hover { transform: translateY(-2px); opacity: 0.9; }
+    .school-info h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
 
-        .card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow);
-        }
+    .school-info p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
 
-        .card h2 {
-            color: var(--primary);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 12px;
-        }
+    .contact-info {
+      text-align: right;
+    }
 
-        /* TABLE STYLING - Scrollable on Mobile */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-        }
+    .contact-info p {
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-            font-size: 0.9rem;
-        }
+    .contact-info i {
+      color: var(--accent-gold);
+      margin-right: 8px;
+    }
 
-        th { background: #f9fafb; padding: 12px; text-align: left; border-bottom: 2px solid #e5e7eb; color: var(--primary); }
-        td { padding: 12px; border-bottom: 1px solid #e5e7eb; }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      padding: 5rem 0;
+      text-align: center;
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
+    }
 
-        .fee-tag { font-weight: 700; color: #b91c1c; }
-        .fee-note { display: block; font-size: 0.75rem; color: #6b7280; font-style: italic; }
+    .hero-content h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
 
-        /* LISTS */
-        .req-list { list-style: none; }
-        .req-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #f3f4f6;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        .req-list li i { color: var(--accent); margin-top: 5px; }
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+    }
 
-        /* PDF HIDDEN AREA */
-        #pdf-template {
-            display: none; /* Only used by html2pdf */
-            width: 800px;
-            background: white;
-            color: #1a1a1a;
-        }
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-        @media print {
-            .no-print { display: none !important; }
-        }
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+      font-family: 'Montserrat', sans-serif;
+      border: none;
+      cursor: pointer;
+    }
 
-        /* Responsive Tablet/Desktop */
-        @media (min-width: 768px) {
-            .web-header h1 { font-size: 2.8rem; }
-            .card { padding: 2.5rem; }
-        }
-    </style>
+    .btn-primary {
+      background-color: var(--accent-gold);
+      color: var(--primary-blue);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: #e6c34c;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--white);
+      border: 2px solid var(--accent-gold);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(212, 175, 55, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Main Content */
+    .content-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      color: var(--primary-blue);
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-gold);
+      border-radius: 2px;
+    }
+
+    /* Cards */
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--accent-gold);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background-color: var(--light-blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      color: var(--primary-blue);
+      font-size: 1.5rem;
+    }
+
+    .card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+
+    .card-content ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .card-content li {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #eee;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .card-content li:before {
+      content: "✓";
+      color: var(--accent-gold);
+      font-weight: bold;
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+
+    /* Fees Display */
+    .fees-display {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 2.5rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow);
+    }
+
+    .fees-category {
+      margin-bottom: 2rem;
+    }
+
+    .category-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      color: var(--secondary-blue);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light-blue);
+    }
+
+    .fee-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .fee-item:last-child {
+      border-bottom: none;
+    }
+
+    .fee-name {
+      font-weight: 500;
+    }
+
+    .fee-amount {
+      font-weight: 700;
+      color: var(--primary-blue);
+      font-size: 1.1rem;
+    }
+
+    .fee-note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.2rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+      color: var(--white);
+      padding: 4rem 0;
+      border-radius: var(--border-radius);
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .contact-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    /* Footer */
+    .main-footer {
+      background-color: var(--primary-blue);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-section h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--accent-gold);
+    }
+
+    .footer-section p, .footer-section a {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.8rem;
+      display: block;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-section a:hover {
+      color: var(--accent-gold);
+      padding-left: 5px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    /* Modal for PDF Preview */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .close-modal:hover {
+      color: var(--accent-gold);
+    }
+
+    .modal-body {
+      padding: 2rem;
+      overflow-y: auto;
+      max-height: 70vh;
+    }
+
+    .modal-body iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .contact-info {
+        text-align: center;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .hero-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .fees-display {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header class="web-header no-print">
-        <img src="../bombo.png" alt="Bombo SSS Logo" onerror="this.src='https://via.placeholder.com/80?text=BSSS'">
-        <h1>Bombo Senior Secondary School</h1>
-        <p>Providing Quality Education and Discipline</p>
-    </header>
-
-    <div class="container no-print">
-        <div class="action-bar">
-            <button class="btn btn-pdf" onclick="generatePDF()">
-                <i class="fas fa-file-download"></i> Download PDF
-            </button>
-            <a href="tel:+256772446667" class="btn btn-call">
-                <i class="fas fa-phone"></i> Call Admissions
-            </a>
+  <!-- Header -->
+  <header class="top-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo-section">
+          <div class="logo">BSS</div>
+          <div class="school-info">
+            <h1>Bombo Senior Secondary School</h1>
+            <p>P.O. Box 118 – Bombo, Uganda</p>
+          </div>
         </div>
+        <div class="contact-info">
+          <p><i class="fas fa-phone"></i> 0779 100313 / 0752 815650</p>
+          <p><i class="fas fa-envelope"></i> info@bomboss.sc.ug</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <section class="card" style="margin-top: 3rem;">
-            <h2>Admission Guidelines</h2>
-            <p>Admission is open to all students regardless of nationality or religion. We focus on academic excellence and character development.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: var(--primary);">S.1 Selection</h4>
-                    <p style="font-size: 0.85rem;">Selection is based on PLE results. Students with Grade I or II are encouraged to apply.</p>
-                </div>
-                <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
-                    <h4 style="color: var(--primary);">A-Level Entry</h4>
-                    <p style="font-size: 0.85rem;">Based on UCE performance and subject combination requirements set by UNEB.</p>
-                </div>
-            </div>
-        </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Admissions & Fees Structure</h2>
+        <p>Quality education for national development. Explore our admission requirements and transparent fee structure for the upcoming academic year.</p>
+        <div class="cta-buttons">
+          <button class="btn btn-primary" onclick="downloadPDF()">
+            <i class="fas fa-download"></i> Download Fees Structure (PDF)
+          </button>
+          <button class="btn btn-secondary" onclick="openAdmissionModal()">
+            <i class="fas fa-eye"></i> Preview Document
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <section class="card">
-            <h2>Termly Fee Structure</h2>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Class Category</th>
-                            <th>Day Students</th>
-                            <th>Boarding Students</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>S.1 - S.3</strong></td>
-                            <td><span class="fee-tag">235,000 UGX</span><span class="fee-note">+ 30,000 Project Fee</span></td>
-                            <td><span class="fee-tag">710,000 UGX</span><span class="fee-note">+ 30,000 Project Fee</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>S.4 Candidates</strong></td>
-                            <td><span class="fee-tag">285,000 UGX</span><span class="fee-note">+ 30,000 Project Fee</span></td>
-                            <td><span class="fee-tag">750,000 UGX</span><span class="fee-note">+ 45,000 Practicals</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>S.5 - S.6 Science</strong></td>
-                            <td><span class="fee-tag">335,000 UGX</span><span class="fee-note">+ 45,000 Practicals</span></td>
-                            <td><span class="fee-tag">750,000 UGX</span><span class="fee-note">+ 45,000 Practicals</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>S.5 - S.6 Arts</strong></td>
-                            <td><span class="fee-tag">335,000 UGX</span><span class="fee-note">+ 40,000 ICT/Art Annual</span></td>
-                            <td><span class="fee-tag">750,000 UGX</span><span class="fee-note">+ 40,000 ICT/Art Annual</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="card">
-            <h2>Requirements on Reporting</h2>
-            <ul class="req-list">
-                <li><i class="fas fa-circle-check"></i> Original Admission Letter</li>
-                <li><i class="fas fa-circle-check"></i> 03 recent passport photos (Black & White)</li>
-                <li><i class="fas fa-circle-check"></i> S1-S3: One ream of photocopy/plain paper (500 sheets) termly</li>
-                <li><i class="fas fa-circle-check"></i> S4-S6: One ream of ruled paper termly</li>
-                <li><i class="fas fa-circle-check"></i> Compound broom and Inside broom (Termly)</li>
-                <li><i class="fas fa-circle-check"></i> Scholastic Materials: Books, Rulers, Geometry set, 5 pens, 5 pencils, 3 Graph books</li>
-                <li><i class="fas fa-circle-check"></i> Boarding: 20-litre jerry can, bucket, basin and mattress</li>
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Admissions Section -->
+    <section class="content-section">
+      <h2 class="section-title">Admission Requirements</h2>
+      <div class="cards-container">
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="card-title">Senior 1 (S.1) Admission</h3>
+          <div class="card-content">
+            <ul>
+              <li>Primary Leaving Examination (PLE) Certificate</li>
+              <li>Grade I or II in PLE results</li>
+              <li>UNEB selection number required</li>
+              <li>Parent/guardian interview</li>
+              <li>Medical examination report</li>
             </ul>
-        </section>
-    </div>
-
-    <div id="pdf-template">
-        <div style="padding: 40px; border: 1px solid #eee;">
-            <div style="display: flex; align-items: center; border-bottom: 4px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 30px;">
-                <img src="../bombo.png" style="height: 90px; margin-right: 25px;" onerror="this.src='https://via.placeholder.com/90?text=BSSS'">
-                <div>
-                    <h1 style="font-size: 24pt; color: #1e3a8a; margin: 0; text-transform: uppercase;">Bombo Senior Secondary School</h1>
-                    <p style="margin: 3px 0; font-size: 11pt;">P.O BOX 118 – BOMBO, UGANDA</p>
-                    <p style="margin: 0; font-size: 11pt; font-weight: bold;">Contacts: 0779 100313 / 0752 815650 / 0772 446667</p>
-                </div>
-            </div>
-
-            <h2 style="text-align: center; text-decoration: underline; margin-bottom: 25px; font-size: 16pt;">OFFICIAL SCHOOL REQUIREMENTS & FEE STRUCTURE</h2>
-
-            <h3 style="color: #1e3a8a; border-bottom: 1px solid #ccc; padding-bottom: 5px;">1. Termly Tuition Fees</h3>
-            <table style="width: 100%; border: 1px solid #000; margin-top: 10px; font-size: 10pt;">
-                <thead>
-                    <tr style="background: #f0f0f0;">
-                        <th style="border: 1px solid #000;">Category</th>
-                        <th style="border: 1px solid #000;">S.1 - S.3</th>
-                        <th style="border: 1px solid #000;">S.4</th>
-                        <th style="border: 1px solid #000;">S.5 - S.6 Science</th>
-                        <th style="border: 1px solid #000;">S.5 - S.6 Arts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border: 1px solid #000; font-weight: bold;">Day Scholars</td>
-                        <td style="border: 1px solid #000;">235,000 + 30k*</td>
-                        <td style="border: 1px solid #000;">285,000 + 30k*</td>
-                        <td style="border: 1px solid #000;">335,000 + 45k**</td>
-                        <td style="border: 1px solid #000;">335,000 + 40k***</td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid #000; font-weight: bold;">Boarding</td>
-                        <td style="border: 1px solid #000;">710,000 + 30k*</td>
-                        <td style="border: 1px solid #000;">750,000 + 45k**</td>
-                        <td style="border: 1px solid #000;">750,000 + 45k**</td>
-                        <td style="border: 1px solid #000;">750,000 + 40k***</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p style="font-size: 8pt; margin-top: 5px;">*Project Fee (Termly) | **Practical Fee (Termly) | ***ICT/F.Art (Annual)</p>
-
-            <h3 style="color: #1e3a8a; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px;">2. Additional Charges</h3>
-            <table style="width: 100%; border: 1px solid #000; font-size: 10pt;">
-                <thead>
-                    <tr style="background: #f0f0f0;">
-                        <th style="border: 1px solid #000;">Item</th>
-                        <th style="border: 1px solid #000;">Day Scholars</th>
-                        <th style="border: 1px solid #000;">Boarding Students</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td style="border: 1px solid #000;">Admission Fee</td><td style="border: 1px solid #000;">15,000 UGX</td><td style="border: 1px solid #000;">30,000 UGX</td></tr>
-                    <tr><td style="border: 1px solid #000;">File & Identity Card</td><td style="border: 1px solid #000;">10,000 UGX</td><td style="border: 1px solid #000;">10,000 UGX</td></tr>
-                    <tr><td style="border: 1px solid #000;">Uniform (Full Set)</td><td style="border: 1px solid #000;">195,000 UGX</td><td style="border: 1px solid #000;">255,000 UGX</td></tr>
-                    <tr><td style="border: 1px solid #000;">Medical Fee (Termly)</td><td style="border: 1px solid #000;">20,000 UGX</td><td style="border: 1px solid #000;">20,000 UGX</td></tr>
-                </tbody>
-            </table>
-
-            <h3 style="color: #1e3a8a; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 20px;">3. Requirements on Reporting</h3>
-            <div style="font-size: 10pt; line-height: 1.5;">
-                <p>- Original Admission Letter</p>
-                <p>- One ream of photocopy/plain paper (S1-S3 termly) or Ruled paper (S4-S6 termly)</p>
-                <p>- One compound broom & one inside broom (Termly)</p>
-                <p>- Squeezer / brush (S1, S5 & New Students annually)</p>
-                <p>- 03 Recent passport photos (Black & White) - One for parent/guardian</p>
-                <p>- Scholastic Materials: Books, Rulers, Geometry set, 5 pens, 5 pencils, 3 Graph books</p>
-                <p>- Boarding Only: 20L Jerry can, Bucket, Basin, and personal bedding items</p>
-            </div>
-
-            <div style="margin-top: 40px; text-align: center; font-size: 9pt; color: #555; border-top: 1px solid #eee; padding-top: 10px;">
-                <p>This is an official document of Bombo Senior Secondary School.</p>
-                <p>Date Generated: <span id="pdfDate"></span></p>
-            </div>
+          </div>
         </div>
+        
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3 class="card-title">Senior 5 (S.5) Admission</h3>
+          <div class="card-content">
+            <ul>
+              <li>Uganda Certificate of Education (UCE)</li>
+              <li>Minimum 28 points in UCE</li>
+              <li>Subject combination requirements</li>
+              <li>Based on school capacity</li>
+              <li>Transfer documents for external candidates</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3 class="card-title">General Requirements</h3>
+          <div class="card-content">
+            <ul>
+              <li>Completed application form</li>
+              <li>3 recent passport photos</li>
+              <li>Birth certificate/National ID copy</li>
+              <li>Previous school reports</li>
+              <li>Recommendation letter</li>
+              <li>Medical report from recognized facility</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fees Structure Section -->
+    <section class="content-section">
+      <h2 class="section-title">Fees Structure Overview</h2>
+      
+      <div class="fees-display">
+        <div class="fees-category">
+          <h3 class="category-title">Day Scholars (Per Term)</h3>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.1 - S.3 Tuition</div>
+              <div class="fee-note">+ 30,000 Project Fee per term</div>
+            </div>
+            <div class="fee-amount">235,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.4 Tuition</div>
+              <div class="fee-note">+ 30,000 Project Fee per term</div>
+            </div>
+            <div class="fee-amount">285,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.5 - S.6 Science</div>
+              <div class="fee-note">+ 45,000 Practical per term</div>
+            </div>
+            <div class="fee-amount">335,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.5 - S.6 Arts</div>
+              <div class="fee-note">+ 40,000 ICT/F.ART Annual</div>
+            </div>
+            <div class="fee-amount">335,000 UGX</div>
+          </div>
+        </div>
+        
+        <div class="fees-category">
+          <h3 class="category-title">Boarding Students (Per Term)</h3>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.1 - S.3 Tuition & Boarding</div>
+              <div class="fee-note">Includes accommodation & meals</div>
+            </div>
+            <div class="fee-amount">710,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.4 Tuition & Boarding</div>
+              <div class="fee-note">+ 45,000 Practical per term</div>
+            </div>
+            <div class="fee-amount">750,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">
+              <div>S.5 - S.6 Science & Boarding</div>
+              <div class="fee-note">+ 40,000 ICT/F.ART Annual</div>
+            </div>
+            <div class="fee-amount">750,000 UGX</div>
+          </div>
+        </div>
+        
+        <div class="fees-category">
+          <h3 class="category-title">Other Charges</h3>
+          <div class="fee-item">
+            <div class="fee-name">Admission Fee (Day)</div>
+            <div class="fee-amount">15,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">Admission Fee (Boarding)</div>
+            <div class="fee-amount">30,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">Uniform (Complete Set)</div>
+            <div class="fee-amount">195,000 - 255,000 UGX</div>
+          </div>
+          <div class="fee-item">
+            <div class="fee-name">Medical Fee (Per Term)</div>
+            <div class="fee-amount">20,000 UGX</div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2rem;">
+        <button class="btn btn-primary" onclick="downloadPDF()" style="padding: 1rem 3rem;">
+          <i class="fas fa-file-download"></i> Download Complete Fees Document
+        </button>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <h2 class="contact-title">Contact Admissions Office</h2>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <p>0779 100313</p>
+            <p>0752 815650</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>admissions@bomboss.sc.ug</p>
+            <p>info@bomboss.sc.ug</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>
+            <h4>Location</h4>
+            <p>21 Miles Kampala-Gulu Highway</p>
+            <p>P.O. Box 118, Bombo, Uganda</p>
+          </div>
+        </div>
+      </div>
+      <p style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; opacity: 0.9;">
+        Visit our campus Monday to Friday, 8:00 AM - 5:00 PM for admission inquiries
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Bombo Senior Secondary</h3>
+          <p>Providing quality education since 1978. We focus on academic excellence, discipline, and character development.</p>
+          <p><i class="fas fa-award"></i> Registered with Ministry of Education</p>
+          <p><i class="fas fa-users"></i> UNEB Examination Centre</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <a href="#">Admissions Process</a>
+          <a href="#">Academic Programs</a>
+          <a href="#">School Calendar</a>
+          <a href="#">Parent Portal</a>
+          <a href="#">Alumni Association</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Information</h3>
+          <p><i class="fas fa-map-marker-alt"></i> Bombo Town, Luwero District</p>
+          <p><i class="fas fa-phone"></i> 0779 100313 / 0752 815650</p>
+          <p><i class="fas fa-envelope"></i> info@bomboss.sc.ug</p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM</p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; <span id="currentYear"></span> Bombo Senior Secondary School. All Rights Reserved.</p>
+        <p>"Excellence in Education, Discipline in Character"</p>
+      </div>
     </div>
+  </footer>
 
-    <script>
-        // Set dynamic date
-        document.getElementById('pdfDate').textContent = new Date().toLocaleDateString('en-GB', {
-            day: 'numeric', month: 'long', year: 'numeric'
-        });
+  <!-- PDF Preview Modal -->
+  <div class="modal" id="pdfModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Fees Structure Preview</h3>
+        <button class="close-modal" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="pdfPreview">
+          <div style="text-align: center; padding: 3rem;">
+            <i class="fas fa-file-pdf" style="font-size: 4rem; color: #2c5282; margin-bottom: 1rem;"></i>
+            <h3 style="color: #2c5282; margin-bottom: 1rem;">Official Fees Structure Document</h3>
+            <p style="margin-bottom: 2rem;">This is a print-optimized document ready for download.</p>
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; text-align: left; margin-bottom: 2rem;">
+              <h4 style="color: #2c5282; margin-bottom: 1rem;">Document Includes:</h4>
+              <ul style="list-style: none; padding-left: 0;">
+                <li><i class="fas fa-check" style="color: #d4af37; margin-right: 10px;"></i> Complete admission requirements</li>
+                <li><i class="fas fa-check" style="color: #d4af37; margin-right: 10px;"></i> Detailed fees structure for all classes</li>
+                <li><i class="fas fa-check" style="color: #d4af37; margin-right: 10px;"></i> Termly and annual charges</li>
+                <li><i class="fas fa-check" style="color: #d4af37; margin-right: 10px;"></i> Required items for reporting</li>
+                <li><i class="fas fa-check" style="color: #d4af37; margin-right: 10px;"></i> Official school contact information</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary" onclick="downloadPDF()" style="padding: 1rem 2rem; font-size: 1.1rem;">
+              <i class="fas fa-download"></i> Download PDF Document
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Generate PDF Function
-        function generatePDF() {
-            const element = document.getElementById('pdf-template');
-            element.style.display = 'block'; // Temporarily show for capture
-
-            const opt = {
-                margin: 0,
-                filename: 'Bombo_SSS_Fee_Structure.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true },
-                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
-            };
-
-            html2pdf().set(opt).from(element).save().then(() => {
-                element.style.display = 'none'; // Hide again after capture
-            });
+  <script>
+    // Set current year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // PDF Download Function
+    function downloadPDF() {
+      // Create a hidden iframe with the printable content
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = 'about:blank';
+      document.body.appendChild(iframe);
+      
+      const doc = iframe.contentWindow.document;
+      
+      // Write the printable HTML content
+      doc.open();
+      doc.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Bombo SS - Fees Structure</title>
+          <style>
+            body { font-family: Times New Roman; font-size: 12pt; margin: 0.5in; }
+            .header { text-align: center; margin-bottom: 20px; border-bottom: 3px double #000; padding-bottom: 15px; }
+            .school-name { font-size: 22pt; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+            .school-address { font-size: 12pt; margin-bottom: 5px; }
+            .school-contacts { font-size: 11pt; font-weight: bold; }
+            .document-title { text-align: center; font-size: 16pt; font-weight: bold; margin: 25px 0; text-decoration: underline; }
+            .section { margin-bottom: 25px; }
+            .section-title { font-size: 14pt; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #000; padding-bottom: 5px; text-transform: uppercase; }
+            .subsection-title { font-size: 12pt; font-weight: bold; margin: 15px 0 10px; }
+            table { width: 100%; border-collapse: collapse; font-size: 10pt; margin: 10px 0; }
+            th { background: #f0f0f0; border: 1px solid #000; padding: 8px 5px; text-align: left; font-weight: bold; }
+            td { border: 1px solid #000; padding: 6px 5px; vertical-align: top; }
+            tr:nth-child(even) { background: #f9f9f9; }
+            .fee-highlight { font-weight: bold; }
+            .note { font-size: 9pt; font-style: italic; display: block; margin-top: 2px; }
+            ul { margin: 10px 0 10px 25px; }
+            li { margin-bottom: 5px; }
+            .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 2px solid #000; font-size: 10pt; }
+            .page-break { page-break-before: always; }
+            @media print {
+              @page { margin: 0.5in; size: A4; }
+              body { font-size: 11pt; }
+              .page-break { page-break-before: always; }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="school-name">Bombo Senior Secondary School</div>
+            <div class="school-address">P.O. BOX 118 – BOMBO, UGANDA</div>
+            <div class="school-contacts">Tel: 0779 100313 / 0752 815650</div>
+          </div>
+          
+          <div class="document-title">
+            ADMISSIONS & FEES STRUCTURE - ACADEMIC YEAR ${new Date().getFullYear()}/${new Date().getFullYear() + 1}
+          </div>
+          
+          <!-- Admissions Section -->
+          <div class="section">
+            <h2 class="section-title">I. ADMISSION INFORMATION</h2>
+            
+            <h3 class="subsection-title">A. General Admission Requirements</h3>
+            <ul>
+              <li>Duly filled application form (available at school office)</li>
+              <li>Original and 2 photocopies of previous school academic documents</li>
+              <li>Three (3) recent passport-size photographs</li>
+              <li>Certified copy of birth certificate or national ID</li>
+              <li>Medical examination report from recognized health facility</li>
+              <li>Transfer documents and leaving certificate (for transfer students)</li>
+              <li>Recommendation letter from previous school headteacher</li>
+              <li>Copy of parent/guardian national ID</li>
+            </ul>
+            
+            <h3 class="subsection-title">B. Academic Entry Requirements</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Class Level</th>
+                  <th>Minimum Requirements</th>
+                  <th>Additional Requirements</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>S.1</strong></td>
+                  <td>PLE Certificate with Grade I or II</td>
+                  <td>UNEB selection, Parent interview</td>
+                </tr>
+                <tr>
+                  <td><strong>S.2 - S.4</strong></td>
+                  <td>Good conduct and performance from previous school</td>
+                  <td>Transfer documents, School reports</td>
+                </tr>
+                <tr>
+                  <td><strong>S.5</strong></td>
+                  <td>UCE with minimum 28 points</td>
+                  <td>Subject combination requirements</td>
+                </tr>
+                <tr>
+                  <td><strong>Islamic Theology</strong></td>
+                  <td>IPLE or interest in Islamic studies</td>
+                  <td>Basic Arabic test, Interview</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Fees Section -->
+          <div class="page-break"></div>
+          <div class="section">
+            <h2 class="section-title">II. FEES STRUCTURE</h2>
+            
+            <h3 class="subsection-title">A. Tuition Fees Per Term (UGX)</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>S.1 - S.3</th>
+                  <th>S.4</th>
+                  <th>S.5-S.6 Science</th>
+                  <th>S.5-S.6 Arts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>DAY</strong></td>
+                  <td><span class="fee-highlight">235,000</span><span class="note">+30,000 Project</span></td>
+                  <td><span class="fee-highlight">285,000</span><span class="note">+30,000 Project</span></td>
+                  <td><span class="fee-highlight">335,000</span><span class="note">+45,000 Practical</span></td>
+                  <td><span class="fee-highlight">335,000</span><span class="note">+40,000 ICT/F.ART</span></td>
+                </tr>
+                <tr>
+                  <td><strong>BOARDING</strong></td>
+                  <td><span class="fee-highlight">710,000</span><span class="note">+30,000 Project</span></td>
+                  <td><span class="fee-highlight">750,000</span><span class="note">+45,000 Practical</span></td>
+                  <td><span class="fee-highlight">750,000</span><span class="note">+40,000 ICT/F.ART</span></td>
+                  <td>–</td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3 class="subsection-title">B. Other Mandatory Charges (UGX)</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Day</th>
+                  <th>Boarding</th>
+                  <th>Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Admission Fee</strong></td>
+                  <td class="fee-highlight">15,000</td>
+                  <td class="fee-highlight">30,000</td>
+                  <td>One-time</td>
+                </tr>
+                <tr>
+                  <td><strong>Student File</strong></td>
+                  <td>5,000</td>
+                  <td>5,000</td>
+                  <td>One-time</td>
+                </tr>
+                <tr>
+                  <td><strong>Identity Card</strong></td>
+                  <td>5,000</td>
+                  <td>5,000</td>
+                  <td>One-time</td>
+                </tr>
+                <tr>
+                  <td><strong>Uniform (Full Set)</strong></td>
+                  <td>195,000</td>
+                  <td>255,000</td>
+                  <td>One-time</td>
+                </tr>
+                <tr>
+                  <td><strong>Medical Fee</strong></td>
+                  <td>20,000</td>
+                  <td>20,000</td>
+                  <td>Per Term</td>
+                </tr>
+                <tr>
+                  <td><strong>Development Fund</strong></td>
+                  <td>10,000</td>
+                  <td>10,000</td>
+                  <td>Per Term</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Contact Section -->
+          <div class="page-break"></div>
+          <div class="section">
+            <h2 class="section-title">III. CONTACT INFORMATION</h2>
+            <ul>
+              <li><strong>Location:</strong> 21 Miles Kampala-Gulu Highway, Bombo Town</li>
+              <li><strong>Postal Address:</strong> P.O. Box 118, Bombo, Uganda</li>
+              <li><strong>Telephone:</strong> 0779 100313 / 0752 815650</li>
+              <li><strong>Email:</strong> info@bomboss.sc.ug</li>
+              <li><strong>Office Hours:</strong> Mon-Fri: 8:00 AM - 5:00 PM</li>
+            </ul>
+            
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #000;">
+              <p><strong>Approved by School Administration</strong></p>
+              <p style="font-size: 10pt; margin-top: 30px;">Valid for academic year ${new Date().getFullYear()}/${new Date().getFullYear() + 1}</p>
+            </div>
+          </div>
+          
+          <div class="footer">
+            <p><strong>BOMBO SENIOR SECONDARY SCHOOL</strong></p>
+            <p>"Excellence in Education, Discipline in Character"</p>
+            <p>© ${new Date().getFullYear()} Bombo Senior Secondary School</p>
+          </div>
+        </body>
+        </html>
+      `);
+      doc.close();
+      
+      // Wait for content to load, then trigger print
+      setTimeout(() => {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+        
+        // Remove iframe after printing
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 1000);
+      }, 500);
+      
+      // Close modal if open
+      closeModal();
+    }
+    
+    // Modal Functions
+    function openAdmissionModal() {
+      document.getElementById('pdfModal').style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('pdfModal').style.display = 'none';
+    }
+    
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('pdfModal');
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
