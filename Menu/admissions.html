@@ -82,7 +82,7 @@
     .logo img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensures the image fills the circle without stretching */
+      object-fit: cover;
     }
 
 
@@ -580,7 +580,6 @@
               <li>Grade I or II in PLE results</li>
               <li>UNEB selection number required</li>
               <li>Parent/guardian interview</li>
-              <li>Medical examination report</li>
             </ul>
           </div>
         </div>
@@ -612,8 +611,6 @@
               <li>3 recent passport photos</li>
               <li>Birth certificate/National ID copy</li>
               <li>Previous school reports</li>
-              <li>Recommendation letter</li>
-              <li>Medical report from recognized facility</li>
             </ul>
           </div>
         </div>
@@ -684,14 +681,6 @@
         
         <div class="fees-category">
           <h3 class="category-title">Other Charges</h3>
-          <div class="fee-item">
-            <div class="fee-name">Admission Fee (Day)</div>
-            <div class="fee-amount">15,000 UGX</div>
-          </div>
-          <div class="fee-item">
-            <div class="fee-name">Admission Fee (Boarding)</div>
-            <div class="fee-amount">30,000 UGX</div>
-          </div>
           <div class="fee-item">
             <div class="fee-name">Uniform (Complete Set)</div>
             <div class="fee-amount">195,000 - 255,000 UGX</div>
@@ -781,7 +770,7 @@
       </div>
       <div class="copyright">
         <p>&copy; <span id="currentYear"></span> Bombo Senior Secondary School. All Rights Reserved.</p>
-        <p>"Excellence in Education, Discipline in Character"</p>
+        <p>"Determination leads to success"</p>
       </div>
     </div>
   </footer>
@@ -827,9 +816,9 @@
     
     // Generate PDF with professional design
     function downloadPDF() {
-      const currentYear = new Date().getFullYear();
-      const nextYear = currentYear + 1;
-      const academicYear = `${currentYear}/${nextYear}`;
+      const currentYear = 2026;
+      const nextYear = currentYear;
+      const academicYear = `${currentYear}`;
       
       // Create a hidden iframe for printing
       const iframe = document.createElement('iframe');
@@ -1058,7 +1047,6 @@
             <div class="info-box">
               <strong>Admission Period:</strong> December to February annually<br>
               <strong>Reporting Dates:</strong> As per admission letter (usually first week of term)<br>
-              <strong>Application Fee:</strong> 10,000 UGX (non-refundable)
             </div>
             
             <h3 class="subsection-title">A. General Admission Requirements</h3>
@@ -1067,9 +1055,7 @@
               <li>Original and 2 photocopies of previous school academic documents</li>
               <li>Three (3) recent passport-size photographs</li>
               <li>Certified copy of birth certificate or national ID</li>
-              <li>Medical examination report from recognized health facility</li>
               <li>Transfer documents and leaving certificate (for transfer students)</li>
-              <li>Recommendation letter from previous school headteacher</li>
               <li>Copy of parent/guardian national ID</li>
             </ul>
             
@@ -1159,24 +1145,6 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Admission Fee</strong></td>
-                  <td class="fee-highlight">15,000</td>
-                  <td class="fee-highlight">30,000</td>
-                  <td>One-time</td>
-                </tr>
-                <tr>
-                  <td><strong>Student File</strong></td>
-                  <td>5,000</td>
-                  <td>5,000</td>
-                  <td>One-time</td>
-                </tr>
-                <tr>
-                  <td><strong>Identity Card</strong></td>
-                  <td>5,000</td>
-                  <td>5,000</td>
-                  <td>One-time</td>
-                </tr>
-                <tr>
                   <td><strong>Uniform (Full Set)</strong></td>
                   <td>195,000</td>
                   <td>255,000</td>
@@ -1186,12 +1154,6 @@
                   <td><strong>Medical Fee</strong></td>
                   <td>20,000</td>
                   <td>20,000</td>
-                  <td>Per Term</td>
-                </tr>
-                <tr>
-                  <td><strong>Development Fund</strong></td>
-                  <td>10,000</td>
-                  <td>10,000</td>
                   <td>Per Term</td>
                 </tr>
               </tbody>
@@ -1219,7 +1181,7 @@
             <div class="info-box">
               <strong>School Location:</strong> 21 Miles Kampala-Gulu Highway, Bombo Town, Luwero District<br>
               <strong>Postal Address:</strong> P.O. Box 118, Bombo, Uganda<br>
-              <strong>Office Hours:</strong> Monday-Friday: 8:00 AM - 5:00 PM, Saturday: 9:00 AM - 1:00 PM
+              <strong>Office Hours:</strong> Monday-Friday: 8:00 AM - 5:00 PM
             </div>
             
             <h3 class="subsection-title">Contact Details</h3>
@@ -1235,21 +1197,18 @@
               <li><strong>Term 2:</strong> May - July (Reporting: First week May)</li>
               <li><strong>Term 3:</strong> September - November (Reporting: First week September)</li>
               <li><strong>Admission Period:</strong> December 1 - February 28</li>
-              <li><strong>Parents' Meetings:</strong> Last Saturday of each term</li>
             </ul>
             
             <div class="signature-area">
               <p style="text-align: center; margin-bottom: 40px;"><strong>Approved by School Administration</strong></p>
               <div class="signature-line">Head Teacher's Signature</div>
-              <div class="signature-line">School Bursar's Signature</div>
-              <div class="signature-line">Chairperson, Board of Governors</div>
             </div>
           </div>
           
           <!-- Footer -->
           <div class="footer">
             <p><strong>BOMBO SENIOR SECONDARY SCHOOL</strong></p>
-            <p>"Excellence in Education, Discipline in Character"</p>
+            <p>"Determination leads to success"</p>
             <p>© ${currentYear} Bombo Senior Secondary School | Valid for academic year ${academicYear}</p>
           </div>
         </body>
