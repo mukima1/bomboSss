@@ -1426,145 +1426,6 @@
       }
     }
 
-    /* SIMPLE POPUP STYLES */
-    .welcome-popup {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .welcome-popup.active {
-      display: flex;
-      opacity: 1;
-    }
-
-    .popup-box {
-      background: white;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 500px;
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-
-    .welcome-popup.active .popup-box {
-      transform: scale(1);
-    }
-
-    .popup-header {
-      background: var(--primary);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    .popup-header h3 {
-      margin: 0;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .popup-header h3 i {
-      color: var(--secondary);
-    }
-
-    .close-popup {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-
-    .close-popup:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: rotate(90deg);
-    }
-
-    .popup-content {
-      padding: 30px;
-    }
-
-    .popup-content p {
-      margin-bottom: 15px;
-      color: var(--gray);
-      line-height: 1.6;
-    }
-
-    .popup-highlight {
-      background: rgba(240, 165, 0, 0.1);
-      border-left: 4px solid var(--secondary);
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .popup-highlight p {
-      margin: 0;
-      color: var(--dark);
-      font-weight: 500;
-    }
-
-    .popup-tip {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(44, 82, 130, 0.05);
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-
-    .popup-tip i {
-      color: var(--secondary);
-      font-size: 1.2rem;
-    }
-
-    .popup-tip span {
-      color: var(--dark);
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      .popup-box {
-        width: 95%;
-        margin: 20px;
-      }
-      
-      .popup-content {
-        padding: 20px;
-      }
-      
-      .popup-header h3 {
-        font-size: 1.3rem;
-      }
-    }
-
     /* Modal Base Styles */
   .modal {
     display: none;
@@ -1751,32 +1612,6 @@
   </style>
 </head>
 <body>
-  <!-- Simple Welcome Popup -->
-  <div class="welcome-popup" id="welcomePopup">
-    <div class="popup-box">
-      <div class="popup-header">
-        <h3><i class="fas fa-robot"></i> Welcome to Bombo SS!</h3>
-        <button class="close-popup" onclick="closeWelcomePopup()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="popup-content">
-        <p>Welcome to Bombo Senior Secondary School's website! We're excited to have you here.</p>
-        
-        <p>Instead of manually searching through pages, we have a <strong>quick assistant feature</strong> where you can ask questions and get summarized answers instantly.</p>
-        
-        <div class="popup-highlight">
-          <p>Simply scroll down to find the yellow "Apply Now" button, and look for the circle button with our school badge on a yellow background to ask your questions!</p>
-        </div>
-        
-        <div class="popup-tip">
-          <i class="fas fa-lightbulb"></i>
-          <span>This saves you time and gives you quick answers about admissions, academics, fees, and more!</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Navigation Bar -->
   <nav class="navbar">
     <div class="logo">
@@ -1828,7 +1663,7 @@
             <i class="fas fa-graduation-cap"></i>
             <span>Results</span>
           </a>
-          <a href="blog/blog.html" class="quick-action">
+          <a href="https://news.bombosss.ac.ug/news" class="quick-action">
             <i class="fas fa-newspaper"></i>
             <span>News</span>
           </a>
@@ -1879,7 +1714,7 @@
       <li><a href="Menu/applications.html"><i class="fas fa-book"></i> Academics</a></li>
       <li><a href="Menu/admissions.html"><i class="fas fa-user-graduate"></i> Admissions</a></li>
       <li><a href="Menu/contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-      <li><a href="blog/blog.html"><i class="fas fa-newspaper"></i> News</a></li>
+      <li><a href="https://news.bombosss.ac.ug/news"><i class="fas fa-newspaper"></i> News</a></li>
       <li><a href="assets/galary/garaly.html"><i class="fas fa-images"></i> Gallery</a></li>
       <li><a href="NotFoundPage/index.html"><i class="fas fa-calendar-alt"></i> Events</a></li>
     </ul>
@@ -1926,7 +1761,7 @@
         <i class="fas fa-graduation-cap"></i>
         <span>Results</span>
       </a>
-      <a href="blog/blog.html" class="mobile-quick-action-modal">
+      <a href="https://news.bombosss.ac.ug/news" class="mobile-quick-action-modal">
         <i class="fas fa-newspaper"></i>
         <span>News</span>
       </a>
@@ -2099,7 +1934,7 @@
   <!-- News Section -->
   <section id="academics" class="news container">
     <h2>Latest News & Announcements</h2>
-    <div class="news-grid">
+    <div class="news-grid" id="news-grid-dynamic">
       <div class="news-item">
         <div class="news-img">
           <img src="assets/bombostds.jpeg" alt="News Image">
@@ -2108,10 +1943,10 @@
         <div class="news-content">
           <h3>2024 UNEB Results Released</h3>
           <p>Bombo SS celebrates another year of outstanding performance with 95% of our students qualifying for university admission.</p>
-          <a href="#" class="btn btn-outline" onclick="openPopup(event)">Read More</a>
+          <a href="https://news.bombosss.ac.ug/news" class="btn btn-outline">Read More</a>
         </div>
       </div>
-      
+
       <div class="news-item">
         <div class="news-img">
           <img src="assets/spots.jpeg" alt="News Image">
@@ -2120,10 +1955,10 @@
         <div class="news-content">
           <h3>Annual Sports Day</h3>
           <p>Join us for our inter-house competitions featuring athletics, football, netball and more on June 20th.</p>
-          <a href="#" class="btn btn-outline" onclick="openPopup(event)">Read More</a>
+          <a href="https://news.bombosss.ac.ug/news" class="btn btn-outline">Read More</a>
         </div>
       </div>
-      
+
       <div class="news-item">
         <div class="news-img">
           <img src="assets/food.jpeg" alt="News Image">
@@ -2132,11 +1967,78 @@
         <div class="news-content">
           <h3>The department of Food Technology</h3>
           <p>The Department of Food Technology offers hands-on training, teaching students practical culinary skills and knowledge, preparing them for careers in the food industry.</p>
-          <a href="#" class="btn btn-outline" onclick="openPopup(event)">Read More</a>
+          <a href="https://news.bombosss.ac.ug/news" class="btn btn-outline">Read More</a>
         </div>
       </div>
     </div>
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://news.bombosss.ac.ug/news" class="btn">View All News</a>
+    </div>
   </section>
+
+  <script>
+    // Pulls the latest published articles from the news app's public API.
+    // Deliberately does NOT talk to Firebase directly from this public,
+    // statically-hosted repo — no project config is exposed here, only
+    // plain JSON for already-published articles.
+    (function () {
+      var NEWS_API_URL = "https://news.bombosss.ac.ug/api/latest-news";
+      var NEWS_APP_URL = "https://news.bombosss.ac.ug";
+
+      function formatNewsDate(millis) {
+        if (!millis) return "";
+        return new Date(millis)
+          .toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })
+          .toUpperCase();
+      }
+
+      function escapeHtml(str) {
+        var div = document.createElement("div");
+        div.textContent = str || "";
+        return div.innerHTML;
+      }
+
+      function loadLatestNews() {
+        var grid = document.getElementById("news-grid-dynamic");
+        if (!grid) return;
+
+        fetch(NEWS_API_URL)
+          .then(function (res) {
+            return res.ok ? res.json() : null;
+          })
+          .then(function (data) {
+            var articles = data && data.articles ? data.articles : [];
+            if (articles.length === 0) return; // keep the fallback cards already in the markup
+
+            grid.innerHTML = "";
+            articles.forEach(function (article) {
+              var articleUrl = NEWS_APP_URL + "/news/" + encodeURIComponent(article.slug || "");
+              var imgSrc = article.coverImageUrl || "assets/bombostds.jpeg";
+
+              var item = document.createElement("div");
+              item.className = "news-item";
+              item.innerHTML =
+                '<div class="news-img">' +
+                '<img src="' + escapeHtml(imgSrc) + '" alt="' + escapeHtml(article.title) + '">' +
+                '<div class="news-date">' + formatNewsDate(article.createdAt) + "</div>" +
+                "</div>" +
+                '<div class="news-content">' +
+                "<h3>" + escapeHtml(article.title) + "</h3>" +
+                "<p>" + escapeHtml(article.excerpt) + "</p>" +
+                '<a href="' + articleUrl + '" class="btn btn-outline">Read More</a>' +
+                "</div>";
+              grid.appendChild(item);
+            });
+          })
+          .catch(function (err) {
+            console.error("Could not load latest news:", err);
+            // keep the fallback cards already in the markup
+          });
+      }
+
+      loadLatestNews();
+    })();
+  </script>
 
   <!-- CTA Section -->
   <section id="admissions" class="cta-section">
@@ -2170,7 +2072,7 @@
         <a href="NotFoundPage/index.html">Careers</a>
         <a href="newsLetter/mailLetter.html">Email News Letter</a>
         <a href="join/donations/donate.html">Donations</a>
-        <a href="blog/blog.html">Blog/News</a>
+        <a href="https://news.bombosss.ac.ug/news">Blog/News</a>
       </div>
       
       <div class="footer-col">
@@ -2264,35 +2166,6 @@
 </div>
 
   <script>
-    // Simple Welcome Popup Functions
-    function showWelcomePopup() {
-      // Check if popup was shown today
-      const today = new Date().toDateString();
-      const lastShown = localStorage.getItem('welcomePopupLastShown');
-      
-      // Only show if not shown today
-      if (lastShown !== today) {
-        setTimeout(() => {
-          const popup = document.getElementById('welcomePopup');
-          popup.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }, 1000); // Show after 1 second
-      }
-    }
-
-    function closeWelcomePopup() {
-      const popup = document.getElementById('welcomePopup');
-      popup.classList.remove('active');
-      document.body.style.overflow = 'auto';
-      
-      // Store that popup was shown today
-      const today = new Date().toDateString();
-      localStorage.setItem('welcomePopupLastShown', today);
-    }
-
-    // Show popup when page loads
-    window.addEventListener('DOMContentLoaded', showWelcomePopup);
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -2563,11 +2436,6 @@
     const modal = document.getElementById('underConstructionModal');
     if (event.target === modal) {
       closePopup();
-    }
-    // Also close welcome popup when clicking outside
-    const welcomePopup = document.getElementById('welcomePopup');
-    if (event.target === welcomePopup) {
-      closeWelcomePopup();
     }
   }
   </script>
